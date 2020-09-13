@@ -16,3 +16,9 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+task runServer(type: JavaExec, dependsOn: assemble) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'br.com.ifeira.server.ServerApplication'
+	args '--spring.profiles.active=dev'
+}

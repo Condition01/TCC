@@ -16,3 +16,9 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+task runProxy(type: JavaExec, dependsOn: assemble) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'br.com.ifeira.proxy.ProxyApplication'
+	args '--spring.profiles.active=dev'
+}

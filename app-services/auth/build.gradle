@@ -16,3 +16,9 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+task runAuth(type: JavaExec, dependsOn: assemble) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'br.com.ifeira.auth.AuthApplication'
+	args '--spring.profiles.active=dev'
+}
