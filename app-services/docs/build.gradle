@@ -1,0 +1,12 @@
+plugins {
+    id 'org.asciidoctor.convert'
+}
+
+asciidoctor {
+    sources {
+        include 'greeter.adoc'
+        include 'greeting-library.adoc'
+    }
+}
+
+build.dependsOn 'asciidoctor'
