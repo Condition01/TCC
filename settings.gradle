@@ -21,4 +21,5 @@ include 'app-services:auth'
 include 'app-services:discovery'
 include 'app-services:proxy'
 include 'app-services:compras'
+include 'app-services:testapp'
 

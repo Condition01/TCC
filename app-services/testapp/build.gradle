@@ -10,24 +10,16 @@ sourceCompatibility = '1.8'
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
+	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 }
 
 test {
 	useJUnitPlatform()
 }
 
-task runCompras(type: JavaExec, dependsOn: assemble) {
+task runTestApp(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath
-	main = 'br.com.ifeira.compras.ComprasApplication'
+	main = 'br.com.ifeira.auth.TestappApplication'
 //	args '--spring.profiles.active=dev'
 }

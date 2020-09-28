@@ -36,5 +36,5 @@ test {
 task runDiscovery(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath
 	main = 'br.com.ifeira.discovery.DiscoveryApplication'
-	args '--spring.profiles.active=dev'
+//	args '--spring.profiles.active=dev'
 }
