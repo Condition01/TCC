@@ -4,13 +4,29 @@ plugins {
 	id 'java'
 }
 
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+ext {
+	set('springCloudVersion', "Greenwich.SR4")
+}
+
 group = 'br.com.ifeira'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+	testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 test {

@@ -1,15 +1,13 @@
-package br.com.ifeira.proxy;
+package br.com.ifeira.compras;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class ProxyApplicationTests {
+public class ServerApplicationTests {
 
 	@Test
 	public void contextLoads() {
