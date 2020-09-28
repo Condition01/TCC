@@ -22,9 +22,9 @@ dependencyManagement {
 	}
 }
 
-test {
-	useJUnitPlatform()
-}
+//test {
+//	useJUnitPlatform()
+//}
 
 task runCompras(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath

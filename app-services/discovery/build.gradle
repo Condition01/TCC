@@ -29,9 +29,9 @@ dependencyManagement {
 	}
 }
 
-test {
-	useJUnitPlatform()
-}
+//test {
+//	useJUnitPlatform()
+//}
 
 task runDiscovery(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath

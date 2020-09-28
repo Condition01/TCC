@@ -14,9 +14,9 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 }
 
-test {
-	useJUnitPlatform()
-}
+//test {
+//	useJUnitPlatform()
+//}
 
 task runAuth(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath

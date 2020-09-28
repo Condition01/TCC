@@ -21,7 +21,6 @@ allprojects {
 
 }
 
-
 dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
 }
