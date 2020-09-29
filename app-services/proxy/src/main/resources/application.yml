@@ -1,1 +1,28 @@
+spring:
+  application:
+    name: proxy
 
+zuul:
+  prefix: /api
+#  ignored-services: *
+  routes:
+    compras:
+      path: /compras/**
+      serviceId: compras-service
+      stripPrefix: false
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    port: 8081
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
