@@ -25,7 +25,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.css"
+              "src/styles.css",
+              "theme.scss"
             ],
             "scripts": []
           },
@@ -126,5 +127,10 @@
   "defaultProject": "client-app",
   "cli": {
     "analytics": "21bd3aa3-635b-40a9-946e-94321e02aeae"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
   }
 }
