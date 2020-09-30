@@ -1,0 +1,32 @@
+.header {
+
+    display: flex;
+    align-items: center;
+    color: #fff;
+    height: 90px;
+    
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .logo {
+        max-height: 32px;
+    }
+
+    .title-group {
+        padding-left: 25px;
+
+        i {
+            padding-right: 5px;
+        }
+
+    }
+
+    .carrinho {
+        margin-right: 20px;
+    }
+    
+}

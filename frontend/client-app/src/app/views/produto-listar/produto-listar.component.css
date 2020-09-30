@@ -1,0 +1,8 @@
+.produto-card {
+  max-width: 400px;
+}
+
+.produto-header-image {
+  background-image: url("https://i.ibb.co/fHGH4YY/1078.png");
+  background-size: cover;
+}

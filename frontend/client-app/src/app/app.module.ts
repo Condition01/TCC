@@ -15,7 +15,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { TopMenuComponent } from './components/template/top-menu/top-menu.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { ProdutoListarComponent } from './views/produto-listar/produto-listar.component';
+import { ProdutoComprarComponent } from './views/produto-comprar/produto-comprar.component';
+import { MatCardModule } from '@angular/material/card';
+
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,9 @@ import {MatButtonModule} from '@angular/material/button';
     FooterComponent,
     HeaderComponent,
     NavComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    ProdutoListarComponent,
+    ProdutoComprarComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +41,11 @@ import {MatButtonModule} from '@angular/material/button';
     MatMenuModule,
     MatIconModule,
     MatRippleModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
