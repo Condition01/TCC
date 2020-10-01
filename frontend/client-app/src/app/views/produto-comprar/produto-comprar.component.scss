@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  height: 40%;
+  width: 80%;
+  margin-bottom: 200px;
+
+  .title {
+    font-size: 4em;
+    padding: 20px;
+  }
+
+  .header {
+    order: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+  }
+
+  img {
+    display: flex;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    border-radius: 4px;
+  }
+
+  .content {
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 50%;
+    height: 50%;
+  }
+
+  .preco {
+    // margin: auto
+    display: flex;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      height: 60px;
+      margin-bottom: 20px;
+    }
+
+  }
+
+}
+
+// .logo {
+//   display: flex;
+//   margin-right: auto;
+//   align-content: center;
+//   align-items: center;
+// }
+
+// .left-menu {
+//   display: flex;
+//   margin-left: auto;
+// }
+
+// .home-header {
+//     height: 100px;
+//     // margin-bottom: 5px;
+
+//     h1 {
+//       font-size: 34px;
+//       padding-bottom: 30px;
+//     }
+// }

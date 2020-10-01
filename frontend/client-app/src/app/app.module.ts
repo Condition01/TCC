@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './views/home/home.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { HeaderComponent } from './components/template/header/header.component';
 import { NavComponent } from './components/template/nav/nav.component';
@@ -19,13 +18,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProdutoListarComponent } from './views/produto-listar/produto-listar.component';
 import { ProdutoComprarComponent } from './views/produto-comprar/produto-comprar.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider'
 
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+
+import { CookieService } from 'ngx-cookie-service'
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     FooterComponent,
     HeaderComponent,
     NavComponent,
@@ -43,9 +45,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatRippleModule,
     MatButtonModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

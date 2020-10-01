@@ -18,7 +18,7 @@
         <h3>Preço: {{ prod.preco | currency: 'BRL' }} - {{ prod.unidade }}</h3>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary">Comprar</button>
+        <button mat-raised-button color="primary" (click)="comprar(prod.id)">Comprar</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
