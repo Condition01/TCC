@@ -1,0 +1,152 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+$bv-greens: (
+  50: "f8fee2",
+  100: "eefcb7",
+  200: "e3fa87",
+  300: "d7f857",
+  400: "cff733",
+  500: "c6f50f",
+  600: "c0f40d",
+  700: "b9f20b",
+  800: "b1f008",
+  900: "a4ee04",
+  A100: "ffffff",
+  A200: "f5ffe1",
+  A400: "e3ffae",
+  A700: "daff95",
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+$bv-dark-greens: (
+  50: "#edf9f5",
+  100: "#d1f0e6",
+  200: "#b3e6d5",
+  300: "#94dcc4",
+  400: "#7dd5b7",
+  500: "#66cdaa",
+  600: "#5ec8a3",
+  700: "#53c199",
+  800: "#49ba90",
+  900: "#38ae7f",
+  A100: "#fafffd",
+  A200: "#c7ffe8",
+  A400: "#94ffd3",
+  A700: "#7affc8",
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+$bv-oranges: (
+  50: "#fff4e0",
+  100: "#ffe4b3",
+  200: "#ffd280",
+  300: "#ffc04d",
+  400: "#ffb326",
+  500: "#ffa500",
+  600: "#ff9d00",
+  700: "#ff9300",
+  800: "#ff8a00",
+  900: "#ff7900",
+  A100: "#ffffff",
+  A200: "#fff8f2",
+  A400: "#ffdabf",
+  A700: "#ffcba6",
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+$bv-reds: (
+  50: "#feeeea",
+  100: "#fcd5cb",
+  200: "#fbbaa9",
+  300: "#f99e87",
+  400: "#f7896d",
+  500: "#f67453",
+  600: "#f56c4c",
+  700: "#f36142",
+  800: "#f25739",
+  900: "#ef4429",
+  A100: "#ffffff",
+  A200: "#fffafa",
+  A400: "#ffcec7",
+  A700: "#ffb7ad",
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+$bv-palette-primary: mat-palette($bv-greens);
+$bv-palette-accent: mat-palette($bv-oranges);
+$bv-palette-warn: mat-palette($bv-reds);
+
+$bv-theme: mat-light-theme(
+  $bv-palette-primary,
+  $bv-palette-accent,
+  $bv-palette-warn
+);
+
+$primary: mat-palette($mat-green,400);
+$accent: mat-palette($mat-orange,400);
+$warn: mat-palette($mat-red,400);
+
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
