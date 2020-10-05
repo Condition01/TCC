@@ -3,20 +3,54 @@ spring:
     name: proxy
 
 zuul:
+  retryable: true
   prefix: /api
+
 #  ignored-services: *
   routes:
     compras:
       path: /compras/**
       serviceId: compras-service
-      stripPrefix: false
+      stripPrefix: true
+      retryable: true
+#    retryable: true
+
+
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+
+#compras-service:
+#  ribbon:
+#    listOfServers: localhost:8086,localhost:8087
+#    eureka.enabled: false
+#    ServerListRefreshInterval: 100
+#    retryableStatusCodes: 500
+#    MaxAutoRetries: 2
+#    MaxAutoRetriesNextServer: 1
+#    OkToRetryOnAllOperations: true
+#    ReadTimeout: 10000
+#    ConnectTimeout: 10000
+#    EnablePrimeConnections: true
+
+
+hystrix:
+  command:
+    compras-service:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
 
 eureka:
   instance:
     prefer-ip-address: true
     hostname: localhost
     port: 8081
-    leaseRenewalIntervalInSeconds: 10
+    leaseRenewalIntervalInSeconds: 2
+#    leaseRenewalIntervalInSeconds: 1
+#    lease-expiration-duration-in-seconds: 1
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
@@ -24,5 +58,3 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
-  server:
-    wait-time-in-ms-when-sync-empty: 3000

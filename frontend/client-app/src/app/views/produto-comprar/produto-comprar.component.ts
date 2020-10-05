@@ -20,6 +20,7 @@ export class ProdutoComprarComponent implements OnInit {
   ) {}
 
   produto: Produto;
+  quantidade: number = 0;
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');

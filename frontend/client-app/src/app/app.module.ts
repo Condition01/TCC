@@ -28,7 +28,10 @@ import { CarrinhoComponent } from './views/carrinho/carrinho.component';
 import { MatTableModule } from '@angular/material/table';
 import { ItemCarrinhoEditarComponent } from './views/item-carrinho-editar/item-carrinho-editar.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatListModule,
     MatTableModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

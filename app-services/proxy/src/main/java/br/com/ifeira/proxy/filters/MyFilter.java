@@ -14,7 +14,7 @@ public class MyFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
-        return "pre";
+        return "pos";
     }
 
     //Ordem que o filtro roda em relação a outros filtros
