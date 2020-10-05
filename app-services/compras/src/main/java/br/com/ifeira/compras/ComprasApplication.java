@@ -34,7 +34,6 @@ class ServiceInstanceRestController {
 
 	@Value("${server.instance}")
 	private String instance = "";
-
 	@Autowired
 	private DiscoveryClient discoveryClient;
 

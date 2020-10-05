@@ -3,16 +3,17 @@ spring:
     name: compras-service
 
 server:
-  port: 8085
-  instance: PRIMEIRO
+  port: 8087
+  instance: terceiro
 
 
 eureka:
   instance:
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 30
     prefer-ip-address: true
     hostname: localhost
     port: 8081
-    leaseRenewalIntervalInSeconds: 10
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
@@ -20,5 +21,3 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
-  server:
-    wait-time-in-ms-when-sync-empty: 3000
