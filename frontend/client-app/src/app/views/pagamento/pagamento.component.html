@@ -1,0 +1,44 @@
+<div class="container">
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <mat-card class="card">
+    <mat-card-header class="header">
+      <mat-card-title class="title">Pagamento</mat-card-title>
+    </mat-card-header>
+
+    <div [formGroup]="form" class="form">
+        <span></span>
+        <mat-form-field appearance="legacy">
+        <mat-label>Nome no Cartão</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Nome</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Número</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Número</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Validade</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Data</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Código</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>CVV</mat-hint>
+      </mat-form-field>
+    </div>
+  
+
+    <mat-card-actions class="actions">
+      <button mat-raised-button color="primary">Finalizar Compra</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

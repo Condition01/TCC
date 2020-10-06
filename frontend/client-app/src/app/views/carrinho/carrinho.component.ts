@@ -18,7 +18,7 @@ export interface Transaction {
   styleUrls: ['./carrinho.component.scss'],
 })
 export class CarrinhoComponent implements OnInit {
-  displayedColumns = ['item', 'quantidade', 'valor', 'acoes'];
+  displayedColumns = ['item', 'quantidade', 'valor', 'Acao'];
   produtoCarrinho: CarrinhoShow[];
   /** Gets the total cost of all transactions. */
 
@@ -75,6 +75,10 @@ export class CarrinhoComponent implements OnInit {
     });
     return size;
   }
+
+  // finalizarCompra() {
+  //   this.router.navigate(['pagamento']);
+  // }
 
   abrirEdicao(carrinhoProd: CarrinhoShow): void {
     const dialogRef = this.dialog.open(ItemCarrinhoEditarComponent, {

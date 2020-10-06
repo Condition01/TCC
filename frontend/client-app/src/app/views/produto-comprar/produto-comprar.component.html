@@ -20,16 +20,16 @@
       <h1>Preço: {{ produto.preco | currency: 'BRL' }}  </h1>
     </div>
     <mat-card-actions class="actions">
-         <mat-form-field class="quantidade-field">
+      <form class="quantidade-form" [formGroup]="form"> 
+        <mat-form-field class="quantidade-field">
           <mat-label>Quantidade</mat-label>
-          <input matInput placeholder="Ex. 1" [(ngModel)]="quantidade" [value]="quantidade">
+          <input matInput placeholder="Ex. 1" formControlName="quantidade">
         </mat-form-field>
-      <form class="quantidade-form">
+        <button mat-raised-button color="primary" [disabled]="form.invalid"  (click)="adicionarCarrinho(produto.id)">
+          ADICIONAR AO CARRINHO 
+          <mat-icon aria-hidden="false" aria-label="Example home icon">add_shopping_cart</mat-icon>
+        </button>
       </form>
-      <button mat-raised-button color="primary" (click)="adicionarCarrinho(produto.id)">
-        ADICIONAR AO CARRINHO 
-        <mat-icon aria-hidden="false" aria-label="Example home icon">add_shopping_cart</mat-icon>
-      </button>
     </mat-card-actions>
   </mat-card>
 </div>

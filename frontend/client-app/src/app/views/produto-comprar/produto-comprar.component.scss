@@ -68,6 +68,11 @@
       margin-bottom: 20px;
     }
 
+    button:disabled {
+      background-color: #0000001F;
+      color: gray; //vai ser 
+    }
+
   }
 
 }

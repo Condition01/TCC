@@ -11,13 +11,14 @@ export class CarrinhoService {
 
   constructor(private cookieService: CookieService, private produtoService: ProdutoService) { }
 
-  addItem(prodId: string) {
+  addItem(prodId: string, quantidade: number) {
     let cookie = this.cookieService.get('carrinho-cookie');
     let carrinho = cookie ? JSON.parse(cookie) as Map<string, number> : new Map<string, number>()
+    console.log("quantidade = " + quantidade)
     if(carrinho[prodId]){
-      carrinho[prodId] = carrinho[prodId] + 1;
+      carrinho[prodId] = Number(carrinho[prodId]) + Number(quantidade)
     }else{
-      carrinho[prodId] = 1;
+      carrinho[prodId] = Number(quantidade);
     }
     console.log(carrinho)
     this.cookieService.set('carrinho-cookie', JSON.stringify(carrinho));

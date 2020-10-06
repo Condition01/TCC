@@ -4,6 +4,7 @@ import { Produto } from 'src/app/models/produto.model';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon'
 import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,11 +17,13 @@ export class ProdutoComprarComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProdutoService,
     private router: Router,
+    private formBuilder: FormBuilder,
     private carrinhoService: CarrinhoService
   ) {}
 
   produto: Produto;
-  quantidade: number = 0;
+  quantidade: number;
+  form: FormGroup
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
@@ -28,6 +31,9 @@ export class ProdutoComprarComponent implements OnInit {
       (produto) => {
         console.log(produto)
         this.produto = produto
+        this.form = this.formBuilder.group({
+          quantidade: [1, [Validators.required]]
+        })
       },
       (err) => {
         console.log(err)
@@ -36,8 +42,11 @@ export class ProdutoComprarComponent implements OnInit {
   }
 
   adicionarCarrinho(id: string) {
-    this.carrinhoService.addItem(id);
-    this.router.navigate[''];
+    this.quantidade = this.form.get('quantidade').value;
+    if(Number(this.quantidade)){
+      this.carrinhoService.addItem(id, this.quantidade);
+      this.router.navigate(['']);
+    }
   }
 
 }
