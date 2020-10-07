@@ -1,10 +1,12 @@
 package br.com.ifeira.compras.model;
 
+import br.com.ifeira.compras.enums.TipoProduto;
+
 import javax.persistence.*;
 
 @Entity
 public class Produto {
-    @id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private String codProduto;
     private String nome;
     @Enumerated(EnumType.STRING)

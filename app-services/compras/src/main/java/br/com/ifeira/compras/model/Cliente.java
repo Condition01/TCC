@@ -1,16 +1,18 @@
 package br.com.ifeira.compras.model;
 
+import br.com.ifeira.compras.enums.Sexo;
+
 import javax.persistence.*;
-import br.com.ifeira.compras.model.Endereco
+import java.util.Date;
 
 @Entity
 public class Cliente {
 
-    @id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cpf;
     private String nome;
     private Date dataNasc;
-    private @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
     @OneToOne
     private Endereco endereco;

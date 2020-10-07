@@ -3,23 +3,15 @@ package br.com.ifeira.compras.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Entregador {
-    @id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long numero;
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String cpf;
     private String nome;
     private String telefone;
     private boolean situacao;
-    private String cpf;
-
-    public Long getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Long numero) {
-        this.numero = numero;
-    }
 
     public String getNome() {
         return nome;

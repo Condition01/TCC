@@ -1,20 +1,20 @@
 package br.com.ifeira.compras.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import br.com.ifeira.compras.enums.StatusPedido;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Pedido {
-    @id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long numero;
     private Date data;
     @OneToOne
     private Cliente cliente;
-    @Enumeted(EnumType.String)
+    @Enumerated(EnumType.STRING)
     private StatusPedido statusPedido;
     @OneToOne
     private Entregador entregador;

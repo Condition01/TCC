@@ -1,29 +1,59 @@
 package br.com.ifeira.compras.model;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 @Entity
 public class Endereco {
-    private logradouro String;
-    private numero String;
-    private cep String;
-    private complemento String;
-    public logradouro getString() {
-        return String;
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String logradouro;
+    private String numero;
+    private String cep;
+    private String complemento;
+
+
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setString(complemento string) {
-        String = string;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
-    public void setString(cep string) {
-        String = string;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setString(numero string) {
-        String = string;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public void setString(logradouro string) {
-        String = string;
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
