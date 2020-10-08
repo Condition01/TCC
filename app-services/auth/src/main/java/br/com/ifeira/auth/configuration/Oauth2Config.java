@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -51,8 +53,8 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private DataSource dataSource;
+//    @Autowired
+//    private DataSource dataSource;
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -67,11 +69,13 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
         security.allowFormAuthenticationForClients();
     }
 
+
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         Stream<Object> roles = Arrays.stream(Roles.values()).map(roles1 -> roles1.name());
         String[] rolesArray = (String[]) roles.toArray();
-        clients.jdbc(this.dataSource)
+        clients.inMemory()
                 .withClient(this.clientId)
                 .authorizedGrantTypes(this.authorizedGrantTypes)
                 .authorities(rolesArray)
@@ -81,8 +85,8 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
     }
 
     @Bean
-    public JdbcTokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
+    public TokenStore tokenStore() {
+        return new InMemoryTokenStore();
     }
 
     @Bean
@@ -92,7 +96,4 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
         tokenServices.setTokenStore(tokenStore());
         return tokenServices;
     }
-
-
-
 }

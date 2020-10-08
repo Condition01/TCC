@@ -1,0 +1,16 @@
+server:
+  port: 9092
+
+spring:
+  application:
+    name: auth-server
+
+security:
+  oauth2:
+    client:
+      client-id:
+      client-secret:
+      resource-id:
+      acess-token-validity:
+      scopes:
+      authorized-grant-types:
