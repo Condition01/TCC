@@ -4,13 +4,24 @@ server:
 spring:
   application:
     name: auth-server
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=users
+    username: SA
+    password: fatec2020@A
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    dialect: org.hibernate.dialect.SQLServer2012Dialect
+    format_sql: true
+    hibernate:
+      ddl-auto: 'update'
 
 security:
   oauth2:
     client:
-      client-id:
-      client-secret:
-      resource-id:
-      acess-token-validity:
-      scopes:
-      authorized-grant-types:
+      client-id: 2befa526-09be-11eb-adc1-0242ac120002
+      client-secret: 33216d66-09be-11eb-adc1-0242ac120002
+      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
+      acess-token-validity: 3600
+      scopes: read,write
+      authorized-grant-types: password,refresh_token,client_credentials

@@ -16,6 +16,9 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.2'
+	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.3.1.jre8-preview'
+//	implementation group: 'org.springframework.data', name: 'spring-data-mongodb', version: '2.1.10.RELEASE'
 }
 
 //test {

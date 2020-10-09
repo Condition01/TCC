@@ -1,4 +1,4 @@
-package br.com.ifeira.auth.model;
+//package br.com.ifeira.auth.model;
 
-public class Usuario {
-}
+//public class Usuario {
+//}

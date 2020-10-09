@@ -1,6 +1,7 @@
 package br.com.ifeira.auth.configuration;
 
 import br.com.ifeira.auth.model.Roles;
+import br.com.ifeira.auth.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,22 +30,22 @@ import java.util.stream.Stream;
 @EnableAuthorizationServer
 public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
 
-    @Value("security.oauth2.client.cliend-id")
+    @Value("${security.oauth2.client.client-id}")
     private String clientId;
 
-    @Value("security.oauth2.client.cliend-secret")
+    @Value("${security.oauth2.client.client-secret}")
     private String clientSecret;
 
-    @Value("security.oauth2.client.resource-id")
+    @Value("${security.oauth2.client.resource-id}")
     private String resourceId;
 
-    @Value("security.oauth2.client.acess-token-validity")
+    @Value("${security.oauth2.client.acess-token-validity}")
     private int accessTokenValidity;
 
-    @Value("security.oauth2.client.scopes")
+    @Value("${security.oauth2.client.scopes}")
     private String[] scopes;
 
-    @Value("security.oauth2.client.authorized-grant-types")
+    @Value("${security.oauth2.client.authorized-grant-types}")
     private String[] authorizedGrantTypes;
 
     @Autowired
@@ -53,15 +54,15 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-//    @Autowired
-//    private DataSource dataSource;
+    @Autowired
+    private CustomUserDetailsService userDetailsService ;
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .authenticationManager(this.authenticationManager)
-                .tokenStore(tokenStore());
-//                .userDetailsService();
+                .tokenStore(tokenStore())
+                .userDetailsService(this.userDetailsService);
     }
 
     @Override
@@ -69,19 +70,28 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
         security.allowFormAuthenticationForClients();
     }
 
-
-
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        Stream<Object> roles = Arrays.stream(Roles.values()).map(roles1 -> roles1.name());
-        String[] rolesArray = (String[]) roles.toArray();
+        String[] rolesArrayStrg = getRoles();
         clients.inMemory()
                 .withClient(this.clientId)
+                .secret(this.passwordEncoder.encode(this.clientSecret))
                 .authorizedGrantTypes(this.authorizedGrantTypes)
-                .authorities(rolesArray)
+                .authorities(rolesArrayStrg)
                 .scopes(this.scopes)
                 .accessTokenValiditySeconds(this.accessTokenValidity)
                 .refreshTokenValiditySeconds(this.accessTokenValidity*2);
+    }
+
+    private String[] getRoles() {
+        Roles[] rolesArrayObj = Roles.values();
+        String[] rolesArrayStrg = new String[rolesArrayObj.length];
+        int lenght = rolesArrayObj.length;
+
+        for(int i = 0; i < lenght; i++){
+            rolesArrayStrg[i] = rolesArrayObj[i].name();
+        }
+        return rolesArrayStrg;
     }
 
     @Bean
