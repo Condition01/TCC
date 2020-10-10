@@ -47,7 +47,6 @@ public class CustomUser implements UserDetails {
         this.situcao = situacao;
     }
 
-
     public CustomUser(String email,
                       String nome,
                       String sobrenome,
@@ -59,7 +58,6 @@ public class CustomUser implements UserDetails {
         this.cpf = cpf;
         this.senha = senha;
     }
-
 
     public CustomUser() { }
 
