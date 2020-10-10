@@ -6,10 +6,12 @@ import br.com.ifeira.compras.model.Reclamacao;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class PedidoController {
 
-    @RequestMapping("/criarPedido")
+ /*   @RequestMapping("/criarPedido")
     public Pedido criarPedido(){
         System.setOut("Funcionou");
         return null;
@@ -48,5 +50,5 @@ public class PedidoController {
     @RequestMapping("/pegarCarrinho")
     public List<ProdutoQuantidade> pegarCarrinho(){
         return null;
-    }
+    }*/
 }

@@ -14,6 +14,17 @@ public class Produto {
     private String descricao;
     private double preco;
 
+    public Produto(String codProduto, String nome, TipoProduto tpProduto, String descricao, double preco) {
+        this.codProduto = codProduto;
+        this.nome = nome;
+        this.tpProduto = tpProduto;
+        this.descricao = descricao;
+        this.preco = preco;
+    }
+
+    public Produto() {
+    }
+
     public String getCodProduto() {
         return codProduto;
     }

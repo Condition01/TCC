@@ -13,6 +13,16 @@ public class Entregador {
     private String telefone;
     private boolean situacao;
 
+    public Entregador(String cpf, String nome, String telefone, boolean situacao) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.situacao = situacao;
+    }
+
+    public Entregador() {
+    }
+
     public String getNome() {
         return nome;
     }

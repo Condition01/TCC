@@ -20,7 +20,21 @@ public class Pedido {
     private Entregador entregador;
     @OneToOne
     private Pagamento pagamento;
+    @OneToMany
     private List<Produto> listaProdutos = new ArrayList<Produto>();
+
+    public Pedido(Long numero, Date data, Cliente cliente, StatusPedido statusPedido, Entregador entregador, Pagamento pagamento, List<Produto> listaProdutos) {
+        this.numero = numero;
+        this.data = data;
+        this.cliente = cliente;
+        this.statusPedido = statusPedido;
+        this.entregador = entregador;
+        this.pagamento = pagamento;
+        this.listaProdutos = listaProdutos;
+    }
+
+    public Pedido() {
+    }
 
     public Long getNumero() {
         return numero;

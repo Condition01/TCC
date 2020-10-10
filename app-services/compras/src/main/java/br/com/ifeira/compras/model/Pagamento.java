@@ -16,6 +16,18 @@ public class Pagamento {
     private Date validadeCartao;
     private String codCartao;
 
+    public Pagamento(Long numeroPagamento, Double valor, String numeroCartao, String nomeCartao, Date validadeCartao, String codCartao) {
+        this.numeroPagamento = numeroPagamento;
+        this.valor = valor;
+        this.numeroCartao = numeroCartao;
+        this.nomeCartao = nomeCartao;
+        this.validadeCartao = validadeCartao;
+        this.codCartao = codCartao;
+    }
+
+    public Pagamento() {
+    }
+
     public String getNumeroCartao() {
         return numeroCartao;
     }

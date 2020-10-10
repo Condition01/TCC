@@ -17,6 +17,19 @@ public class Cliente {
     @OneToOne
     private Endereco endereco;
     private String telefone;
+
+    public Cliente(String cpf, String nome, Date dataNasc, Sexo sexo, Endereco endereco, String telefone) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.dataNasc = dataNasc;
+        this.sexo = sexo;
+        this.endereco = endereco;
+        this.telefone = telefone;
+    }
+
+    public Cliente() {
+    }
+
     public String getCpf() {
         return cpf;
     }
