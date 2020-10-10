@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "tbl_reclamacao")
 public class Reclamacao {
 
     @Id

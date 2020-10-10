@@ -5,6 +5,7 @@ import br.com.ifeira.compras.enums.TipoProduto;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tbl_produto")
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

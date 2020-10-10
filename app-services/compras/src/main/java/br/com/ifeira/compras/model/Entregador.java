@@ -3,9 +3,10 @@ package br.com.ifeira.compras.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tbl_entregador")
 public class Entregador {
     @Id
-    @Column(name = "cpf")
+    @Column(name = "cpf",length = 11)
     private String cpf;
 
     private String nome;

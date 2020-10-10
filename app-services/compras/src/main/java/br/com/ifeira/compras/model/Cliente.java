@@ -6,10 +6,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "tbl_cliente")
 public class Cliente {
 
     @Id
-    @Column(name = "cpf")
+    @Column(name = "cpf", length = 11)
     private String cpf;
 
     private String nome;

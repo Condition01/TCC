@@ -4,6 +4,7 @@ package br.com.ifeira.compras.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tbl_endereco")
 public class Endereco {
 
     @Id
