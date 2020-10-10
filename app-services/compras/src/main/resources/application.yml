@@ -1,10 +1,21 @@
 spring:
   application:
     name: compras-service
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=fatectcc
+    username: SA
+    password: fatec2020@A
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    dialect: org.hibernate.dialect.SQLServer2012Dialect
+    format_sql: true
+    hibernate:
+      ddl-auto: 'update'
 
 server:
-  port: 8087
-  instance: terceiro
+  port: 8085
+  instance: PRIMEIRO
 
 
 eureka:
@@ -21,3 +32,5 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
