@@ -1,6 +1,6 @@
-package br.com.ifeira.auth.repository;
+package br.com.ifeira.auth.dao;
 
-import br.com.ifeira.auth.model.CustomUser;
+import br.com.ifeira.auth.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,12 +9,15 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
+public interface UsuarioDAO extends JpaRepository<Usuario, Long> {
 
     @Query(value = "select * from tbl_usuario where email = :email", nativeQuery = true)
-    public Optional<CustomUser> findUsuarioByEmail(@Param("email") String email);
+    public Optional<Usuario> findUsuarioByEmail(@Param("email") String email);
 
     @Query(value = "select * from tbl_usuario where cpf = :cpf", nativeQuery = true)
-    public Optional<CustomUser> findUsuarioByCpf(@Param("cpf") String cpf);
+    public Optional<Usuario> findUsuarioByCpf(@Param("cpf") String cpf);
+
+    @Query(value = "select cpf from tbl_usuario where cpf = :cpf", nativeQuery = true)
+    public Optional<String> findCpf(@Param("cpf") String cpf);
 
 }

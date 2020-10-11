@@ -10,15 +10,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @EnableDiscoveryClient
 @SpringBootApplication
+@EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ComprasApplication {
 
 	public static void main(String[] args) {
@@ -34,6 +40,7 @@ class ServiceInstanceRestController {
 
 	@Value("${server.instance}")
 	private String instance = "";
+
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
@@ -43,9 +50,11 @@ class ServiceInstanceRestController {
 		return this.discoveryClient.getInstances(applicationName);
 	}
 
+	@PreAuthorize("hasAnyRole('CLIENTE', 'FEIRANTE','ENTREGADOR')")
 	@GetMapping("/instance")
-	public ResponseEntity<?> instance(){
+	public ResponseEntity<?> instance(Principal user){
 		try{
+
 			return ResponseEntity.ok(instance);
 		}catch (Exception ex){
 			return ResponseEntity.badRequest().body(ex.getMessage());

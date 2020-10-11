@@ -27,6 +27,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    CorsFilter corsFilter() {
+        CorsFilter filter = new CorsFilter();
+        return filter;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -34,8 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests().antMatchers("/oauth/token").permitAll()
                 .and()
-//                .authorizeRequests().antMatchers(HttpMethod.POST, "user").permitAll()
-//                .and()
                 .headers().defaultsDisabled().cacheControl();
     }
 

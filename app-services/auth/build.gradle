@@ -12,18 +12,26 @@ dependencies {
 
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.1.0.RELEASE'
+//	implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.1.0.RELEASE'
+	implementation('org.springframework.cloud:spring-cloud-starter-oauth2')
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.2'
 	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.3.1.jre8-preview'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
 //	implementation group: 'org.springframework.data', name: 'spring-data-mongodb', version: '2.1.10.RELEASE'
 }
 
 //test {
 //	useJUnitPlatform()
 //}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
 
 task runAuth(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath

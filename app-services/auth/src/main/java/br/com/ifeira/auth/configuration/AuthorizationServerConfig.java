@@ -1,14 +1,12 @@
 package br.com.ifeira.auth.configuration;
 
-import br.com.ifeira.auth.model.Roles;
+import br.com.ifeira.auth.enums.Roles;
 import br.com.ifeira.auth.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Role;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -18,17 +16,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-
-import javax.sql.DataSource;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 @Configuration
-@EnableAuthorizationServer
-public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Value("${security.oauth2.client.client-id}")
     private String clientId;
@@ -87,7 +77,6 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
         Roles[] rolesArrayObj = Roles.values();
         String[] rolesArrayStrg = new String[rolesArrayObj.length];
         int lenght = rolesArrayObj.length;
-
         for(int i = 0; i < lenght; i++){
             rolesArrayStrg[i] = rolesArrayObj[i].name();
         }

@@ -21,3 +21,13 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+
+authserver:
+  hostname: http://localhost:9092
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: ${authserver.hostname}/user/userinfo
+    client:
+      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
