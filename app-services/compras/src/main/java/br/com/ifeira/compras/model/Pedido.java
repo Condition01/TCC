@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import br.com.ifeira.compras.model.Usuario;
 
 @Entity
 @Table(name = "tbl_pedido")
@@ -16,16 +17,16 @@ public class Pedido {
     private Long numero;
     private Date data;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_cpf", referencedColumnName = "cpf")
-    private Cliente cliente;
-
     @Enumerated(EnumType.STRING)
     private StatusPedido statusPedido;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "entregador_cpf", referencedColumnName = "cpf")
-    private Entregador entregador;
+    @JoinColumn(name = "cliente", referencedColumnName = "cpf")
+   private Usuario cliente;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "feirante", referencedColumnName = "cpf")
+    private Usuario feirante;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "numero_pagamento", referencedColumnName = "numero_pagamento")
@@ -39,39 +40,23 @@ public class Pedido {
 
     public Pedido(Long numero,
                   Date data,
-                  Cliente cliente,
                   StatusPedido statusPedido,
-                  Entregador entregador,
+                  Usuario cliente,
+                  Usuario feirante,
                   Pagamento pagamento,
                   Reclamacao reclamacao,
-                  List<ProdutoQuantidade> listaProdutoQuantidade) {
+                  List<ProdutoQuantidade> listaProdutos) {
         this.numero = numero;
         this.data = data;
-        this.cliente = cliente;
         this.statusPedido = statusPedido;
-        this.entregador = entregador;
+        this.cliente = cliente;
+        this.feirante = feirante;
         this.pagamento = pagamento;
-        this.listaProdutos = listaProdutoQuantidade;
         this.reclamacao = reclamacao;
+        this.listaProdutos = listaProdutos;
     }
 
     public Pedido() {
-    }
-
-    public Reclamacao getReclamacao() {
-        return reclamacao;
-    }
-
-    public void setReclamacao(Reclamacao reclamacao) {
-        this.reclamacao = reclamacao;
-    }
-
-    public List<ProdutoQuantidade> getListaProdutos() {
-        return listaProdutos;
-    }
-
-    public void setListaProdutos(List<ProdutoQuantidade> listaProdutos) {
-        this.listaProdutos = listaProdutos;
     }
 
     public Long getNumero() {
@@ -90,14 +75,6 @@ public class Pedido {
         this.data = data;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     public StatusPedido getStatusPedido() {
         return statusPedido;
     }
@@ -106,12 +83,20 @@ public class Pedido {
         this.statusPedido = statusPedido;
     }
 
-    public Entregador getEntregador() {
-        return entregador;
+    public Usuario getCliente() {
+        return cliente;
     }
 
-    public void setEntregador(Entregador entregador) {
-        this.entregador = entregador;
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+    }
+
+    public Usuario getFeirante() {
+        return feirante;
+    }
+
+    public void setFeirante(Usuario feirante) {
+        this.feirante = feirante;
     }
 
     public Pagamento getPagamento() {
@@ -120,5 +105,21 @@ public class Pedido {
 
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
+    }
+
+    public Reclamacao getReclamacao() {
+        return reclamacao;
+    }
+
+    public void setReclamacao(Reclamacao reclamacao) {
+        this.reclamacao = reclamacao;
+    }
+
+    public List<ProdutoQuantidade> getListaProdutos() {
+        return listaProdutos;
+    }
+
+    public void setListaProdutos(List<ProdutoQuantidade> listaProdutos) {
+        this.listaProdutos = listaProdutos;
     }
 }

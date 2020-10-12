@@ -17,31 +17,31 @@ public class Endereco {
     private String complemento;
 
     @OneToOne(mappedBy = "endereco")
-    private Cliente cliente;
+    private Usuario usuario;
 
     public Endereco(Long id,
                     String logradouro,
                     String numero,
                     String cep,
                     String complemento,
-                    Cliente cliente) {
+                    Usuario usuario) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
         this.complemento = complemento;
-        this.cliente = cliente;
+        this.usuario = usuario;
     }
 
     public Endereco() {
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Long getId() {
+        return id;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLogradouro() {
@@ -76,11 +76,11 @@ public class Endereco {
         this.complemento = complemento;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Long getId() {
-        return id;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
