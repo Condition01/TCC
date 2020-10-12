@@ -16,6 +16,21 @@ spring:
     hibernate:
       ddl-auto: 'update'
 
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 30
+    prefer-ip-address: true
+    hostname: localhost
+    port: 8081
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+
 security:
   oauth2:
     client:

@@ -6,7 +6,6 @@ server:
   port: 8087
   instance: terceiro
 
-
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 2
@@ -23,7 +22,7 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
 
 authserver:
-  hostname: http://localhost:9092
+  hostname: http://auth-server:9092
 
 security:
   oauth2:

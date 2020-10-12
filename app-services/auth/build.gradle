@@ -14,7 +14,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 //	implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.1.0.RELEASE'
 	implementation('org.springframework.cloud:spring-cloud-starter-oauth2')
-
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.2'
