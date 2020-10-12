@@ -14,22 +14,19 @@ public class MyFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
-        return "pos";
+        return "pre";
     }
 
-    //Ordem que o filtro roda em relação a outros filtros
     @Override
     public int filterOrder() {
         return 1;
     }
 
-    //Indica que sempre haverá a utilização do filtro
     @Override
     public boolean shouldFilter() {
         return true;
     }
 
-    //Contém a funcionalidade do filtro
     @Override
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
