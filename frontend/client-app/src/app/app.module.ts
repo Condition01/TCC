@@ -32,6 +32,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagamentoComponent } from './views/pagamento/pagamento.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './views/login/login.component';
+import { CadastroComponent } from './views/cadastro/cadastro.component'
 
 
 @NgModule({
@@ -46,6 +49,8 @@ import { PagamentoComponent } from './views/pagamento/pagamento.component';
     CarrinhoComponent,
     ItemCarrinhoEditarComponent,
     PagamentoComponent,
+    LoginComponent,
+    CadastroComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { PagamentoComponent } from './views/pagamento/pagamento.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
