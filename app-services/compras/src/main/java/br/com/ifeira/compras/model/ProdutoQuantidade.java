@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_produto_quantidade")
 public class ProdutoQuantidade {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)

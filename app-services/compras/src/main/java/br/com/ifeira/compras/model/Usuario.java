@@ -14,7 +14,7 @@ public class Usuario {
     private String nome;
     private Sexo sexo;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco", referencedColumnName = "id")
     private Endereco endereco;
 

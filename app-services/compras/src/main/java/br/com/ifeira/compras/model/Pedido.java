@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import br.com.ifeira.compras.model.Usuario;
 
 @Entity
@@ -22,7 +23,7 @@ public class Pedido {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente", referencedColumnName = "cpf")
-   private Usuario cliente;
+    private Usuario cliente;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "feirante", referencedColumnName = "cpf")

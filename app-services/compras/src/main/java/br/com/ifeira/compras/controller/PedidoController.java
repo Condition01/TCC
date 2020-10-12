@@ -27,16 +27,23 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
+
+    @RequestMapping("/listarPedidos")
+    public ResponseEntity<?> listarPedidos(){
+        try {
+            return ResponseEntity.ok(pedidoService.listarPedidos());
+        } catch (Exception ex){
+            return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
+        }
+    }
+
  /*
     @RequestMapping("/atualizarPedido")
     public Pedido upDatePedido(){
         return null;
     }
 
-    @RequestMapping("/listarPedidos")
-    public List<Pedido> listarPedidos(){
-        return null;
-    }
+
 
     @RequestMapping("/criarReclamacao")
     public boolean realizarReclamacao(){

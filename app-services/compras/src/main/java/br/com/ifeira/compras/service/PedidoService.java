@@ -5,6 +5,8 @@ import br.com.ifeira.compras.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PedidoService {
 
@@ -14,4 +16,8 @@ public class PedidoService {
     public Pedido criarPedido(Pedido pedido){
         return this.pedidoDAO.save(pedido);
     }
-}
+
+    public List<Pedido> listarPedidos() {
+        return this.pedidoDAO.findAll();
+    }
+ }
