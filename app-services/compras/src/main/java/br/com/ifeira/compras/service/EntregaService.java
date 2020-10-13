@@ -1,11 +1,11 @@
 package br.com.ifeira.compras.service;
 
-import br.com.ifeira.compras.dao.ProdutoDAO;
+import br.com.ifeira.compras.dao.EntregaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProdutoService {
+public class EntregaService {
     @Autowired
-    private ProdutoDAO produtoDAO;
+    private EntregaDAO entregaDAO;
 }
