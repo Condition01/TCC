@@ -2,7 +2,7 @@ spring:
   application:
     name: compras-service
   datasource:
-    url: jdbc:mysql://localhost:3306/fatectcc
+    url: jdbc:mysql://localhost:3306/fatectcc?createDatabaseIfNotExist=true
     username: root
     password: 1234
     driverClassName: com.mysql.cj.jdbc.Driver

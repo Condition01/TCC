@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.ifeira.compras.model.Usuario;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "tbl_pedido")
@@ -33,6 +34,7 @@ public class Pedido {
     @JoinColumn(name = "numero_pagamento", referencedColumnName = "numero_pagamento")
     private Pagamento pagamento;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(mappedBy = "pedido")
     private Reclamacao reclamacao;
 

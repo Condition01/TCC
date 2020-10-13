@@ -2,6 +2,7 @@ package br.com.ifeira.compras.model;
 
 import br.com.ifeira.compras.enums.Roles;
 import br.com.ifeira.compras.enums.Sexo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -20,15 +21,18 @@ public class Usuario {
 
     private String telefone;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     private Roles role;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(mappedBy = "cliente")
     private Pedido pedido_cliente;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(mappedBy = "feirante")
     private Pedido pedido_feirante;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(mappedBy = "entregador")
     private Entrega entrega;
 

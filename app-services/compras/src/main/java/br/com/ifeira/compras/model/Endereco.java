@@ -1,6 +1,8 @@
 package br.com.ifeira.compras.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Endereco {
     private String cep;
     private String complemento;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(mappedBy = "endereco")
     private Usuario usuario;
 

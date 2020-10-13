@@ -16,23 +16,23 @@ import java.util.List;
 @RestController
 public class PedidoController {
 
-  @Autowired
-  private PedidoService pedidoService;
+    @Autowired
+    private PedidoService pedidoService;
 
-  @PostMapping("/criarPedido")
-  public ResponseEntity<?> criarPedido(@RequestBody Pedido pedido){
+    @PostMapping("/criarPedido")
+    public ResponseEntity<?> criarPedido(@RequestBody Pedido pedido) {
         try {
             return ResponseEntity.ok(pedidoService.criarPedido(pedido));
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
 
     @RequestMapping("/listarPedidos")
-    public ResponseEntity<?> listarPedidos(){
+    public ResponseEntity<?> listarPedidos() {
         try {
             return ResponseEntity.ok(pedidoService.listarPedidos());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
