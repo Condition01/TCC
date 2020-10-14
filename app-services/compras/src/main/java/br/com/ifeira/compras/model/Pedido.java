@@ -87,22 +87,6 @@ public class Pedido {
         this.statusPedido = statusPedido;
     }
 
-//    public Usuario getCliente() {
-//        return cliente;
-//    }
-//
-//    public void setCliente(Usuario cliente) {
-//        this.cliente = cliente;
-//    }
-//
-//    public Usuario getFeirante() {
-//        return feirante;
-//    }
-//
-//    public void setFeirante(Usuario feirante) {
-//        this.feirante = feirante;
-//    }
-
     public Pagamento getPagamento() {
         return pagamento;
     }
