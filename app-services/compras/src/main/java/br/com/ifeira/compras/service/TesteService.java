@@ -36,4 +36,5 @@ public class TesteService {
 
     public List<Usuario> getClients() { return this.usuarioDAO.findAll(); }
 
+
 }
