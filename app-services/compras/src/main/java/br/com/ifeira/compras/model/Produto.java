@@ -1,7 +1,9 @@
 package br.com.ifeira.compras.model;
 
 import br.com.ifeira.compras.enums.TipoProduto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 
@@ -22,8 +24,7 @@ public class Produto {
 
     private double preco;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "produto")
+    @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ProdutoQuantidade produtoQuantidade;
 
     public Produto(Long codProduto,

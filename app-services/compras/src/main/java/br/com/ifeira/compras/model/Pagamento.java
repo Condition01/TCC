@@ -8,9 +8,8 @@ import java.util.Date;
 @Entity
 @Table(name = "tbl_pagamento")
 public class Pagamento {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numero_pagamento")
     private Long numeroPagamento;
 
     private Double valor;
@@ -24,7 +23,9 @@ public class Pagamento {
     private String codCartao;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "pagamento")
+    @MapsId
+    @JoinColumn(name = "numero_pedido", referencedColumnName = "numero")
+    @OneToOne(fetch = FetchType.LAZY)
     private Pedido pedido;
 
     public Pagamento(Long numeroPagamento,

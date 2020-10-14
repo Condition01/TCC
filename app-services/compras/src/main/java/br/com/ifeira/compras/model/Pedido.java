@@ -19,19 +19,14 @@ public class Pedido {
     private Long numero;
     private Date data;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     private StatusPedido statusPedido;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cliente", referencedColumnName = "cpf")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "cliente_cpf", referencedColumnName = "cpf")
     private Usuario cliente;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "feirante", referencedColumnName = "cpf")
-    private Usuario feirante;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "numero_pagamento", referencedColumnName = "numero_pagamento")
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Pagamento pagamento;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -45,7 +40,6 @@ public class Pedido {
                   Date data,
                   StatusPedido statusPedido,
                   Usuario cliente,
-                  Usuario feirante,
                   Pagamento pagamento,
                   Reclamacao reclamacao,
                   List<ProdutoQuantidade> listaProdutos) {
@@ -53,13 +47,20 @@ public class Pedido {
         this.data = data;
         this.statusPedido = statusPedido;
         this.cliente = cliente;
-        this.feirante = feirante;
         this.pagamento = pagamento;
         this.reclamacao = reclamacao;
         this.listaProdutos = listaProdutos;
     }
 
     public Pedido() {
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
 
     public Long getNumero() {
@@ -86,21 +87,21 @@ public class Pedido {
         this.statusPedido = statusPedido;
     }
 
-    public Usuario getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
-    }
-
-    public Usuario getFeirante() {
-        return feirante;
-    }
-
-    public void setFeirante(Usuario feirante) {
-        this.feirante = feirante;
-    }
+//    public Usuario getCliente() {
+//        return cliente;
+//    }
+//
+//    public void setCliente(Usuario cliente) {
+//        this.cliente = cliente;
+//    }
+//
+//    public Usuario getFeirante() {
+//        return feirante;
+//    }
+//
+//    public void setFeirante(Usuario feirante) {
+//        this.feirante = feirante;
+//    }
 
     public Pagamento getPagamento() {
         return pagamento;

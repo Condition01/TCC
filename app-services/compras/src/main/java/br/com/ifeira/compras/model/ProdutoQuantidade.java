@@ -1,6 +1,9 @@
 package br.com.ifeira.compras.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,8 +13,12 @@ public class ProdutoQuantidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "produto_id", referencedColumnName = "cod_produto")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @OneToOne(mappedBy = "pedido")
+
+    @JsonIgnore
+    @JoinColumn(name = "cod_produto", referencedColumnName = "cod_produto")
+    @OneToOne(fetch = FetchType.LAZY)
     private Produto produto;
 
     private int quantidade;

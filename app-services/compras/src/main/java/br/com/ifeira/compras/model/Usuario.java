@@ -2,9 +2,14 @@ package br.com.ifeira.compras.model;
 
 import br.com.ifeira.compras.enums.Roles;
 import br.com.ifeira.compras.enums.Sexo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "tbl_usuario")
@@ -15,8 +20,7 @@ public class Usuario {
     private String nome;
     private Sexo sexo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_endereco", referencedColumnName = "id")
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Endereco endereco;
 
     private String telefone;
@@ -24,13 +28,9 @@ public class Usuario {
     @Enumerated
     private Roles role;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "cliente")
-    private Pedido pedido_cliente;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "feirante")
-    private Pedido pedido_feirante;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(mappedBy = "entregador")
@@ -42,8 +42,7 @@ public class Usuario {
                    Endereco endereco,
                    String telefone,
                    Roles role,
-                   Pedido pedido_cliente,
-                   Pedido pedido_feirante,
+                   List<Pedido> pedidos,
                    Entrega entrega) {
         this.cpf = cpf;
         this.nome = nome;
@@ -51,12 +50,36 @@ public class Usuario {
         this.endereco = endereco;
         this.telefone = telefone;
         this.role = role;
-        this.pedido_cliente = pedido_cliente;
-        this.pedido_feirante = pedido_feirante;
         this.entrega = entrega;
+        this.pedidos = pedidos;
     }
 
     public Usuario() {
+    }
+
+    public void adicionarPedidos(Pedido pedido) {
+        this.pedidos.add(pedido);
+    }
+
+    public void removerPedidos(Long numero) throws Exception {
+        Optional<Pedido> optPedido = this.pedidos.stream()
+                .parallel()
+                .filter(pedido1 -> pedido1.getNumero() == numero)
+                .findFirst();
+        if (optPedido.isPresent()) {
+            Pedido pedidoRemovido = optPedido.get();
+            this.pedidos.remove(pedidoRemovido);
+        } else {
+            throw new Exception("Pedido não encontrado para remoção");
+        }
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public String getCpf() {
@@ -105,22 +128,6 @@ public class Usuario {
 
     public void setRole(Roles role) {
         this.role = role;
-    }
-
-    public Pedido getPedido_cliente() {
-        return pedido_cliente;
-    }
-
-    public void setPedido_cliente(Pedido pedido_cliente) {
-        this.pedido_cliente = pedido_cliente;
-    }
-
-    public Pedido getPedido_feirante() {
-        return pedido_feirante;
-    }
-
-    public void setPedido_feirante(Pedido pedido_feirante) {
-        this.pedido_feirante = pedido_feirante;
     }
 
     public Entrega getEntrega() {

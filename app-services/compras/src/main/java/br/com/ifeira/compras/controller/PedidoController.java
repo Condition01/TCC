@@ -1,15 +1,13 @@
 package br.com.ifeira.compras.controller;
 
+import br.com.ifeira.compras.dao.UsuarioDAO;
 import br.com.ifeira.compras.model.Pedido;
 import br.com.ifeira.compras.model.ProdutoQuantidade;
 import br.com.ifeira.compras.model.Reclamacao;
 import br.com.ifeira.compras.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +34,18 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
+
+    @RequestMapping("/acharPedido")
+    public ResponseEntity<?> listarProdutos(@RequestParam("numero") Long numero) {
+        try {
+            return ResponseEntity.ok(pedidoService.acharPedido(numero));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
+        }
+    }
+
+
+
 
  /*
     @RequestMapping("/atualizarPedido")

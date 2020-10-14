@@ -10,25 +10,24 @@ import javax.persistence.*;
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    private String clientCpf;
     private String logradouro;
     private String numero;
     private String cep;
     private String complemento;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "endereco")
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
-    public Endereco(Long id,
+    public Endereco(String clientCpf,
                     String logradouro,
                     String numero,
                     String cep,
                     String complemento,
                     Usuario usuario) {
-        this.id = id;
+        this.clientCpf = clientCpf;
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
@@ -39,12 +38,12 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Long getId() {
-        return id;
+    public String getClientCpf() {
+        return clientCpf;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setClientCpf(String clientCpf) {
+        this.clientCpf = clientCpf;
     }
 
     public String getLogradouro() {
