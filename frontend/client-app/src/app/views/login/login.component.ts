@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.bannerSubject.next(true);
+    // this.bannerSubject.next(true);
   }
 
 }

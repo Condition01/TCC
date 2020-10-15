@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Produto } from 'src/app/models/produto.model';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
   styleUrls: ['./produto-listar.component.scss'],
 })
 export class ProdutoListarComponent implements OnInit {
-  constructor(private router: Router, private produtoService: ProdutoService) {}
+  constructor(private router: Router, private produtoService: ProdutoService, private authService: AutenticacaoService) {}
 
   produtos: Produto[]
 
@@ -32,4 +33,13 @@ export class ProdutoListarComponent implements OnInit {
     this.router.navigate([`comprar/${id}`])
   }
 
+  logar() {
+    this.authService.login('brunofc182241@gmail.com','123456').subscribe(login => {
+      this.authService.getUsuario().subscribe(user => {
+        // console.log(login);
+        // console.log(user)
+      })
+      
+    })
+  }
 }
