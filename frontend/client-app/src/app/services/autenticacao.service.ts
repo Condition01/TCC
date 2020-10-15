@@ -53,6 +53,7 @@ export class AutenticacaoService {
   login(usuario: string, senha: string) {
     let headers = this.getHeaders();
     let body = `grant_type=${this.grant_type}&username=${usuario}&password=${senha}`;
+    
     return this.http
       .post<any>(`${this.apiUrl}/oauth/token`, body, { headers: headers })
       .pipe(
@@ -72,7 +73,8 @@ export class AutenticacaoService {
     let headers = new HttpHeaders();
 
     headers = headers.set(
-      'Authorization', `Bearer ${autenticacao.access_token}`
+      'Authorization',
+      `Bearer ${autenticacao.access_token}`
     );
 
     return this.http
