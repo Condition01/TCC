@@ -10,36 +10,36 @@ import { ProdutoListarComponent } from './views/produto-listar/produto-listar.co
 const routes: Routes = [
   {
     path: '',
-    component: ProdutoListarComponent
+    component: ProdutoListarComponent,
   },
   {
     path: 'comprar/:id',
-    component: ProdutoComprarComponent
+    component: ProdutoComprarComponent,
   },
   {
     path: 'carrinho',
-    component: CarrinhoComponent
+    component: CarrinhoComponent,
   },
   {
     path: 'pagamento',
-    component: PagamentoComponent
+    component: PagamentoComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'cadastro',
-    component: CadastroComponent
+    component: CadastroComponent,
   },
   {
-    path: "**",
-    redirectTo: ''
-  }
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

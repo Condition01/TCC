@@ -4,16 +4,16 @@
     rel="stylesheet"
   />
   <mat-card class="card">
-    <form class="form">
+    <form class="form" [formGroup]="form">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="bruno@bruno" value=''/>
+        <input matInput placeholder="bruno@bruno" value='' formControlName="login"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Senha</mat-label>
-        <input type="password" matInput />
+        <input type="password" matInput formControlName="senha"/>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="item">Logar</button>
+      <button mat-raised-button color="primary" class="item" (click)="logar()">Logar</button>
       <a class="link" href="">Não possui conta? Cadastre-se Aqui!</a>
     </form>
   </mat-card>

@@ -96,6 +96,7 @@ export class AutenticacaoService {
   }
 
   logout() {
+    // this.
     this.router.navigate(['/']);
   }
 }

@@ -33,13 +33,4 @@ export class ProdutoListarComponent implements OnInit {
     this.router.navigate([`comprar/${id}`])
   }
 
-  logar() {
-    this.authService.login('brunofc182241@gmail.com','123456').subscribe(login => {
-      this.authService.getUsuario().subscribe(user => {
-        // console.log(login);
-        // console.log(user)
-      })
-      
-    })
-  }
 }

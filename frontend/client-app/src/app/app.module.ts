@@ -9,33 +9,33 @@ import { NavComponent } from './components/template/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //material
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
 import { TopMenuComponent } from './components/template/top-menu/top-menu.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatRippleModule } from '@angular/material/core';
-import { MatButtonModule } from '@angular/material/button';
 import { ProdutoListarComponent } from './views/produto-listar/produto-listar.component';
 import { ProdutoComprarComponent } from './views/produto-comprar/produto-comprar.component';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-
-import { CookieService } from 'ngx-cookie-service';
-import { CarrinhoComponent } from './views/carrinho/carrinho.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { ItemCarrinhoEditarComponent } from './views/item-carrinho-editar/item-carrinho-editar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
+import { CookieService } from 'ngx-cookie-service';
+import { CarrinhoComponent } from './views/carrinho/carrinho.component';
+import { ItemCarrinhoEditarComponent } from './views/item-carrinho-editar/item-carrinho-editar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagamentoComponent } from './views/pagamento/pagamento.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './views/login/login.component';
-import { CadastroComponent } from './views/cadastro/cadastro.component'
-
+import { CadastroComponent } from './views/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +71,8 @@ import { CadastroComponent } from './views/cadastro/cadastro.component'
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
