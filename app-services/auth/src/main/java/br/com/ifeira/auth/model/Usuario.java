@@ -35,9 +35,7 @@ public class Usuario implements UserDetails {
 
     private String sobrenome;
 
-    @JsonBackReference
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

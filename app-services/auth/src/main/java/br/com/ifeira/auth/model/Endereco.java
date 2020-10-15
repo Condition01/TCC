@@ -1,7 +1,7 @@
 package br.com.ifeira.auth.model;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -10,60 +10,40 @@ import javax.persistence.*;
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id")
-    private Long id;
-
+    private String clientCpf;
     private String logradouro;
-
-    private String bairro;
-
     private String numero;
-
     private String cep;
-
     private String complemento;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "endereco")
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
-    public Endereco(Long id, String logradouro, String numero, String cep, String complemento, String bairro, Usuario usuario) {
-        this.id = id;
+    public Endereco(String clientCpf,
+                    String logradouro,
+                    String numero,
+                    String cep,
+                    String complemento,
+                    Usuario usuario) {
+        this.clientCpf = clientCpf;
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
         this.complemento = complemento;
-        this.bairro = bairro;
         this.usuario = usuario;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Endereco() {
+    }
+
+    public String getClientCpf() {
+        return clientCpf;
+    }
+
+    public void setClientCpf(String clientCpf) {
+        this.clientCpf = clientCpf;
     }
 
     public String getLogradouro() {
@@ -96,5 +76,13 @@ public class Endereco {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
