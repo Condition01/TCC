@@ -20,6 +20,15 @@ server:
   port: 8085
   instance: PRIMEIRO
 
+authserver:
+  hostname: http://auth-server:9092
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: ${authserver.hostname}/user/userinfo
+    client:
+      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
 
 eureka:
   instance:
