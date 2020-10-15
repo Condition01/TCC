@@ -1,10 +1,25 @@
 spring:
   application:
     name: compras-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/fatectcc?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 1234
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    dialect: org.hibernate.dialect.MySQL8Dialect
+    format_sql: true
+    hibernate:
+      ddl-auto: 'update'
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 
 server:
-  port: 8087
-  instance: terceiro
+  port: 8085
+  instance: PRIMEIRO
+
 
 eureka:
   instance:
@@ -20,13 +35,3 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
-
-authserver:
-  hostname: http://auth-server:9092
-
-security:
-  oauth2:
-    resource:
-      userInfoUri: ${authserver.hostname}/user/userinfo
-    client:
-      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
