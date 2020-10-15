@@ -20,21 +20,23 @@ server:
   port: 8085
   instance: PRIMEIRO
 
-authserver:
-  hostname: http://auth-server:9092
+#É AUTH-SERVER NÃO AUTH-SERVICE!!
+#authserver:
+#  hostname: http://auth-server:9092
 
 security:
   oauth2:
-    resource:
-      userInfoUri: ${authserver.hostname}/user/userinfo
+    service-id: auth-service
     client:
       resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
+    resource:
+      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
 
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 2
     leaseExpirationDurationInSeconds: 30
-    prefer-ip-address: true
+    preferIpAddress: true
     hostname: localhost
     port: 8081
     metadataMap:
@@ -44,3 +46,5 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000

@@ -5,9 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,6 +25,7 @@ import java.util.List;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableResourceServer
+@EnableAutoConfiguration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ComprasApplication {
 
@@ -38,23 +40,24 @@ class ServiceInstanceRestController {
 
 	private static Logger logger = LoggerFactory.getLogger(ServiceInstanceRestController.class);
 
+
 	@Value("${server.instance}")
 	private String instance = "";
 
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
+	@PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
 	@RequestMapping("/service-instances/{applicationName}")
 	public List<ServiceInstance> serviceInstancesByApplicationName(
 			@PathVariable String applicationName) {
 		return this.discoveryClient.getInstances(applicationName);
 	}
 
-	@PreAuthorize("hasAnyRole('CLIENTE', 'FEIRANTE','ENTREGADOR')")
+	@PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
 	@GetMapping("/instance")
 	public ResponseEntity<?> instance(Principal user){
 		try{
-
 			return ResponseEntity.ok(instance);
 		}catch (Exception ex){
 			return ResponseEntity.badRequest().body(ex.getMessage());
