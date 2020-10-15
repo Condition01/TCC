@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasAnyRole('CLIENTE','FEIRANTE','ENTREGADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE','ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @GetMapping
     public ResponseEntity<?> getUsuario() {
         try {
@@ -32,7 +32,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
-    @PreAuthorize("hasAnyRole('CLIENTE','FEIRANTE','ENTREGADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE','ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @GetMapping("/userinfo")
     public ResponseEntity<?> userInfo() {
         try {
@@ -54,7 +54,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('CLIENTE')")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     @PutMapping
     public ResponseEntity<?> alterarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         try {
@@ -64,7 +64,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('CLIENTE','FEIRANTE','ENTREGADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE','ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @GetMapping("/email")
     public ResponseEntity<?> pegarUsuarioEmail(@RequestParam("email") String email) {
         try {

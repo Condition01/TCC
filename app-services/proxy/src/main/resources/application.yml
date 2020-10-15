@@ -16,7 +16,7 @@ zuul:
       retryable: true
     auth:
       path: /auth/**
-      serviceId: auth-server
+      serviceId: auth-service
       stripPrefix: true
       retryable: true
 
@@ -34,7 +34,7 @@ hystrix:
 
 eureka:
   instance:
-    prefer-ip-address: true
+    preferIpAddress: true
     hostname: localhost
     port: 8081
     leaseRenewalIntervalInSeconds: 2

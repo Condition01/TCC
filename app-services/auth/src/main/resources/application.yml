@@ -3,7 +3,8 @@ server:
 
 spring:
   application:
-    name: auth-server
+    name: auth-service
+
   datasource:
     url: jdbc:mysql://localhost:3306/fatectcc?createDatabaseIfNotExist=true
     username: root
@@ -20,7 +21,7 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 2
     leaseExpirationDurationInSeconds: 30
-    prefer-ip-address: true
+    preferIpAddress: true
     hostname: localhost
     port: 8081
     metadataMap:
