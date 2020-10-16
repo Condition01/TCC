@@ -2,8 +2,22 @@
     <a class="logo" routerLink="">iFeira</a>
     <div class="left-menu">
         <button mat-button class="carrinho" class="left-menu" routerLink="/carrinho"> Meu Carrinho <mat-icon aria-hidden="false" aria-label="icon">shopping_cart</mat-icon> </button>
-        <div >
-            <app-top-menu></app-top-menu>
-        </div>  
+        <div *ngIf="!autenticacao">
+            <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+                <mat-icon aria-hidden="false">account_circle</mat-icon>
+            </button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+              <button mat-menu-item color="accent" routerLink="/login">Logar</button>
+            </mat-menu>            
+        </div>
+        <div *ngIf="autenticacao">
+            <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+                <mat-icon aria-hidden="false">account_circle</mat-icon>
+            </button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item color="accent">Perfil</button>
+                <button mat-menu-item color="accent" (click)="deslogar()">Logout</button>
+              </mat-menu>              
+        </div>    
     </div>
 </mat-toolbar>

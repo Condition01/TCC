@@ -5,53 +5,57 @@
   />
 
   <mat-card class="card">
-    <form class="form">
+    <form class="form" [formGroup]="form">
        <h1 class="top">Cadastro</h1>
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="bruno@bruno" value="" />
+        <input matInput placeholder="bruno@bruno" value="" formControlName="email"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Cpf</mat-label>
-        <input matInput placeholder="Ex: 44444444444" value="" />
+        <input matInput placeholder="Ex: 44444444444" value="" formControlName="cpf"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
-        <input matInput placeholder="Ex: Bruno" value="" />
+        <input matInput placeholder="Ex: Bruno" value="" formControlName="nome"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Sobrenome</mat-label>
-        <input matInput placeholder="Ex: Marques" value="" />
+        <input matInput placeholder="Ex: Marques" value="" formControlName="sobrenome"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Data Nascimento</mat-label>
-        <input type="date" matInput />
+        <input type="date" matInput formControlName="dataNasc"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Senha</mat-label>
-        <input type="password" matInput />
+        <input type="password" matInput formControlName="senha"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Cep</mat-label>
-        <input matInput placeholder="Ex: 18767030" value="" />
+        <input matInput placeholder="Ex: 18767030" value="" (change)="findCep()" formControlName="cep"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input matInput placeholder="Ex: Rua das Ostras" value="" formControlName="cidade"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Logradouro</mat-label>
-        <input matInput placeholder="Ex: Rua das Ostras" value="" />
+        <input matInput placeholder="Ex: Rua das Ostras" value="" formControlName="logradouro"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Bairro</mat-label>
-        <input matInput placeholder="Ex: São Lucas" value="" />
+        <input matInput placeholder="Ex: São Lucas" value="" formControlName="bairro"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Numero</mat-label>
-        <input matInput placeholder="Ex: 421" value="" />
+        <input matInput placeholder="Ex: 421" value="" formControlName="numero"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Complemento</mat-label>
-        <input matInput placeholder="Ex: Casa" value="" />
+        <input matInput placeholder="Ex: Casa" value="" formControlName="complemento"/>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="item">Cadastrar</button>
+      <button mat-raised-button color="primary" class="item" (click)="cadastrar()">Cadastrar</button>
     </form>
   </mat-card>
 </div>

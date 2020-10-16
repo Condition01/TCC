@@ -5,8 +5,9 @@ export interface Usuario {
     email: string
     nome: string
     sobrenome: string,
-    dataNasc: Date,
     endereco: Endereco
+    senha: string
+    dataNasc: Date,
     role: Role
 }
 

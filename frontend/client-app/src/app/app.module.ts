@@ -33,9 +33,11 @@ import { CarrinhoComponent } from './views/carrinho/carrinho.component';
 import { ItemCarrinhoEditarComponent } from './views/item-carrinho-editar/item-carrinho-editar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagamentoComponent } from './views/pagamento/pagamento.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './views/login/login.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { AuthInterceptor } from './helpers/auth-interceptor';
+import { ErrorInterceptor } from './helpers/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -72,9 +74,13 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

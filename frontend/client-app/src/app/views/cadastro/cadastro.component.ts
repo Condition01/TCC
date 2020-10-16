@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Role, Usuario } from 'src/app/models/usuario.model';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { CepService } from 'src/app/services/cep.service';
+import { NotificacaoService } from 'src/app/services/notificacao.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -9,36 +14,22 @@ import { CarrinhoService } from 'src/app/services/carrinho.service';
   styleUrls: ['./cadastro.component.scss'],
 })
 export class CadastroComponent implements OnInit {
-  // produto: Produto;
-  // quantidade: number;
-  // form: FormGroup
-
-  // ngOnInit(): void {
-  //   let id = this.route.snapshot.paramMap.get('id');
-  //   this.productService.resgatarProduto(id).subscribe(
-  //     (produto) => {
-  //       console.log(produto)
-  //       this.produto = produto
-  //       this.form = this.formBuilder.group({
-  //         quantidade: [1, [Validators.required]]
-  //       })
-  //     },
-  //     (err) => {
-  //       console.log(err)
-  //     }
-  //   );
-  // }
-
   form: FormGroup;
+  usuario: Usuario;
+  reload: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private carrinhoService: CarrinhoService
+    private usuarioService: UsuarioService,
+    private cepService: CepService,
+    private notificacaoService: NotificacaoService,
+    private authService: AutenticacaoService
   ) {}
 
   ngOnInit(): void {
+    // if (!this.reload) {
     this.form = this.formBuilder.group({
       email: [null, [Validators.required]],
       cpf: [null, [Validators.required]],
@@ -47,16 +38,63 @@ export class CadastroComponent implements OnInit {
       dataNasc: [null, [Validators.required]],
       senha: [null, [Validators.required]],
       cep: [null, [Validators.required]],
+      cidade: [null, [Validators.required]],
       logradouro: [null, [Validators.required]],
       bairro: [null, [Validators.required]],
       numero: [null, [Validators.required]],
-      complemento: [null, [Validators.required]],
+      complemento: [null],
     });
+    // }
   }
 
-  cadastrar() {}
+  formParaUsuario() {
+    return {
+      email: this.form.get('email').value,
+      cpf: this.form.get('cpf').value,
+      nome: this.form.get('nome').value,
+      sobrenome: this.form.get('sobrenome').value,
+      dataNasc: this.form.get('dataNasc').value,
+      endereco: {
+        cep: this.form.get('cep').value,
+        cidade: this.form.get('cidade').value,
+        logradouro: this.form.get('logradouro').value,
+        bairro: this.form.get('bairro').value,
+        numero: this.form.get('numero').value,
+        complemento: this.form.get('complemento').value,
+      },
+      senha: this.form.get('senha').value,
+    } as Usuario;
+  }
 
-  findCep(cep: string) {
-    
+  cadastrar() {
+    let usuario = this.formParaUsuario();
+    this.usuarioService.cadastrar(usuario).subscribe(
+      (success) => {
+        this.notificacaoService.sucessNotification('Cadastrado com sucesso!');
+        this.authService
+          .login(usuario.email, usuario.senha)
+          .subscribe((success) => {
+            this.authService.getUsuario().subscribe((user) => {
+              this.notificacaoService.sucessNotification('Logado com sucesso!');
+              this.router.navigate(['/']);
+            });
+          });
+      },
+      (err) => {
+        this.notificacaoService.errorNotification('Erro ao cadastrar usuário!');
+      }
+    );
+  }
+
+  findCep() {
+    let cep = this.form.get('cep').value;
+    return this.cepService.pegarEndereco(cep).subscribe((endereco) => {
+      console.log(endereco);
+      this.form.patchValue({
+        cidade: endereco.localidade,
+        logradouro: endereco.logradouro,
+        bairro: endereco.bairro,
+      });
+    });
   }
 }

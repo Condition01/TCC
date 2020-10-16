@@ -3,15 +3,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/usuario.model';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AutenticacaoService {
-  private actualAutorizacaoSubject: BehaviorSubject<any>;
-  public actualAutorizacao: Observable<any>;
+  private actualAutenticacaoSubject: BehaviorSubject<any>;
+  public actualAutenticacao: Observable<any>;
 
   private actualUsuarioSubject: BehaviorSubject<Usuario>;
   public actualUsuario: Observable<Usuario>;
@@ -23,7 +23,7 @@ export class AutenticacaoService {
   private grant_type = 'password';
 
   constructor(private http: HttpClient, private router: Router) {
-    this.actualAutorizacaoSubject = new BehaviorSubject<any>(
+    this.actualAutenticacaoSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('autenticacao'))
     );
 
@@ -31,12 +31,12 @@ export class AutenticacaoService {
       JSON.parse(localStorage.getItem('usuario'))
     );
 
-    this.actualAutorizacao = this.actualAutorizacaoSubject.asObservable();
+    this.actualAutenticacao = this.actualAutenticacaoSubject.asObservable();
     this.actualUsuario = this.actualUsuarioSubject.asObservable();
   }
 
-  public get actualAutorizacaoValue(): any {
-    return this.actualAutorizacaoSubject.value;
+  public get actualAutenticacaoValue(): any {
+    return this.actualAutenticacaoSubject.value;
   }
 
   public get actualUsuarioValue(): Usuario {
@@ -63,22 +63,14 @@ export class AutenticacaoService {
             refresh_token: token.refresh_token,
           };
           sessionStorage.setItem('autenticacao', JSON.stringify(autenticacao));
-          this.actualAutorizacaoSubject.next(token);
+          this.actualAutenticacaoSubject.next(token);
         })
       );
   }
 
   getUsuario() {
-    let autenticacao = JSON.parse(sessionStorage.getItem('autenticacao'));
-    let headers = new HttpHeaders();
-
-    headers = headers.set(
-      'Authorization',
-      `Bearer ${autenticacao.access_token}`
-    );
-
     return this.http
-      .get<any>(`${this.apiUrl}/user`, { headers: headers })
+      .get<any>(`${this.apiUrl}/user`)
       .pipe(
         map((usuario) => {
           let usuarioAchado = usuario as Usuario;
@@ -88,15 +80,23 @@ export class AutenticacaoService {
       );
   }
 
+  novoUsuario(tokens: any) {
+    let autenticacao = {
+      access_token: tokens.access_token,
+      refresh_token: tokens.refresh_token,
+    };
+    sessionStorage.setItem('autenticacao', JSON.stringify(autenticacao))
+    this.actualAutenticacaoSubject.next(autenticacao);
+  }
+
   refreshToken(): Observable<any> {
     let headers = this.getHeaders();
-    const reqBody = `username=${this.actualUsuarioValue.email}&grant_type=refresh_token&refresh_token=${this.actualAutorizacaoValue.refresh_token}`;
+    const reqBody = `username=${this.actualUsuarioValue.email}&grant_type=refresh_token&refresh_token=${this.actualAutenticacaoValue.refresh_token}`;
     const finalURL = environment.apiBaseUrl + '/oauth/token';
     return this.http.post(finalURL, reqBody, { headers: headers });
   }
 
   logout() {
-    // this.
-    this.router.navigate(['/']);
+    return this.http.get(`${this.apiUrl}/token/expire`).pipe(take(1));
   }
 }
