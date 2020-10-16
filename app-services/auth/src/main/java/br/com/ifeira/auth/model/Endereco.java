@@ -11,9 +11,11 @@ public class Endereco {
 
     @Id
     private String clientCpf;
+    private String cidade;
     private String logradouro;
     private String numero;
     private String cep;
+    private String bairro;
     private String complemento;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -23,19 +25,39 @@ public class Endereco {
 
     public Endereco(String clientCpf,
                     String logradouro,
+                    String cidade,
                     String numero,
                     String cep,
+                    String bairro,
                     String complemento,
                     Usuario usuario) {
         this.clientCpf = clientCpf;
         this.logradouro = logradouro;
+        this.cidade = cidade;
         this.numero = numero;
+        this.bairro = bairro;
         this.cep = cep;
         this.complemento = complemento;
         this.usuario = usuario;
     }
 
     public Endereco() {
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getClientCpf() {
