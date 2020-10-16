@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,13 +23,14 @@ public class UsuarioController {
     }
 
     //não funcionando ainda
-    @PostMapping ("/listarUsuarioPorCpf")
-    public String buscarUsuario(@RequestBody String cpf){
+    //@GetMapping("/{cpf}")
+    @GetMapping("/buscarUsuario")
+    public String buscarUsuario(@QueryParam("cpf") String cpf){
         Optional<Usuario> optUser = usuarioService.buscarUsuario(cpf);
         if(optUser.isPresent()){
-            return "deu ruim";
+            return "deu bom";
         }
-        return "deu bom";
+        return "deu ruim";
     }
 
     // ok

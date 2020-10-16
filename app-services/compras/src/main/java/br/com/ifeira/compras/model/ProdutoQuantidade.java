@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "tbl_produto_quantidade")
 public class ProdutoQuantidade {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -23,8 +23,7 @@ public class ProdutoQuantidade {
 
     private int quantidade;
 
-    public ProdutoQuantidade(Long id, Produto produto, int quantidade) {
-        this.id = id;
+    public ProdutoQuantidade(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
