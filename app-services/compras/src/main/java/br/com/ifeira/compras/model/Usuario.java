@@ -18,6 +18,7 @@ public class Usuario {
     @Column(name = "cpf", length = 11)
     private String cpf;
     private String nome;
+    private String sobrenome;
     private Sexo sexo;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -38,6 +39,7 @@ public class Usuario {
 
     public Usuario(String cpf,
                    String nome,
+                   String sobrenome,
                    Sexo sexo,
                    Endereco endereco,
                    String telefone,
@@ -72,6 +74,14 @@ public class Usuario {
         } else {
             throw new Exception("Pedido não encontrado para remoção");
         }
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
     public List<Pedido> getPedidos() {
