@@ -17,7 +17,7 @@ public class ProdutoQuantidade {
 //    @OneToOne(mappedBy = "pedido")
 
     @JoinColumn(name = "cod_produto", referencedColumnName = "cod_produto")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Produto produto;
 
     private int quantidade;
