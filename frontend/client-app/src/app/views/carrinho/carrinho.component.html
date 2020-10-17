@@ -41,19 +41,23 @@
           <th mat-header-cell *matHeaderCellDef>Ação</th>
           <td mat-cell *matCellDef="let prod">
             <a (click)="abrirEdicao(prod.produto)" class="clicavel"
-              ><mat-icon aria-hidden="false" aria-label="Example home icon" class="editavel"
+              ><mat-icon
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="editavel"
                 >create</mat-icon
               >
             </a>
             <a (click)="excluir(prod.produto.id)" class="clicavel"
-              ><mat-icon aria-hidden="false" aria-label="Example home icon" class="deletavel"
+              ><mat-icon
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="deletavel"
                 >delete</mat-icon
               >
             </a>
           </td>
-          <td mat-footer-cell *matFooterCellDef>
-            ---------
-          </td>
+          <td mat-footer-cell *matFooterCellDef>---------</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -64,7 +68,9 @@
         ></tr>
       </table>
       <mat-card-actions class="actions">
-        <button mat-raised-button color="primary" routerLink="/pagamento">Finalizar Compra</button>
+        <button mat-raised-button color="primary" routerLink="/pagamento">
+          Finalizar Compra
+        </button>
       </mat-card-actions>
     </div>
   </mat-card>

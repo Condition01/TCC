@@ -33,7 +33,7 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido")
     private Reclamacao reclamacao;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ProdutoQuantidade> listaProdutos = new ArrayList<ProdutoQuantidade>();
 
     public Pedido(Long numero,

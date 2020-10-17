@@ -21,6 +21,7 @@ export class ProdutoListarComponent implements OnInit {
   list() {
     return this.produtoService.listarProdutos().subscribe(
       (prods) => {
+        console.log(prods)
         this.produtos = prods
       },
       (err) => {
@@ -29,8 +30,8 @@ export class ProdutoListarComponent implements OnInit {
     );
   }
 
-  comprar(id: string) {
-    this.router.navigate([`comprar/${id}`])
+  comprar(codProduto: number) {
+    this.router.navigate([`comprar/${codProduto}`])
   }
 
 }

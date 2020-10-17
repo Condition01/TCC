@@ -26,8 +26,8 @@ export class ProdutoComprarComponent implements OnInit {
   form: FormGroup
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.productService.resgatarProduto(id).subscribe(
+    let codProduto = this.route.snapshot.paramMap.get('codProduto');
+    this.productService.resgatarProduto(+codProduto).subscribe(
       (produto) => {
         console.log(produto)
         this.produto = produto
@@ -41,10 +41,11 @@ export class ProdutoComprarComponent implements OnInit {
     );
   }
 
-  adicionarCarrinho(id: string) {
+  adicionarCarrinho(codProduto: number) {
+    console.log(codProduto);
     this.quantidade = this.form.get('quantidade').value;
     if(Number(this.quantidade)){
-      this.carrinhoService.addItem(id, this.quantidade);
+      this.carrinhoService.addItem(codProduto, this.quantidade);
       this.router.navigate(['']);
     }
   }

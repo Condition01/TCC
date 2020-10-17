@@ -1,5 +1,6 @@
 **/zip
 zip
 .idea
-.gradle**
+.gradle
 .gradle/**
+.gradle

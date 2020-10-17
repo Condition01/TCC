@@ -43,13 +43,13 @@ export class CarrinhoComponent implements OnInit {
     item.valor = item.produto.preco * item.quantidade;
   }
 
-  excluir(id: string) {
-    this.carrinhoService.excluir(id);
+  excluir(codProduto: number) {
+    this.carrinhoService.excluir(codProduto);
     this.mostrarCarrinho();
   }
 
-  editar(id: string) {
-    console.log(id);
+  editar(codProduto: number) {
+    console.log(codProduto);
   }
 
   pegarTotalDeItens() {

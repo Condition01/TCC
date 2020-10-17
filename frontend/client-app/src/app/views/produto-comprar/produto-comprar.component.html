@@ -1,15 +1,18 @@
 <div class="container">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
   <mat-card class="card">
     <mat-card-header class="header">
       <mat-card-title class="title">Comprar {{ produto.nome }}</mat-card-title>
     </mat-card-header>
     <div>
-      <img class="mat-elevation-z1"
-      mat-card-image
-      src="{{ produto.imgUrl }}"
-      alt="Photo of a Shiba Inu"
-    />
+      <img
+        mat-card-image
+        src="{{ produto.imgUrl }}"
+        alt="Photo of a Shiba Inu"
+      />
     </div>
     <mat-card-content class="content">
       <p>
@@ -17,17 +20,24 @@
       </p>
     </mat-card-content>
     <div class="preco">
-      <h1>Preço: {{ produto.preco | currency: 'BRL' }}  </h1>
+      <h1>Preço: {{ produto.preco | currency: "BRL" }}</h1>
     </div>
     <mat-card-actions class="actions">
-      <form class="quantidade-form" [formGroup]="form"> 
+      <form class="quantidade-form" [formGroup]="form">
         <mat-form-field class="quantidade-field">
           <mat-label>Quantidade</mat-label>
-          <input matInput placeholder="Ex. 1" formControlName="quantidade">
+          <input matInput placeholder="Ex. 1" formControlName="quantidade" />
         </mat-form-field>
-        <button mat-raised-button color="primary" [disabled]="form.invalid"  (click)="adicionarCarrinho(produto.id)">
-          ADICIONAR AO CARRINHO 
-          <mat-icon aria-hidden="false" aria-label="Example home icon">add_shopping_cart</mat-icon>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="form.invalid"
+          (click)="adicionarCarrinho(produto.codProduto)"
+        >
+          ADICIONAR AO CARRINHO
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >add_shopping_cart</mat-icon
+          >
         </button>
       </form>
     </mat-card-actions>

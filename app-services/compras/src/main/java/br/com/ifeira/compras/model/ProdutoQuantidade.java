@@ -10,21 +10,19 @@ import javax.persistence.*;
 @Table(name = "tbl_produto_quantidade")
 public class ProdutoQuantidade {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 //    @OneToOne(mappedBy = "pedido")
 
-    @JsonIgnore
     @JoinColumn(name = "cod_produto", referencedColumnName = "cod_produto")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Produto produto;
 
     private int quantidade;
 
-    public ProdutoQuantidade(Long id, Produto produto, int quantidade) {
-        this.id = id;
+    public ProdutoQuantidade(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }

@@ -17,13 +17,14 @@ public class Produto {
 
     private String nome;
 
-    @Enumerated(EnumType.STRING)
-    private TipoProduto tpProduto;
+    @Enumerated
+    private TipoProduto tp_Produto;
 
     private String descricao;
 
     private double preco;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ProdutoQuantidade produtoQuantidade;
 
@@ -35,7 +36,7 @@ public class Produto {
                    ProdutoQuantidade produtoQuantidade) {
         this.codProduto = codProduto;
         this.nome = nome;
-        this.tpProduto = tpProduto;
+        this.tp_Produto = tp_Produto;
         this.descricao = descricao;
         this.preco = preco;
         this.produtoQuantidade = produtoQuantidade;
@@ -69,11 +70,11 @@ public class Produto {
     }
 
     public TipoProduto getTpProduto() {
-        return tpProduto;
+        return tp_Produto;
     }
 
-    public void setTpProduto(TipoProduto tpProduto) {
-        this.tpProduto = tpProduto;
+    public void setTpProduto(TipoProduto tp_Produto) {
+        this.tp_Produto = tp_Produto;
     }
 
     public String getDescricao() {

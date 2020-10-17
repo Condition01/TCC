@@ -27,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CookieService } from 'ngx-cookie-service';
 import { CarrinhoComponent } from './views/carrinho/carrinho.component';
@@ -38,6 +39,7 @@ import { LoginComponent } from './views/login/login.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { ErrorInterceptor } from './helpers/error-interceptor';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { ErrorInterceptor } from './helpers/error-interceptor';
     PagamentoComponent,
     LoginComponent,
     CadastroComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import { ErrorInterceptor } from './helpers/error-interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     CookieService,

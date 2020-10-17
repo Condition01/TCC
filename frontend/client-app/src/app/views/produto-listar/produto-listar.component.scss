@@ -1,5 +1,57 @@
+.grid {
+  padding-bottom: 200px;
+}
+
 .produto-card {
   max-width: 400px;
+  padding: 40px;
+  transition: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+
+  .titulo {
+    font-size: 30px;
+    margin-bottom: 15px !important;
+    // margin-bottom: 5px;
+  }
+
+  .preco-unidade {
+ 
+    display: flex;
+    flex-direction: row;
+   
+    
+    h3 {
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    // h2 {
+    //   font-size: 24px;
+    //   font-weight: bold;
+    // }
+  }
+ 
+
+}
+
+.produto-card:hover {
+  // // -webkit-box-shadow: 2px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
+  // // -moz-box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.75) !important;
+  // // box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.34) !important;
+  // box-shadow:
+  // 2.2px 2.8px 2.2px rgba(0.034, 0.034, 0.034, 0.034),
+  // 2.2px -20.7px 5.3px rgba(0.034, 0.034, 0.034, 0.034),
+  // // 0 12.5px 10px rgba(0, 0, 0, 0.06),
+  // // 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  // // 0 10.8px 10.4px rgba(0, 0, 0, 0.086),
+  // 0 20px 20px rgba(0, 0, 0, 0.12) !important;
+  // // box-shadow: 0px 10px 5px #888, 0px -10px 5px #888 !important;
+  -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2) !important;
+
+
+
 }
 
 .produto-header-image {

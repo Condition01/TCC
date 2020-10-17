@@ -29,7 +29,8 @@ public class PedidoController {
     @RequestMapping("/listarPedidos")
     public ResponseEntity<?> listarPedidos() {
         try {
-            return ResponseEntity.ok(pedidoService.listarPedidos());
+            List<Pedido> pedidos = pedidoService.listarPedidos();
+            return ResponseEntity.ok(pedidos);
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }

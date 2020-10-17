@@ -1,24 +1,26 @@
-<mat-grid-list cols="3" rowHeight="1:1">
-  <mat-grid-tile *ngFor="let prod of produtos">
-    <mat-card class="produto-card">
-      <mat-card-header>
-        <div mat-card-avatar class="produto-header-image"></div>
-        <mat-card-title>{{ prod.nome }}</mat-card-title>
-        <mat-card-subtitle>{{ prod.nome }}</mat-card-subtitle>
-      </mat-card-header>
+<mat-grid-list cols="4" rowHeight="1:1">
+  <mat-grid-tile *ngFor="let prod of produtos" class="grid">
+    <mat-card class="produto-card" >
       <img
-        mat-card-image
-        src="{{ prod.imgUrl }}"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content>
-        <p>
+      mat-card-image
+      src="{{ prod.imgUrl }}"
+      alt="Imagem do Produto"
+      (click)="comprar(prod.codProduto)"
+    />
+      <!-- <mat-card-header> -->
+        <!-- <div mat-card-avatar class="produto-header-image"></div> -->
+        <div class="titulo">{{ prod.nome }}</div>
+        <!-- <mat-card-subtitle>{{ prod.nome }}</mat-card-subtitle> -->
+      <!-- </mat-card-header> -->
+
+      <mat-card-content class="preco-unidade">
+        <!-- <p>
             {{ prod.descricao }} 
-        </p>
-        <h3>Preço: {{ prod.preco | currency: 'BRL' }} - {{ prod.unidade }}</h3>
+        </p> -->
+        <h3> {{ prod.preco | currency: 'R$ ' }} Un.</h3>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="comprar(prod.id)">Comprar</button>
+        <!-- <button mat-raised-button color="primary" (click)="comprar(prod.codProduto)">Comprar</button> -->
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
