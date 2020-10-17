@@ -16,24 +16,23 @@ public class PagamentoService {
     private PagamentoDAO pagamentoDAO;
 
     public List<Pagamento> listarPagamentos(){
-        return pagamentoDAO.findAll();
+        return this.pagamentoDAO.findAll();
     }
 
     public Optional<Pagamento> identificarPagamento(Long numeroPagamento){
-        return pagamentoDAO.findById(numeroPagamento);
+        return this.pagamentoDAO.findById(numeroPagamento);
     }
 
-    // revisar
     public Pagamento deletarPagamento(Long numeroPagamento){
-        Optional<Pagamento> optPagamento = pagamentoDAO.findById(numeroPagamento);
+        Optional<Pagamento> optPagamento = this.pagamentoDAO.findById(numeroPagamento);
         if(optPagamento.isPresent()){
-            pagamentoDAO.delete(optPagamento.get());
+            this.pagamentoDAO.delete(optPagamento.get());
         }
         return optPagamento.get();
     }
 
     public void inserirPagamento(Pagamento pagamento){
-        pagamentoDAO.save(pagamento);
+        this.pagamentoDAO.save(pagamento);
     }
 }
 

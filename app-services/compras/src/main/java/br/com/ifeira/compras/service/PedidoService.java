@@ -45,11 +45,11 @@ public class PedidoService {
         for (ProdutoQuantidade pqtd : listaProdutoQuantidade) {
             Produto produtoAchado = pqtd.getProduto();
             Optional<Produto> optProduto = this.produtoDAO.findById(produtoAchado.getCodProduto());
-            if(optProduto.isPresent()){
+            if (optProduto.isPresent()) {
                 produtoAchado = optProduto.get();
                 produtoAchado.adicionarProdutoQuantidade(pqtd);
                 pqtd.setProduto(produtoAchado);
-            }else {
+            } else {
                 throw new Exception("Produto código: " + produtoAchado.getCodProduto() + " não encontrado");
             }
         }

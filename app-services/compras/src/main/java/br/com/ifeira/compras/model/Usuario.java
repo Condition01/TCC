@@ -33,9 +33,6 @@ public class Usuario {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "entregador")
-    private Entrega entrega;
 
     public Usuario(String cpf,
                    String nome,
@@ -44,15 +41,13 @@ public class Usuario {
                    Endereco endereco,
                    String telefone,
                    Roles role,
-                   List<Pedido> pedidos,
-                   Entrega entrega) {
+                   List<Pedido> pedidos) {
         this.cpf = cpf;
         this.nome = nome;
         this.sexo = sexo;
         this.endereco = endereco;
         this.telefone = telefone;
         this.role = role;
-        this.entrega = entrega;
         this.pedidos = pedidos;
     }
 
@@ -138,13 +133,5 @@ public class Usuario {
 
     public void setRole(Roles role) {
         this.role = role;
-    }
-
-    public Entrega getEntrega() {
-        return entrega;
-    }
-
-    public void setEntrega(Entrega entrega) {
-        this.entrega = entrega;
     }
 }

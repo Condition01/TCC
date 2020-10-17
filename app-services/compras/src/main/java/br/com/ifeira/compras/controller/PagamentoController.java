@@ -21,7 +21,7 @@ public class PagamentoController {
     @GetMapping("/listarPagamentos")
     public ResponseEntity<?> listarPagamentos() {
         try {
-            return ResponseEntity.ok(pagamentoService.listarPagamentos());
+            return ResponseEntity.ok(this.pagamentoService.listarPagamentos());
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
@@ -31,7 +31,7 @@ public class PagamentoController {
     public ResponseEntity<?>
     buscarPagamento(@QueryParam("numeroPagamento") String numeroPagamento) {
         Long numero = Long.parseLong(numeroPagamento);
-        Optional<Pagamento> optPagamento = pagamentoService.identificarPagamento(numero);
+        Optional<Pagamento> optPagamento = this.pagamentoService.identificarPagamento(numero);
         try {
             return ResponseEntity.ok(optPagamento.get());
         } catch (Exception ex) {
@@ -43,10 +43,9 @@ public class PagamentoController {
     public ResponseEntity<?> deletarPagamento(@QueryParam("numeroPagamento") String numeroPagamento) {
         Long numero = Long.parseLong(numeroPagamento);
         try {
-            return ResponseEntity.ok(pagamentoService.deletarPagamento(numero));
+            return ResponseEntity.ok(this.pagamentoService.deletarPagamento(numero));
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
-
 }

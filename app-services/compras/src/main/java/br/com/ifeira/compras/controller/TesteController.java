@@ -16,7 +16,7 @@ public class TesteController {
     @RequestMapping("/getClients")
     public ResponseEntity<?> getClients() {
         try {
-            return ResponseEntity.ok(testeService.getClients());
+            return ResponseEntity.ok(this.testeService.getClients());
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
@@ -25,10 +25,9 @@ public class TesteController {
     @RequestMapping("/getPagamento")
     public ResponseEntity<?> getPagamento() {
         try {
-            return ResponseEntity.ok(testeService.getPagamento());
+            return ResponseEntity.ok(this.testeService.getPagamento());
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
-
 }

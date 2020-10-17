@@ -13,27 +13,26 @@ public class UsuarioService {
     @Autowired
     private UsuarioDAO usuarioDao;
 
-    public List<Usuario> listarUsuario(){
-        return usuarioDao.findAll();
+    public List<Usuario> listarUsuario() {
+        return this.usuarioDao.findAll();
     }
 
-    public Optional<Usuario> buscarUsuario(String cpf){
+    public Optional<Usuario> buscarUsuario(String cpf) {
         return this.usuarioDao.findById(cpf);
     }
 
 
-    public void inserirUsuario(Usuario usuario){
-        usuarioDao.save(usuario);
-        return;
+    public void inserirUsuario(Usuario usuario) {
+        this.usuarioDao.save(usuario);
     }
 
-    public String deletarUsuario(Usuario usuario){
-        usuarioDao.delete(usuario);
+    public String deletarUsuario(Usuario usuario) {
+        this.usuarioDao.delete(usuario);
         return "usuario excluido com sucesso";
     }
 
-    public Optional<Usuario> editarUsuario(Usuario usuario){
-        usuarioDao.saveAndFlush(usuario);
+    public Optional<Usuario> editarUsuario(Usuario usuario) {
+        this.usuarioDao.saveAndFlush(usuario);
         return usuarioDao.findById(usuario.getCpf());
     }
 }

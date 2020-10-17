@@ -29,9 +29,6 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Pagamento pagamento;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "pedido")
-    private Reclamacao reclamacao;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ProdutoQuantidade> listaProdutos = new ArrayList<ProdutoQuantidade>();
@@ -41,14 +38,12 @@ public class Pedido {
                   StatusPedido statusPedido,
                   Usuario cliente,
                   Pagamento pagamento,
-                  Reclamacao reclamacao,
                   List<ProdutoQuantidade> listaProdutos) {
         this.numero = numero;
         this.data = data;
         this.statusPedido = statusPedido;
         this.cliente = cliente;
         this.pagamento = pagamento;
-        this.reclamacao = reclamacao;
         this.listaProdutos = listaProdutos;
     }
 
@@ -93,14 +88,6 @@ public class Pedido {
 
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
-    }
-
-    public Reclamacao getReclamacao() {
-        return reclamacao;
-    }
-
-    public void setReclamacao(Reclamacao reclamacao) {
-        this.reclamacao = reclamacao;
     }
 
     public List<ProdutoQuantidade> getListaProdutos() {

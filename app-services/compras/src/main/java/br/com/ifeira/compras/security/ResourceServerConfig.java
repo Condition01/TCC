@@ -39,11 +39,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         final OAuth2RestTemplate userInfoRestTemplate = factory.getUserInfoRestTemplate();
         return userInfoRestTemplate;
     }
-//    @Bean
-//    @LoadBalanced
-//    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-//        return builder.build();
-//    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -64,8 +59,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Bean
     @ConditionalOnMissingBean(RequestContextListener.class)
-    public RequestContextListener requestContextListener(){
+    public RequestContextListener requestContextListener() {
         return new RequestContextListener();
     }
-
 }

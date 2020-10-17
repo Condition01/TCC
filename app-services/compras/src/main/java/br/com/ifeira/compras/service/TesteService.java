@@ -2,7 +2,6 @@ package br.com.ifeira.compras.service;
 
 import br.com.ifeira.compras.dao.*;
 import br.com.ifeira.compras.model.Pagamento;
-import br.com.ifeira.compras.model.Reclamacao;
 import br.com.ifeira.compras.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +20,6 @@ public class TesteService {
     @Autowired
     private EntregaDAO entregaDAO;
 
-//    @Autowired
-//    private Reclamacao reclamacaoDAO;
-
     @Autowired
     private ProdutoDAO produtoDAO;
 
@@ -34,7 +30,7 @@ public class TesteService {
         return this.pagamentoDAO.findAll();
     }
 
-    public List<Usuario> getClients() { return this.usuarioDAO.findAll(); }
-
-
+    public List<Usuario> getClients() {
+        return this.usuarioDAO.findAll();
+    }
 }

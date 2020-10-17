@@ -13,5 +13,4 @@ public interface PedidoDAO extends JpaRepository<Pedido, Long> {
 
     @Query(value = "select * from tbl_pedido where numero = :numero", nativeQuery = true)
     public Optional<Pedido> acharPedido(@Param("numero") Long numero);
-
 }
