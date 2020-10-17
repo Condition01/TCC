@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProdutoQuantidadeDAO extends JpaRepository<ProdutoQuantidade,Long> {
-
 }
