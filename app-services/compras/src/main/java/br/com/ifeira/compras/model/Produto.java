@@ -4,6 +4,7 @@ import br.com.ifeira.compras.enums.TipoProduto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class Produto {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "produto")
-    private List<ProdutoQuantidade> produtosQuantidade;
+    private List<ProdutoQuantidade> produtosQuantidade = new ArrayList<>();
 
     public Produto(Long codProduto,
                    String nome,
