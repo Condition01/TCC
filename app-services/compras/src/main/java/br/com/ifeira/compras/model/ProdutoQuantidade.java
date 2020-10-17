@@ -16,7 +16,6 @@ public class ProdutoQuantidade {
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 //    @OneToOne(mappedBy = "pedido")
 
-    @JsonIgnore
     @JoinColumn(name = "cod_produto", referencedColumnName = "cod_produto")
     @OneToOne(fetch = FetchType.LAZY)
     private Produto produto;

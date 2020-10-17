@@ -24,6 +24,7 @@ public class Produto {
 
     private double preco;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ProdutoQuantidade produtoQuantidade;
 
