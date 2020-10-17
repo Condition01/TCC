@@ -10,3 +10,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .error-bar {
     background-color: #9C0000 !important;
 }
+
+.card {
+    transition: none !important;
+    box-shadow: none !important;
+}
