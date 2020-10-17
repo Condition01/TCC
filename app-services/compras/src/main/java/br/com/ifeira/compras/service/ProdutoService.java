@@ -37,8 +37,7 @@ public class ProdutoService {
         produtoDAO.save(produto);
     }
 
-    public List<ProdutoQuantidade> getListaProduto(Map<Long, Integer> qtdProdutos)
-    {
+    public List<ProdutoQuantidade> getListaProduto(Map<Long, Integer> qtdProdutos) {
         ProdutoQuantidade produtoQtd;
         List produtoQuantidade = new ArrayList();
 
