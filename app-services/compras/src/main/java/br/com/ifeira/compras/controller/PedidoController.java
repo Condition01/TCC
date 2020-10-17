@@ -7,6 +7,7 @@ import br.com.ifeira.compras.model.Reclamacao;
 import br.com.ifeira.compras.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE')")
     @PostMapping("/criarPedido")
     public ResponseEntity<?> criarPedido(@RequestBody Pedido pedido) {
         try {
@@ -26,6 +28,7 @@ public class PedidoController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @RequestMapping("/listarPedidos")
     public ResponseEntity<?> listarPedidos() {
         try {
@@ -36,6 +39,7 @@ public class PedidoController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @RequestMapping("/acharPedido")
     public ResponseEntity<?> listarProdutos(@RequestParam("numero") Long numero) {
         try {
@@ -44,8 +48,6 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }
     }
-
-
 
 
  /*

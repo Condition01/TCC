@@ -18,7 +18,6 @@ public class PagamentoController {
     @Autowired
     private PagamentoService pagamentoService;
 
-    // ok
     @GetMapping("/listarPagamentos")
     public ResponseEntity<?> listarPagamentos(){
         try {
@@ -28,7 +27,6 @@ public class PagamentoController {
         }
     }
 
-    //ok
     @GetMapping("/encontrarPagamento")
     public ResponseEntity<?> buscarPagamento(@QueryParam("numeroPagamento") String numeroPagamento){
         Long numero = Long.parseLong(numeroPagamento);
@@ -40,23 +38,11 @@ public class PagamentoController {
         }
     }
 
-    // ok
     @GetMapping("/deletarPagamento")
     public ResponseEntity<?> deletarPagamento(@QueryParam("numeroPagamento") String numeroPagamento){
         Long numero = Long.parseLong(numeroPagamento);
         try {
             return ResponseEntity.ok(pagamentoService.deletarPagamento(numero));
-        } catch (Exception ex){
-            return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
-        }
-    }
-
-    // bad request - erro de servidor 500, problemas com o relacionamento entre pagamento e pedido
-    @PostMapping("/inserirPagamento")
-    public ResponseEntity<?> inserirPagamento(@RequestBody Pagamento pagamento){
-        pagamentoService.inserirPagamento(pagamento);
-        try {
-            return ResponseEntity.ok("Inserido com sucesso");
         } catch (Exception ex){
             return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
         }

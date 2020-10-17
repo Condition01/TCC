@@ -4,6 +4,7 @@ import br.com.ifeira.compras.model.Produto;
 import br.com.ifeira.compras.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.QueryParam;
@@ -18,6 +19,7 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @PostMapping("/getProdutos")
     public ResponseEntity<?> getProdutos(@RequestBody Map<Long,Integer> qtd_produto){
         try {
@@ -27,7 +29,7 @@ public class ProdutoController {
         }
     }
 
-    // ok
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @GetMapping("/listarProdutos")
     public ResponseEntity<?> listarProdutos() {
         try {
@@ -37,6 +39,7 @@ public class ProdutoController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @GetMapping("/buscarProduto")
     public ResponseEntity<?> buscarProduto(@QueryParam("cod_produto") String cod_produto){
         Long codProduto = Long.parseLong(cod_produto);
