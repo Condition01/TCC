@@ -34,7 +34,7 @@ public class PedidoService {
             cliente.adicionarPedidos(pedido);
             listaProdutoQuantidade = pedido.getListaProdutos();
             for (ProdutoQuantidade pqtd: listaProdutoQuantidade) {
-                 pqtd.getProduto().setProdutoQuantidade(pqtd);
+                 pqtd.getProduto().adicionarProdutoQuantidade(pqtd);
             }
             return this.pedidoDAO.save(pedido);
         } else {

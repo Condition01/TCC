@@ -40,6 +40,16 @@ public class ProdutoController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
+    @GetMapping("/listarProdutoQtd")
+    public ResponseEntity<?> listarProdutoQtd() {
+        try {
+            return ResponseEntity.ok(produtoService.listarProdutoQtd());
+        } catch (Exception ex){
+            return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
+        }
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE', 'ROLE_FEIRANTE','ROLE_ENTREGADOR')")
     @GetMapping("/buscarProduto")
     public ResponseEntity<?> buscarProduto(@QueryParam("cod_produto") String cod_produto){
         Long codProduto = Long.parseLong(cod_produto);

@@ -13,11 +13,8 @@ public class ProdutoQuantidade {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    @OneToOne(mappedBy = "pedido")
-
     @JoinColumn(name = "cod_produto", referencedColumnName = "cod_produto")
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Produto produto;
 
     private int quantidade;

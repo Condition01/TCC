@@ -1,6 +1,7 @@
 package br.com.ifeira.compras.service;
 
 import br.com.ifeira.compras.dao.ProdutoDAO;
+import br.com.ifeira.compras.dao.ProdutoQuantidadeDAO;
 import br.com.ifeira.compras.model.Produto;
 import br.com.ifeira.compras.model.ProdutoQuantidade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class ProdutoService {
     @Autowired
     private ProdutoDAO produtoDAO;
 
+    @Autowired
+    private ProdutoQuantidadeDAO produtoQuantidadeDAO;
 
     public List<Produto> listarProduto(){
         return produtoDAO.findAll();
@@ -31,6 +34,10 @@ public class ProdutoService {
             produtoDAO.delete(optProduto.get());
         }
         return optProduto.get();
+    }
+
+    public List<ProdutoQuantidade> listarProdutoQtd() {
+        return this.produtoQuantidadeDAO.findAll();
     }
 
     public void inserirProduto(Produto produto){

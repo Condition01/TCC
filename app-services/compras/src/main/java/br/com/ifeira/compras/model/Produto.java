@@ -2,10 +2,10 @@ package br.com.ifeira.compras.model;
 
 import br.com.ifeira.compras.enums.TipoProduto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "tbl_produto")
@@ -18,39 +18,65 @@ public class Produto {
     private String nome;
 
     @Enumerated
-    private TipoProduto tp_Produto;
+    private TipoProduto tpProduto;
 
     private String descricao;
 
     private double preco;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private ProdutoQuantidade produtoQuantidade;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "produto")
+    private List<ProdutoQuantidade> produtosQuantidade;
 
     public Produto(Long codProduto,
                    String nome,
                    TipoProduto tpProduto,
                    String descricao,
                    double preco,
-                   ProdutoQuantidade produtoQuantidade) {
+                   List<ProdutoQuantidade> produtosQuantidade) {
         this.codProduto = codProduto;
         this.nome = nome;
-        this.tp_Produto = tp_Produto;
+        this.tpProduto = tpProduto;
         this.descricao = descricao;
         this.preco = preco;
-        this.produtoQuantidade = produtoQuantidade;
+        this.produtosQuantidade = produtosQuantidade;
+    }
+
+    public void adicionarProdutoQuantidade(ProdutoQuantidade pedido) {
+        this.produtosQuantidade.add(pedido);
+    }
+
+    public void removerProdutoQuantidade(Long id) throws Exception {
+
+        Optional<ProdutoQuantidade> optionalProdutoQuantidade = this.produtosQuantidade.stream()
+                .parallel()
+                .filter(produtoQtd -> produtoQtd.getId() == id)
+                .findFirst();
+        if (optionalProdutoQuantidade.isPresent()) {
+            ProdutoQuantidade produtoQtdRemovido = optionalProdutoQuantidade.get();
+            this.produtosQuantidade.remove(produtoQtdRemovido);
+        } else {
+            throw new Exception("Produto não encontrado para remoção");
+        }
     }
 
     public Produto() {
     }
 
-    public ProdutoQuantidade getProdutoQuantidade() {
-        return produtoQuantidade;
+    public TipoProduto getTpProduto() {
+        return tpProduto;
     }
 
-    public void setProdutoQuantidade(ProdutoQuantidade produtoQuantidade) {
-        this.produtoQuantidade = produtoQuantidade;
+    public void setTpProduto(TipoProduto tpProduto) {
+        this.tpProduto = tpProduto;
+    }
+
+    public List<ProdutoQuantidade> getProdutosQuantidade() {
+        return produtosQuantidade;
+    }
+
+    public void setProdutosQuantidade(List<ProdutoQuantidade> produtosQuantidade) {
+        this.produtosQuantidade = produtosQuantidade;
     }
 
     public Long getCodProduto() {
@@ -67,14 +93,6 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public TipoProduto getTpProduto() {
-        return tp_Produto;
-    }
-
-    public void setTpProduto(TipoProduto tp_Produto) {
-        this.tp_Produto = tp_Produto;
     }
 
     public String getDescricao() {
