@@ -48,6 +48,7 @@ export class ProdutoComprarComponent implements OnInit {
     this.quantidade = this.form.get('quantidade').value;
     if(this.quantidade > 0){
       this.carrinhoService.addItem(codProduto, this.quantidade);
+      this.notificacaoService.sucessNotification('Item adicionado com sucesso!')
       this.router.navigate(['']);
     }else{
       this.notificacaoService.normalNotification('Quantidade deve ser maior que 0');

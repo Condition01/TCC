@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarrinhoShow } from 'src/app/models/carrinho-show.model';
+import { Pagamento } from 'src/app/models/pagamento.mode';
 import { ProdutoQuantidade } from 'src/app/models/produto-quantidade';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { NotificacaoService } from 'src/app/services/notificacao.service';
@@ -43,6 +44,10 @@ export class PagamentoComponent implements OnInit {
         .map((t) => t.valor)
         .reduce((acc, value) => acc + value, 0);
     }
+  }
+
+  montarPedido() {
+
   }
 
   
