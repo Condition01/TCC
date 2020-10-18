@@ -1,11 +1,14 @@
-<h1 mat-dialog-title>Alterar produto</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Produto</mat-label>
-    <!-- <input matInput [(ngModel)]="data.produto.nome"> -->
-  </mat-form-field>
-</div>
+<h1 mat-dialog-title>{{ itemCarrinho.produto.nome }}</h1>
+<!-- <div mat-dialog-content>
+  <mat-label>Editar </mat-label>
+</div> -->
+<mat-form-field class="quantidade">
+  <mat-label>Quantidade</mat-label>
+  <input matInput placeholder="Ex: 10" [(ngModel)]="quantidade" (change)="alterarPreco()">
+</mat-form-field>
+<h2> Total {{ valorTotal | currency: 'R$ ' }}.</h2>
 <div mat-dialog-actions>
+  <button mat-raised-button color (click)="editar()" color="primary">Alterar</button>
   <button mat-button (click)="fechar()">Sair</button>
   <!-- <button mat-button [mat-dialog-close]="data.produto.nome" cdkFocusInitial>Ok</button> -->
 </div>

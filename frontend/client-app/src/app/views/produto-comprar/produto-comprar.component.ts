@@ -5,6 +5,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon'
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificacaoService } from 'src/app/services/notificacao.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ProdutoComprarComponent implements OnInit {
     private productService: ProdutoService,
     private router: Router,
     private formBuilder: FormBuilder,
+    private notificacaoService: NotificacaoService,
     private carrinhoService: CarrinhoService
   ) {}
 
@@ -44,9 +46,11 @@ export class ProdutoComprarComponent implements OnInit {
   adicionarCarrinho(codProduto: number) {
     console.log(codProduto);
     this.quantidade = this.form.get('quantidade').value;
-    if(Number(this.quantidade)){
+    if(this.quantidade > 0){
       this.carrinhoService.addItem(codProduto, this.quantidade);
       this.router.navigate(['']);
+    }else{
+      this.notificacaoService.normalNotification('Quantidade deve ser maior que 0');
     }
   }
 

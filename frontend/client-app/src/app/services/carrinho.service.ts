@@ -35,16 +35,25 @@ export class CarrinhoService {
     return this.produtoService.resgatarProdutos(carrinhoMap);
   }
 
-  editar() {
-
+  editar(codProduto: number, quantidade: number) {
+    let cookie = this.cookieService.get('carrinho-cookie');
+    let carrinhoMap = cookie ? JSON.parse(cookie) as Map<number, number> : new Map<number, number>();
+    if(carrinhoMap[codProduto]){
+      console.log('passou aqui também')
+      carrinhoMap[codProduto] = quantidade;
+    }
+    this.cookieService.set('carrinho-cookie', JSON.stringify(carrinhoMap));
   }
 
   excluir(codProduto: number) {
     let cookie = this.cookieService.get('carrinho-cookie');
     let carrinhoMap = cookie ? JSON.parse(cookie) as Map<number, number> : new Map<number, number>();
-    Object.keys(carrinhoMap).forEach( (key) => {
-      delete carrinhoMap[key];
-     });
+    // Object.keys(carrinhoMap).forEach( (key) => {
+    //   delete carrinhoMap[codProduto];
+    //  });
+    console.log('passou aqui no excluir');
+    console.log(codProduto);
+    delete carrinhoMap[codProduto];
     this.cookieService.set('carrinho-cookie', JSON.stringify(carrinhoMap));
   }
 

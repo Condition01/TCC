@@ -1,65 +1,58 @@
-.card {
-    width: 80%;
-    margin-left: 10%;
-  
+.container {
+  margin-bottom: 200px;
+
+  .card {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+
     .title {
       font-size: 4em;
       padding: 20px;
     }
-  
+
     .header {
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 50px;
     }
-  
-    .table-container {
-      height: 470px;
-      overflow: auto;
-      margin-bottom: 20px;
-    }
-  
-    table {
-      width: 100%;
-    }
-  
-    tr.mat-footer-row {
-      font-weight: bold;
-    }
-  
-    .mat-table-sticky {
-      border-top: 1px solid #e0e0e0;
-    }
-  
-    .clicavel {
-      margin-right: 5px;
-      cursor: pointer;
-  
-      .editavel {
-        color: green;
+
+    .items {
+      display: flex;
+      justify-content: center;
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        max-width: 100%;
+        padding: 100px;
       }
-  
-      .deletavel {
-        color: red;
+
+      .list {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        padding: 100px;
       }
+
     }
 
-    .form {
-      display: flex;
-      flex-direction: column;
-      max-width: 30%;
-      padding: 100px;
-    }
-  
-    .actions {
+    h1 {
       display: flex;
       align-self: center;
       justify-content: center;
-  
-      button {
-        margin-top: 20px;
-      }
     }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
   }
-  
+}

@@ -5,37 +5,47 @@
   />
   <mat-card class="card">
     <mat-card-header class="header">
-      <mat-card-title class="title">Pagamento</mat-card-title>
+      <mat-card-title class="title">Finalização do Pedido</mat-card-title>
     </mat-card-header>
 
-    <div [formGroup]="form" class="form">
-        <span></span>
+    <div class="items">
+      <div [formGroup]="form" class="form">
+        <h2>Pagamento</h2>
         <mat-form-field appearance="legacy">
-        <mat-label>Nome no Cartão</mat-label>
-        <input matInput placeholder="Ex: Bruno Cardoso" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Nome</mat-hint>
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-label>Número</mat-label>
-        <input matInput placeholder="Ex: Numero" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Número</mat-hint>
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-label>Validade</mat-label>
-        <input matInput placeholder="Ex: Validade" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Data</mat-hint>
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-label>Código</mat-label>
-        <input matInput placeholder="Ex: Código" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>CVV</mat-hint>
-      </mat-form-field>
+          <mat-label>Nome no Cartão</mat-label>
+          <input matInput placeholder="Ex: BRUNO F CARDOSO" />
+          <mat-icon matSuffix>perm_identity</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="Ex: 9999999999999999" maxlength="16"/>
+          <mat-icon matSuffix>credit_card</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Validade</mat-label>
+          <input matInput placeholder="Ex: Validade" maxlength="4"/>
+          <mat-icon matSuffix>calendar_today</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Código</mat-label>
+          <input matInput placeholder="Ex: Código" maxlength="3"/>
+          <mat-icon matSuffix>confirmation_number</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <mat-list class="list">
+        <h2>Produtos</h2>
+        <mat-list-item *ngFor="let prod of produtos">
+          <mat-icon mat-list-icon>lens</mat-icon>
+          <div mat-line>
+            {{ prod.produto.nome }} &nbsp;&nbsp; {{ prod.quantidade }}x
+            &nbsp;&nbsp; {{ valor(prod) | currency: "R$ " }}
+          </div>
+        </mat-list-item>
+      </mat-list>
     </div>
-  
+
+    <h1>Total - {{ pegarCustoTotal() | currency: 'R$ ' }} </h1>
 
     <mat-card-actions class="actions">
       <button mat-raised-button color="primary">Finalizar Compra</button>

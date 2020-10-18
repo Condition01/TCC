@@ -40,7 +40,7 @@
         <ng-container matColumnDef="Acao">
           <th mat-header-cell *matHeaderCellDef>Ação</th>
           <td mat-cell *matCellDef="let prod">
-            <a (click)="abrirEdicao(prod.produto)" class="clicavel"
+            <a (click)="abrirEdicao(prod)" class="clicavel"
               ><mat-icon
                 aria-hidden="false"
                 aria-label="Example home icon"
@@ -48,7 +48,7 @@
                 >create</mat-icon
               >
             </a>
-            <a (click)="excluir(prod.produto.id)" class="clicavel"
+            <a (click)="excluir(prod.produto.codProduto)" class="clicavel"
               ><mat-icon
                 aria-hidden="false"
                 aria-label="Example home icon"
@@ -67,11 +67,12 @@
           *matFooterRowDef="displayedColumns; sticky: true"
         ></tr>
       </table>
-      <mat-card-actions class="actions">
-        <button mat-raised-button color="primary" routerLink="/pagamento">
-          Finalizar Compra
-        </button>
-      </mat-card-actions>
+
     </div>
+    <mat-card-actions class="actions">
+      <button mat-raised-button color="primary" (click)="pagamento()" [disabled]="disabilitado">
+        Finalizar Compra
+      </button>
+    </mat-card-actions>
   </mat-card>
 </div>
