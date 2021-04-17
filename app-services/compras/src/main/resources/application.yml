@@ -17,13 +17,13 @@ server:
 #authserver:
 #  hostname: http://auth-server:9092
 
-security:
-  oauth2:
-    service-id: auth-service
-    client:
-      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
-    resource:
-      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
+#security:
+#  oauth2:
+#    service-id: auth-service
+#    client:
+#      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
+#    resource:
+#      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
 
 eureka:
   instance:
