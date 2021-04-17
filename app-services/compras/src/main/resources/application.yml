@@ -20,7 +20,6 @@ server:
   port: 8085
   instance: PRIMEIRO
 
-
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 2
