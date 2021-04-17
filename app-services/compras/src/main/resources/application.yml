@@ -35,6 +35,7 @@ eureka:
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
+    enabled: false
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:

@@ -1,0 +1,36 @@
+plugins {
+	id "org.springframework.boot" version "$springBootVersion"
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'br.com.ifeira'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation('org.springframework.cloud:spring-cloud-starter-oauth2')
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+	implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
+	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.4.1.jre8'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+//test {
+//	useJUnitPlatform()
+//}
+
+task runEntrega(type: JavaExec, dependsOn: assemble) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'br.com.ifeira.entrega.EntregaApplication'
+//	args '--spring.profiles.active=dev'
+}
