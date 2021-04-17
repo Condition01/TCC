@@ -6,12 +6,6 @@ spring:
     username: root
     password: 1234
     driverClassName: com.mysql.cj.jdbc.Driver
-  jpa:
-    show-sql: true
-    dialect: org.hibernate.dialect.MySQL8Dialect
-    format_sql: true
-    hibernate:
-      ddl-auto: 'update'
   jackson:
     serialization:
       fail-on-empty-beans: false
@@ -19,7 +13,6 @@ spring:
 server:
   port: 8085
   instance: PRIMEIRO
-
 #É AUTH-SERVER NÃO AUTH-SERVICE!!
 #authserver:
 #  hostname: http://auth-server:9092
