@@ -17,6 +17,8 @@ dependencies {
 	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.4.1.jre8'
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	compile(project(':app-services:compras:shared'))
 }
 
 dependencyManagement {

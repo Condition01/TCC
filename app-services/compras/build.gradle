@@ -1,7 +1,7 @@
 plugins {
-	id "org.springframework.boot" version "$springBootVersion"
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
+    id "org.springframework.boot" version "$springBootVersion"
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
 }
 
 group = 'br.com.ifeira'
@@ -9,29 +9,28 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 //	implementation('org.springframework.cloud:spring-cloud-starter-oauth2')
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-	implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
-	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.4.1.jre8'
-	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+    implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
+    implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.4.1.jre8'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    compile(project(':app-services:compras:shared'))
+    compile(project(':app-services:pagamento:shared'))
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
-//test {
-//	useJUnitPlatform()
-//}
-
 task runCompras(type: JavaExec, dependsOn: assemble) {
-	classpath = sourceSets.main.runtimeClasspath
-	main = 'br.com.ifeira.compra.ComprasApplication'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'br.com.ifeira.compra.ComprasApplication'
 //	args '--spring.profiles.active=dev'
 }
