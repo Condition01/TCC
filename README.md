@@ -32,3 +32,11 @@ Para conseguir usar o console de controle das filas de mensagens pelo browser de
 ```
 
 Em seguida acessar localhost:15672 com o login ***guest*** e senha ***guest***
+
+
+##Material de suporte
+
+- https://www.javainuse.com/misc/rabbitmq-hello-world
+- https://www.javainuse.com/spring/spring-boot-rabbitmq-hello-world
+- https://www.javainuse.com/spring/spring-boot-rabbitmq-consume
+

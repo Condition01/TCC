@@ -25,5 +25,4 @@ public class Sender implements CommandLineRunner {
         receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
     }
 
-
 }
