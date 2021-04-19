@@ -4,3 +4,12 @@ zip
 .gradle
 .gradle/**
 .gradle
+app-services/auth/build
+app-services/compras/build
+app-services/compras/compra-shared/build
+app-services/discovery/build
+app-services/docs/build
+app-services/entrega/build
+app-services/pagamento/build
+app-services/pagamento/pagamento-shared/build
+app-services/proxy/build
