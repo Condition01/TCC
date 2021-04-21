@@ -10,7 +10,7 @@ public abstract class PagamentoOutBaseHandler implements PagamentoOutHandler {
     public abstract PagamentoResponse handle(PagamentoDTO pagamento);
 
     @Override
-    public void setNext(PagamentoOutHandler handler) {
+    public void setarProximo(PagamentoOutHandler handler) {
         this.next = handler;
     }
 

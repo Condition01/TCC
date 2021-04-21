@@ -101,4 +101,19 @@ public class PagamentoDTO {
     public void setValorTotalPedido(BigDecimal valorTotalPedido) {
         this.valorTotalPedido = valorTotalPedido;
     }
+
+    @Override
+    public String toString() {
+        return "PagamentoDTO{" +
+                "cpfCliente='" + cpfCliente + '\'' +
+                ", numeroPedido=" + numeroPedido +
+                ", numeroCartao='" + numeroCartao + '\'' +
+                ", validadeCartao='" + validadeCartao + '\'' +
+                ", status='" + status + '\'' +
+                ", data=" + data +
+                ", cvv='" + cvv + '\'' +
+                ", nomeCartao='" + nomeCartao + '\'' +
+                ", valorTotalPedido=" + valorTotalPedido +
+                '}';
+    }
 }

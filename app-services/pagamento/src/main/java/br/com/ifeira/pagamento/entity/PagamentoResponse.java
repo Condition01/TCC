@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class PagamentoResponse {
 
+
     private String cpfCliente;
     private long numeroPedido;
     private String numeroCartao;

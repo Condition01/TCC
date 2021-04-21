@@ -10,33 +10,43 @@ import br.com.ifeira.entrega.factory.EntregaSimplesFactory;
 
 
 public class EntregaController {
-    Notificavel notificavel;
-    Persistivel persistivel;
 
-    EntregaController entregaController;
-    EntregaFactory entregaFactory;
+    private Notificavel notificavel;
+    private Persistivel persistivel;
+    private EntregaController entregaController;
+    private EntregaFactory entregaFactory;
 
-    public Entrega realizarEntrega(Entrega entrega){
+    public EntregaController(Notificavel notificavel, Persistivel persistivel, EntregaController entregaController, EntregaFactory entregaFactory) {
+        this.notificavel = notificavel;
+        this.persistivel = persistivel;
+        this.entregaController = entregaController;
+        this.entregaFactory = entregaFactory;
+    }
+
+    public EntregaController() {
+    }
+
+    public Entrega realizarEntrega(Entrega entrega) {
         return null;
     }
 
-    public EntregaSimplesFactory buscarEntregas(EntregaSimplesFactory entregaSimplesFactory){
+    public EntregaSimplesFactory buscarEntregas(EntregaSimplesFactory entregaSimplesFactory) {
         return null;
     }
 
-    public Pessoa selecionarEntregador(Pessoa entregador){
+    public Pessoa selecionarEntregador(Pessoa entregador) {
         return null;
     }
 
-    public Entrega gerarEntrega(PagamentoDAO pagamoentoDTO){
+    public Entrega gerarEntrega(PagamentoDAO pagamoentoDTO) {
         return null;
     }
 
-    public boolean atualizarSaldo(){
+    public boolean atualizarSaldo() {
         return false;
     }
 
-    public EntregaController getInstance (){
+    public EntregaController getInstance() {
         return null;
     }
 

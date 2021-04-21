@@ -13,12 +13,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class QueueConfig {
 
-    @Value("${mq[0].exchange-name}")
-    final String TOPIC_EXCHANGE_NAME = "";
-    @Value("${mq[0].queue-name}")
-    final String QUEUE_NAME = "";
-    @Value("${mq[0].routing-key}")
-    final String KEY_NAME = "";
+    public final String TOPIC_EXCHANGE_NAME;
+    public final String QUEUE_NAME;
+    public final String KEY_NAME;
+
+    public QueueConfig(@Value("${mq[0].exchange-name}") String TOPIC_EXCHANGE_NAME,
+                       @Value("${mq[0].queue-name}") String QUEUE_NAME,
+                       @Value("${mq[0].routing-key}") String KEY_NAME) {
+        this.TOPIC_EXCHANGE_NAME = TOPIC_EXCHANGE_NAME;
+        this.QUEUE_NAME = QUEUE_NAME;
+        this.KEY_NAME = KEY_NAME;
+    }
 
     @Bean
     Queue queue() {
@@ -27,7 +32,6 @@ public class QueueConfig {
 
     @Bean
     TopicExchange exchange() {
-        System.out.println(TOPIC_EXCHANGE_NAME);
         return new TopicExchange(TOPIC_EXCHANGE_NAME);
     }
 
@@ -46,20 +50,5 @@ public class QueueConfig {
         rabbitTemplate.setMessageConverter(converter());
         return rabbitTemplate;
     }
-
-//    @Bean
-//    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
-//                                             MessageListenerAdapter listenerAdapter) {
-//        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-//        container.setConnectionFactory(connectionFactory);
-//        container.setQueueNames(KEY_NAME);
-//        container.setMessageListener(listenerAdapter);
-//        return container;
-//    }
-
-//    @Bean
-//    MessageListenerAdapter listenerAdapter(Receiver receiver) {
-//        return new MessageListenerAdapter(receiver, "receiveMessage");
-//    }
 
 }

@@ -12,8 +12,8 @@ public class PagamentoOutConcretHandlerFactory implements PagamentoOutHandlerFac
         PagamentoOutHandler handlerDecriptacao = new HandlerDecriptacao();
         PagamentoOutHandler handlerPagamento = new HandlerPagamento();
 
-        handlerLogs.setNext(handlerDecriptacao);
-        handlerDecriptacao.setNext(handlerPagamento);
+        handlerLogs.setarProximo(handlerDecriptacao);
+        handlerDecriptacao.setarProximo(handlerPagamento);
 
         return handlerLogs;
     }
