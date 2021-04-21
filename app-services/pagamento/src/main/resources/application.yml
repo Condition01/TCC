@@ -9,6 +9,11 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+#  rabbitmq:
+#    username:
+#    password:
+#    port:
+#    host:
 
 server:
   port: 8095
