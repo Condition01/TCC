@@ -1,7 +1,7 @@
-package br.com.Ifeira.compra.entity.shared;
+package br.com.ifeira.compra.shared.entity;
 
-import br.com.Ifeira.compra.enums.shared.Role;
-import br.com.Ifeira.compra.enums.shared.Sexo;
+import br.com.ifeira.compra.shared.enums.Role;
+import br.com.ifeira.compra.shared.enums.Sexo;
 
 import java.util.Date;
 

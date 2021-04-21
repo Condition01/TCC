@@ -1,7 +1,7 @@
-package br.com.Ifeira.compra.factory;
+package br.com.ifeira.compra.factories;
 
-import br.com.Ifeira.compra.entity.shared.Carrinho;
-import br.com.Ifeira.compra.entity.shared.Pedido;
+import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.entity.Pedido;
 
 public class PedidoConcretFactory implements PedidoFactory {
     @Override

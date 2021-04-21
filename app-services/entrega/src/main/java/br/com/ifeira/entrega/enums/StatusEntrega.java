@@ -1,4 +1,4 @@
-package br.com.Ifeira.entrega.enums;
+package br.com.ifeira.entrega.enums;
 
 public enum StatusEntrega {
     PENDENTE, CANCELADO, ENTREGUE, ATRIBUIDA;

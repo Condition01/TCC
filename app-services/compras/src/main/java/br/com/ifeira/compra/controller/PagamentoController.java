@@ -1,8 +1,8 @@
-package br.com.Ifeira.compra.controller;
+package br.com.ifeira.compra.controller;
 
-import br.com.Ifeira.compra.entity.Pagamento;
-import br.com.Ifeira.compra.entity.shared.Carrinho;
-import br.com.Ifeira.compra.utils.shared.Notificavel;
+import br.com.ifeira.compra.entity.Pagamento;
+import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.utils.Notificavel;
 
 public class PagamentoController {
     PagamentoController pagamentoController;

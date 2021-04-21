@@ -42,3 +42,14 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 3000
+
+
+mq:
+  -
+    queue-name: pagamentos_pendentes
+    exchange-name: pagamentos_pendentes_exchange
+    routing-key: pagamentos_pendentes_key
+  -
+    queue-name: pagamentos_pendentes
+    exchange-name: pagamentos_pendentes_exchange
+    routing-key: pagamentos_pendentes_key

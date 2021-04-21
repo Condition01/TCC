@@ -1,12 +1,12 @@
-package br.com.Ifeira.entrega.controller;
+package br.com.ifeira.entrega.controller;
 
-import br.com.Ifeira.compra.dao.shared.PagamentoDAO;
-import br.com.Ifeira.compra.dao.shared.Persistivel;
-import br.com.Ifeira.compra.entity.shared.Pessoa;
-import br.com.Ifeira.compra.utils.shared.Notificavel;
-import br.com.Ifeira.entrega.entity.Entrega;
-import br.com.Ifeira.entrega.factory.EntregaFactory;
-import br.com.Ifeira.entrega.factory.EntregaSimplesFactory;
+import br.com.ifeira.compra.shared.dao.PagamentoDAO;
+import br.com.ifeira.compra.shared.dao.Persistivel;
+import br.com.ifeira.compra.shared.entity.Pessoa;
+import br.com.ifeira.compra.shared.utils.Notificavel;
+import br.com.ifeira.entrega.entity.Entrega;
+import br.com.ifeira.entrega.factory.EntregaFactory;
+import br.com.ifeira.entrega.factory.EntregaSimplesFactory;
 
 
 public class EntregaController {

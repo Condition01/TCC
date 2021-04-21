@@ -1,4 +1,4 @@
-package br.com.Ifeira.compra.dao.shared;
+package br.com.ifeira.compra.shared.dao;
 
 import java.util.List;
 

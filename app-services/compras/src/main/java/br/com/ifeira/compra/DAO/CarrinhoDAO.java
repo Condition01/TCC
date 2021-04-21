@@ -1,4 +1,4 @@
-package br.com.Ifeira.compra.dao;
+package br.com.ifeira.compra.dao;
 
 public class CarrinhoDAO {
 }

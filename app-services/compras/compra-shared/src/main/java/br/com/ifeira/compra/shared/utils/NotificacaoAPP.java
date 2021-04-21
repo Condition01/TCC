@@ -1,4 +1,4 @@
-package br.com.Ifeira.compra.utils.shared;
+package br.com.ifeira.compra.shared.utils;
 
 public class NotificacaoAPP implements Notificavel{
 

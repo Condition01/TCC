@@ -1,8 +1,8 @@
-package br.com.Ifeira.entrega.factory;
+package br.com.ifeira.entrega.factory;
 
-import br.com.Ifeira.compra.entity.shared.Pedido;
-import br.com.Ifeira.compra.entity.shared.Pessoa;
-import br.com.Ifeira.entrega.entity.Entrega;
+import br.com.ifeira.compra.shared.entity.Pedido;
+import br.com.ifeira.compra.shared.entity.Pessoa;
+import br.com.ifeira.entrega.entity.Entrega;
 
 public interface EntregaFactory {
     public Entrega criarEntrega(Pedido pedido, Pessoa cliente, Pessoa entregador);

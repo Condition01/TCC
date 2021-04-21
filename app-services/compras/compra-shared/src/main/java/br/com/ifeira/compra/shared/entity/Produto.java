@@ -1,6 +1,6 @@
-package br.com.Ifeira.compra.entity.shared;
+package br.com.ifeira.compra.shared.entity;
 
-import br.com.Ifeira.compra.enums.shared.TipoProduto;
+import br.com.ifeira.compra.shared.enums.TipoProduto;
 
 public class Produto {
       String nome;

@@ -1,4 +1,4 @@
-package br.com.Ifeira.compra.entity.shared;
+package br.com.ifeira.compra.shared.entity;
 
 public class ProdutoQuantidade {
     Produto produto;

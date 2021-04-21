@@ -1,6 +1,6 @@
-package br.com.Ifeira.compra.controller;
+package br.com.ifeira.compra.controller;
 
-import br.com.Ifeira.compra.entity.shared.Carrinho;
+import br.com.ifeira.compra.shared.entity.Carrinho;
 
 public class CarrinhoController {
     CarrinhoController carrinhoController;

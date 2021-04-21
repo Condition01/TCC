@@ -1,4 +1,4 @@
-package br.com.Ifeira.compra.dao.shared;
+package br.com.ifeira.compra.shared.dao;
 
 public class ClienteDAO {
 }

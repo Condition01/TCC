@@ -1,8 +1,8 @@
-package br.com.Ifeira.compra.controller;
+package br.com.ifeira.compra.controller;
 
-import br.com.Ifeira.compra.entity.shared.Carrinho;
-import br.com.Ifeira.compra.entity.shared.Cupom;
-import br.com.Ifeira.compra.entity.shared.Pedido;
+import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.entity.Cupom;
+import br.com.ifeira.compra.shared.entity.Pedido;
 
 public class PedidoController {
     PedidoController pedidoController;

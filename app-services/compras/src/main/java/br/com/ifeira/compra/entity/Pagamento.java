@@ -1,6 +1,6 @@
-package br.com.Ifeira.compra.entity;
+package br.com.ifeira.compra.entity;
 
-import br.com.Ifeira.compra.enums.shared.StatusPagamento;
+import br.com.ifeira.compra.shared.enums.StatusPagamento;
 
 import java.util.Date;
 

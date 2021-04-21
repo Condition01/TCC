@@ -1,6 +1,6 @@
-package br.com.Ifeira.compra.controller;
+package br.com.ifeira.compra.controller;
 
-import br.com.Ifeira.compra.entity.shared.ProdutoFeira;
+import br.com.ifeira.compra.shared.entity.ProdutoFeira;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package br.com.Ifeira.compra.factory;
+package br.com.ifeira.compra.factories;
 
 public interface PagamentoInHandlerFactory {
     public PagamentoInHandler criarPagamentoInChain();

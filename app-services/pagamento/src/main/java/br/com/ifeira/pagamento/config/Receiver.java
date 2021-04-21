@@ -1,7 +1,8 @@
-package br.com.ifeira.pagamento.queue;
+package br.com.ifeira.pagamento.config;
+
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CountDownLatch;
-import org.springframework.stereotype.Component;
 
 @Component
 public class Receiver {

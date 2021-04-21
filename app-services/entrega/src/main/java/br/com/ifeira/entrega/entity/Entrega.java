@@ -1,7 +1,7 @@
-package br.com.Ifeira.entrega.entity;
+package br.com.ifeira.entrega.entity;
 
-import br.com.Ifeira.compra.entity.shared.Pessoa;
-import br.com.Ifeira.entrega.enums.StatusEntrega;
+import br.com.ifeira.compra.shared.entity.Pessoa;
+import br.com.ifeira.entrega.enums.StatusEntrega;
 
 import java.util.Date;
 
