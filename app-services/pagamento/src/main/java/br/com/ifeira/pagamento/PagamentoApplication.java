@@ -34,7 +34,7 @@ public class PagamentoApplication {
 
 
 	@GetMapping("/teste")
-	void teste() {
+	void teste() throws Exception {
 		PagamentoDTO a = new PagamentoDTO();
 		a.setCpfCliente("123123");
 

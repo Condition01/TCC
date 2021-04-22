@@ -5,5 +5,5 @@ import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 
 public interface PagamentoOutHandler {
     void setarProximo(PagamentoOutHandler handler);
-    PagamentoResponse handle(PagamentoDTO pagamento);
+    PagamentoResponse handle(PagamentoDTO pagamento) throws Exception;
 }

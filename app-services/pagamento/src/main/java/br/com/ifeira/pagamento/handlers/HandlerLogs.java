@@ -10,7 +10,8 @@ public class HandlerLogs  extends PagamentoOutBaseHandler {
     private Logger logger = LoggerFactory.getLogger(HandlerLogs.class);
 
     @Override
-    public PagamentoResponse handle(PagamentoDTO pagamento) {
+    public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception  {
+        logger.info("Recebendo requisição de pagamento para ser processado.");
         logger.info(pagamento.toString());
         if(this.getNext() != null) {
             return this.getNext().handle(pagamento);
