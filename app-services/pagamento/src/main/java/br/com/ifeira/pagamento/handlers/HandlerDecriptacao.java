@@ -30,7 +30,7 @@ public class HandlerDecriptacao extends PagamentoOutBaseHandler {
             }
             return null;
         } catch (Exception e) {
-            throw new Exception(e);
+            throw new Exception("Erro na decriptação");
         }
     }
 

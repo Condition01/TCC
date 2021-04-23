@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <script type="text/javascript" src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"></script>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    var checkout = new DirectCheckout('B2D0B12E73A21E783D130F46AD79A05E579C778144AFBA3AB2239A0C29C2D2C0', false);
+    /* Em sandbox utilizar o construtor new DirectCheckout('PUBLIC_TOKEN', false); */            
+  
+    function generateHash() {
+      var cardData = {
+          cardNumber: '0000000000000000',
+          holderName: 'Nome do Titular do Cartão',
+          securityCode: '000',
+          expirationMonth: '12',
+          expirationYear: '2045'
+        };
+    }
+  
+    checkout.getCardHash(cardData, function(cardHash) {
+        /* Sucesso - A variável cardHash conterá o hash do cartão de crédito */
+    }, function(error) {
+        /* Erro - A variável error conterá o erro ocorrido ao obter o hash */
+    });
+    </script>
+</html>

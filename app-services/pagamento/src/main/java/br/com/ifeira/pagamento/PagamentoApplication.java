@@ -32,7 +32,6 @@ public class PagamentoApplication {
 		SpringApplication.run(PagamentoApplication.class, args);
 	}
 
-
 	@GetMapping("/teste")
 	void teste() throws Exception {
 		PagamentoDTO a = new PagamentoDTO();
