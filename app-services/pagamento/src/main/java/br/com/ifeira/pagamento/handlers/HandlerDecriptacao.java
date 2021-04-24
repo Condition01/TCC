@@ -29,8 +29,11 @@ public class HandlerDecriptacao extends PagamentoOutBaseHandler {
                 return this.getNext().handle(pagamento);
             }
             return null;
-        } catch (Exception e) {
+
+        } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException | IllegalBlockSizeException | BadPaddingException e) {
             throw new Exception("Erro na decriptação");
+        } catch (Exception e1) {
+            throw new Exception(e1.getLocalizedMessage());
         }
     }
 
