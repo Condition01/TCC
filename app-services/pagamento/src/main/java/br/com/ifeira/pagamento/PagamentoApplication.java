@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -37,7 +38,6 @@ import java.security.spec.X509EncodedKeySpec;
 @RequestMapping("/teste")
 public class PagamentoApplication {
 
-
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 
@@ -46,6 +46,9 @@ public class PagamentoApplication {
 
 	@Autowired
 	private APIConfig apiConfig;
+
+	@Autowired
+	private RestTemplate restTemplate;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PagamentoApplication.class, args);
@@ -57,7 +60,7 @@ public class PagamentoApplication {
 
 		PagamentoOutHandlerFactory pagFactory = new PagamentoOutConcretHandlerFactory();
 
-		PagamentoOutHandler pagHandlers = pagFactory.criarPagamentoOutChain(this.apiConfig);
+		PagamentoOutHandler pagHandlers = pagFactory.criarPagamentoOutChain(this.apiConfig, this.restTemplate);
 
 		//cryptos
 		PagamentoDTO pagamentoDTO = new PagamentoDTO();
@@ -78,7 +81,7 @@ public class PagamentoApplication {
 		pagamentoDTO.setEmail("brunofc11@gmail.com");
 
 		//billings
-		pagamentoDTO.setIdCobranca("chr_D5BCA3E1EC2966DFA44907391C2690F2");
+		pagamentoDTO.setIdCobranca("chr_BB275264577410C147ACA9DE9E56E206");
 		pagamentoDTO.setCredId("2e16c846-5bfb-4f69-842a-399fc31c099c");
 
 //		this.rabbitTemplate.convertAndSend(this.config.TOPIC_EXCHANGE_NAME, this.config.KEY_NAME, a);

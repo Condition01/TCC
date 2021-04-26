@@ -19,6 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+
 	compile(project(':app-services:compras:compra-shared'))
 	compile(project(':app-services:pagamento:pagamento-shared'))
 }

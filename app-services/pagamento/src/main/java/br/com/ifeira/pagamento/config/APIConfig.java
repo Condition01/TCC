@@ -1,7 +1,13 @@
 package br.com.ifeira.pagamento.config;
 
+import br.com.ifeira.pagamento.handlers.ReqErrorHandler;
+import br.com.ifeira.pagamento.handlers.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
 
 @Component
 public class APIConfig {
@@ -31,6 +37,14 @@ public class APIConfig {
         this.PUBLIC_TOKEN = PUBLIC_TOKEN;
         this.OAUTH_URL = OAUTH_URL;
         this.API_VERSION = API_VERSION;
+    }
+
+    @Bean
+    public RestTemplate getRestTemplate() {
+        RestTemplate rTemplate = new RestTemplate();
+        rTemplate.setErrorHandler(new ReqErrorHandler());
+        rTemplate.setInterceptors(Collections.singletonList(new RequestInterceptor()));
+        return rTemplate;
     }
 
 }

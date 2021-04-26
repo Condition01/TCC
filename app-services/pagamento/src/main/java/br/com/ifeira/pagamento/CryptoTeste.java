@@ -1,10 +1,13 @@
 package br.com.ifeira.pagamento;
 
+import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
+import br.com.ifeira.compra.shared.utils.Notificavel;
 import br.com.ifeira.pagamento.config.APIConfig;
 import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
 import br.com.ifeira.pagamento.factories.PagamentoOutHandlerFactory;
 import br.com.ifeira.pagamento.handlers.PagamentoOutHandler;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
+import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -19,27 +22,28 @@ import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Properties;
 
 public class CryptoTeste {
-//    import br.com.ifeira.pagamento.entity.PagamentoResponse;
-//import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
-//
-//import javax.crypto.BadPaddingException;
-//import javax.crypto.Cipher;
-//import javax.crypto.IllegalBlockSizeException;
-//import javax.crypto.NoSuchPaddingException;
-//import java.io.IOException;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//import java.security.*;
-//import java.security.spec.InvalidKeySpecException;
-//import java.security.spec.PKCS8EncodedKeySpec;
-//import java.security.spec.X509EncodedKeySpec;
-
 
     public static void main(String[] args) {
+        sendMail();
+    }
 
+    public static void sendMail() {
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+
+        Notificavel notificador = new NotificacaoEmail(properties, "ifeiranotificacao@gmail.com", "123456Aa@");
+
+        notificador.enviarNotificacao("Teste de integração com SERVIDOR SMTP para envio de notificações por email", "brunofc11@gmail.com ", "TESTE DO IFEIRA EMAIL");
+    }
+
+    public static void handlePagamento() {
         try {
             PublicKey publicKey = readPublicKey("keys/public.der");
 //            PrivateKey privateKey = readPrivateKey("keys/private.der");
@@ -51,7 +55,7 @@ public class CryptoTeste {
 
 
             PagamentoOutHandlerFactory pagFacotory = new PagamentoOutConcretHandlerFactory();
-            PagamentoOutHandler pagChain = pagFacotory.criarPagamentoOutChain(new APIConfig("", "", "", "", "", "", "", ""));
+            PagamentoOutHandler pagChain = pagFacotory.criarPagamentoOutChain(new APIConfig("", "", "", "", "", "", "", ""), new RestTemplate());
 
             PagamentoDTO pagamentoDTO = new PagamentoDTO();
             pagamentoDTO.setNumeroCartao(new String(encrypt(publicKey, "12312313".getBytes()), StandardCharsets.ISO_8859_1));
@@ -62,7 +66,6 @@ public class CryptoTeste {
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
-
     }
 
     public static byte[] readFileBytes(String filename) throws IOException {

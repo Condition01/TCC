@@ -21,6 +21,7 @@ import java.util.Base64;
 public class HandlerPagamento extends PagamentoOutBaseHandler {
 
     private APIConfig apiConfig;
+    private RestTemplate restTemplate;
 
     @Override
     public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception  {
@@ -28,7 +29,6 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
         PagamentoResponse pagamentoResponse = enviarPagamento(pagamento, token);
         return pagamentoResponse;
     }
-
 
     public String pegarTokenAutorizacaoAPIExterna() throws IOException {
         RestTemplate restTemplate = new RestTemplate();
@@ -47,7 +47,7 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
 
 
         ResponseEntity<String> response =
-                restTemplate.exchange(apiConfig.OAUTH_URL,
+                this.restTemplate.exchange(apiConfig.OAUTH_URL,
                         HttpMethod.POST,
                         entity,
                         String.class);
@@ -58,6 +58,8 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
     }
 
     private PagamentoResponse enviarPagamento(PagamentoDTO pagamento, String token) throws IOException {
+        this.restTemplate.setErrorHandler(new ReqErrorHandler());
+
         JunoPaymentReq junoPaymentReq = parseDTOtoJuno(pagamento);
 
         HttpHeaders headers = new HttpHeaders();
@@ -68,8 +70,7 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
 
         HttpEntity<JunoPaymentReq> entity = new HttpEntity<>(junoPaymentReq, headers);
 
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.postForEntity(this.apiConfig.API_URL, entity, String.class);
+        ResponseEntity<String> response = this.restTemplate.postForEntity(this.apiConfig.API_URL, entity, String.class);
 
         JsonNode jsonObjResp = new ObjectMapper().readTree(response.getBody());
         String txId = jsonObjResp.get("transactionId").asText();
@@ -107,6 +108,10 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
 
     public void setApiConfig(APIConfig apiConfig) {
         this.apiConfig = apiConfig;
+    }
+
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
 }

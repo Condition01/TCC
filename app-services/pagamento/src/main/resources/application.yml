@@ -69,3 +69,13 @@ api-pagamento:
   private_token: CA3499B3127E237FB9905E458EDC9401E1D299CF0813FDC5525B363E5E96D262
   public_token: B2D0B12E73A21E783D130F46AD79A05EFA4E3460D6D8ECCFB805C61CB02D1741
   api_version: 2
+
+mail:
+  smtp:
+    auth: true
+    starttls:
+      enable: true
+    host: smtp.gmail.com
+    port: 587
+  myAccountEmail: ifeiranotificacao@gmail.com
+  password: 123456Aa@
