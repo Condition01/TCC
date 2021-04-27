@@ -1,16 +1,21 @@
 package br.com.ifeira.compra.shared.entity;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProdutoFeira {
+
     private Produto produto;
-    private ProdutoQuantidade produtoQuantidade;
-    private BigDecimal preco;
     private Feira feira;
-    private boolean ativo;
-    List<ProdutoFeira> produtoFeira = new ArrayList<ProdutoFeira>();
+    private Double preco;
+    private Boolean ativo;
+
+    public ProdutoFeira(Produto produto, Double preco, Feira feira, Boolean ativo) {
+        this.produto = produto;
+        this.preco = preco;
+        this.feira = feira;
+        this.ativo = ativo;
+    }
+
+    public ProdutoFeira() {
+    }
 
     public Produto getProduto() {
         return produto;
@@ -20,19 +25,11 @@ public class ProdutoFeira {
         this.produto = produto;
     }
 
-    public ProdutoQuantidade getProdutoQuantidade() {
-        return produtoQuantidade;
-    }
-
-    public void setProdutoQuantidade(ProdutoQuantidade produtoQuantidade) {
-        this.produtoQuantidade = produtoQuantidade;
-    }
-
-    public BigDecimal getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(BigDecimal preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
@@ -44,19 +41,12 @@ public class ProdutoFeira {
         this.feira = feira;
     }
 
-    public boolean isAtivo() {
+    public Boolean isAtivo() {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
+    public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
 
-    public List<ProdutoFeira> getProdutoFeira() {
-        return produtoFeira;
-    }
-
-    public void setProdutoFeira(List<ProdutoFeira> produtoFeira) {
-        this.produtoFeira = produtoFeira;
-    }
 }

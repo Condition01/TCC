@@ -1,18 +1,19 @@
 package br.com.ifeira.compra.controller;
 
 import br.com.ifeira.compra.shared.entity.Feira;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class FeiraController {
-    List<Feira> listaFeira = new ArrayList<Feira>();
 
     public List<Feira> listarFeiras() {
-        return listaFeira;
+        return null;
     }
 
     public Feira selecionarFeira(int feira){
-        return listaFeira.get(feira);
+        return null;
     }
+
 }

@@ -101,10 +101,7 @@ public class PagamentoApplication {
 						return message;
 					}
 				});
-//		this.rabbitTemplate.convertAndSend(
-//				this.config.PAGAMENTOS_CONCLUIDOS_TOPIC_EXCHANGE_NAME,
-//				this.config.PAGAMENTOS_CONCLUIDOS_KEY_NAME,
-//				pagamentoDTO);
+
 		return ResponseEntity.ok("ok");
 	}
 

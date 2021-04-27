@@ -1,8 +1,17 @@
 package br.com.ifeira.compra.shared.entity;
 
 public class ProdutoQuantidade {
-    Produto produto;
-    Integer quantidade;
+
+    private Produto produto;
+    private Integer quantidade;
+
+    public ProdutoQuantidade(Produto produto, Integer quantidade) {
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
+
+    public ProdutoQuantidade() {
+    }
 
     public Produto getProduto() {
         return produto;
@@ -19,4 +28,5 @@ public class ProdutoQuantidade {
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
+
 }

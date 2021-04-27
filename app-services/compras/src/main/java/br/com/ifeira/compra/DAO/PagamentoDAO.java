@@ -7,8 +7,9 @@ import java.util.List;
 
 public class PagamentoDAO implements Persistivel<Pagamento> {
 
+
     @Override
-    public Pagamento salvar() {
+    public Pagamento salvar(Pagamento item) {
         return null;
     }
 

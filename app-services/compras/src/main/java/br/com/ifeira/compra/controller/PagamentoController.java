@@ -3,10 +3,11 @@ package br.com.ifeira.compra.controller;
 import br.com.ifeira.compra.entity.Pagamento;
 import br.com.ifeira.compra.shared.entity.Carrinho;
 import br.com.ifeira.compra.shared.utils.Notificavel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PagamentoController {
-    PagamentoController pagamentoController;
-    Notificavel notificavel;
+    private Notificavel notificavel;
 
     public Pagamento enfileirarPagamento(){
         return null;
@@ -19,9 +20,4 @@ public class PagamentoController {
     public void notificar(){
 
     }
-
-    public PagamentoController getIntance(){
-        return pagamentoController;
-    }
-
 }

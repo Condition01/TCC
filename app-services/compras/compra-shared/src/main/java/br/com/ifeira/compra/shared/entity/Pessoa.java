@@ -6,13 +6,27 @@ import br.com.ifeira.compra.shared.enums.Sexo;
 import java.util.Date;
 
 public class Pessoa {
-    String nome;
-    String cpf;
-    Date dataNascimento;
-    Sexo sexo;
-    Endereco endereco;
-    String telefone;
-    Role role;
+
+    private String nome;
+    private String cpf;
+    private Date dataNascimento;
+    private Sexo sexo;
+    private Endereco endereco;
+    private String telefone;
+    private Role role;
+
+    public Pessoa(String nome, String cpf, Date dataNascimento, Sexo sexo, Endereco endereco, String telefone, Role role) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.role = role;
+    }
+
+    public Pessoa() {
+    }
 
     public String getNome() {
         return nome;
