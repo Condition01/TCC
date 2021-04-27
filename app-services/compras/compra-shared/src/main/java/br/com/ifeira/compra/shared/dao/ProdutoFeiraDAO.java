@@ -5,8 +5,9 @@ import br.com.ifeira.compra.shared.entity.ProdutoFeira;
 import java.util.List;
 
 public class ProdutoFeiraDAO implements Persistivel<ProdutoFeira> {
+
     @Override
-    public ProdutoFeira Salvar() {
+    public ProdutoFeira salvar(ProdutoFeira item) {
         return null;
     }
 

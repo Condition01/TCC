@@ -5,8 +5,9 @@ import br.com.ifeira.compra.shared.entity.Pessoa;
 import java.util.List;
 
 public class PessoaDAO implements Persistivel<Pessoa>{
+
     @Override
-    public Pessoa Salvar() {
+    public Pessoa salvar(Pessoa item) {
         return null;
     }
 

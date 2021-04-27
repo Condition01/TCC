@@ -1,9 +1,11 @@
 package br.com.ifeira.pagamento.controller;
 
+import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
 import br.com.ifeira.compra.shared.utils.Notificavel;
 import br.com.ifeira.pagamento.config.APIConfig;
 import br.com.ifeira.pagamento.config.MailingConfig;
+import br.com.ifeira.pagamento.dao.PagamentoDAO;
 import br.com.ifeira.pagamento.entity.PagamentoResponse;
 import br.com.ifeira.pagamento.entity.PagamentosRealizadosProdutor;
 import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
@@ -30,6 +32,7 @@ public class PagamentoController {
     private MailingConfig mailingConfig;
     @Autowired
     private PagamentosRealizadosProdutor pagamentoProdutor;
+    private Persistivel pagamentoDAO = new PagamentoDAO();
 
     private Logger logger = LoggerFactory.getLogger(PagamentoController.class);
 
@@ -64,9 +67,8 @@ public class PagamentoController {
     public void persistirPagamentosRealizados(PagamentoDTO pagamento) {
         if(pagamento.getStatus().equals("CONFIRMADO")) {
             pagamentoProdutor.enfileirarPagamentosConcluidos(pagamento);
-        }else {
-
         }
+        pagamentoDAO.salvar(pagamento);
     }
 
     public void notificar(PagamentoDTO pagamento, String email) {

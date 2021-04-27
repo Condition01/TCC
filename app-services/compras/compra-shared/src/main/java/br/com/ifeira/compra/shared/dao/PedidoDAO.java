@@ -5,8 +5,9 @@ import br.com.ifeira.compra.shared.entity.Pedido;
 import java.util.List;
 
 public class PedidoDAO implements Persistivel<Pedido> {
+
     @Override
-    public Pedido Salvar() {
+    public Pedido salvar(Pedido item) {
         return null;
     }
 
