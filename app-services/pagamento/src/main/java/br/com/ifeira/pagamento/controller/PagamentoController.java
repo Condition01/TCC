@@ -5,6 +5,7 @@ import br.com.ifeira.compra.shared.utils.Notificavel;
 import br.com.ifeira.pagamento.config.APIConfig;
 import br.com.ifeira.pagamento.config.MailingConfig;
 import br.com.ifeira.pagamento.entity.PagamentoResponse;
+import br.com.ifeira.pagamento.entity.PagamentosRealizadosProdutor;
 import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
 import br.com.ifeira.pagamento.factories.PagamentoOutHandlerFactory;
 import br.com.ifeira.pagamento.handlers.PagamentoOutHandler;
@@ -27,6 +28,8 @@ public class PagamentoController {
     private RestTemplate rTemplate;
     @Autowired
     private MailingConfig mailingConfig;
+    @Autowired
+    private PagamentosRealizadosProdutor pagamentoProdutor;
 
     private Logger logger = LoggerFactory.getLogger(PagamentoController.class);
 
@@ -40,18 +43,33 @@ public class PagamentoController {
         PagamentoOutHandler pagChain = this.pagFactory.criarPagamentoOutChain(this.apiConfig, this.rTemplate);
         try {
             PagamentoResponse pagamentoResponse = pagChain.handle(pagamento);
+            mapearEstadoPagamento(pagamento, pagamentoResponse.getStatus());
             persistirPagamentosRealizados(pagamento);
-            notificar(pagamentoResponse);
+            notificar(pagamento, pagamento.getEmail());
+            atualizarSaldoADM(pagamento);
         }catch (Exception e) {
+            pagamentoProdutor.enfileirarPagamentosComErro(pagamento);
             logger.error(e.getMessage());
         }
     }
 
-    public void persistirPagamentosRealizados(PagamentoDTO pagamentoDTO) {
-        
+    public void mapearEstadoPagamento(PagamentoDTO pagamento, String status) {
+        if(status.equals("CONFIRMED")) {
+            pagamento.setStatus("CONFIRMADO");
+        }else {
+            pagamento.setStatus("CANCELADO");
+        }
     }
 
-    public void notificar(PagamentoResponse response) {
+    public void persistirPagamentosRealizados(PagamentoDTO pagamento) {
+        if(pagamento.getStatus().equals("CONFIRMADO")) {
+            pagamentoProdutor.enfileirarPagamentosConcluidos(pagamento);
+        }else {
+
+        }
+    }
+
+    public void notificar(PagamentoDTO pagamento, String email) {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", this.mailingConfig.AUTH);
         properties.put("mail.smtp.starttls.enable", this.mailingConfig.STARTTLS);
@@ -60,12 +78,12 @@ public class PagamentoController {
 
         Notificavel notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
 
-        String mensagem = "Seu pagamento foi do pedido " + response.getNumeroPedido() + " foi " + response.getStatus();
+        String mensagem = "Seu pagamento do pedido " + pagamento.getNumeroPedido() + " foi " + pagamento.getStatus();
 
-        notificador.enviarNotificacao("Teste de integração com SERVIDOR SMTP para envio de notificações por email", "brunofc11@gmail.com ", "TESTE DO IFEIRA EMAIL");
+        notificador.enviarNotificacao(mensagem, email,"Status Pedido " + pagamento.getNumeroPedido());
     }
 
-    public void atualizarSaldoADM(PagamentoDTO pagamentoDTO) {
+    public void atualizarSaldoADM(PagamentoDTO pagamento) {
 
     }
 

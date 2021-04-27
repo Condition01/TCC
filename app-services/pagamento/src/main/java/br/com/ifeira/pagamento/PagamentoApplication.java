@@ -6,6 +6,9 @@ import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
 import br.com.ifeira.pagamento.factories.PagamentoOutHandlerFactory;
 import br.com.ifeira.pagamento.handlers.PagamentoOutHandler;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -76,16 +79,33 @@ public class PagamentoApplication {
 		pagamentoDTO.setBairro("São Lucas");
 		pagamentoDTO.setUF("SP");
 		pagamentoDTO.setCodigoPostal("18767030");
+		pagamentoDTO.setNumeroPedido(1L);
 
 		//email
 		pagamentoDTO.setEmail("brunofc11@gmail.com");
 
 		//billings
-		pagamentoDTO.setIdCobranca("chr_BB275264577410C147ACA9DE9E56E206");
+		pagamentoDTO.setIdCobranca("chr_3C7874304226B927002AEFBDC30C479B");
 		pagamentoDTO.setCredId("2e16c846-5bfb-4f69-842a-399fc31c099c");
 
 //		this.rabbitTemplate.convertAndSend(this.config.TOPIC_EXCHANGE_NAME, this.config.KEY_NAME, a);
-		return ResponseEntity.ok(pagHandlers.handle(pagamentoDTO));
+//		return ResponseEntity.ok(pagHandlers.handle(pagamentoDTO));
+
+		this.rabbitTemplate.convertAndSend(
+				this.config.PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME,
+				this.config.PAGAMENTOS_PENDENTES_KEY_NAME,
+				pagamentoDTO, new MessagePostProcessor() {
+					@Override
+					public Message postProcessMessage(Message message) throws AmqpException {
+						message.getMessageProperties().setHeader("x-delay", "0");
+						return message;
+					}
+				});
+//		this.rabbitTemplate.convertAndSend(
+//				this.config.PAGAMENTOS_CONCLUIDOS_TOPIC_EXCHANGE_NAME,
+//				this.config.PAGAMENTOS_CONCLUIDOS_KEY_NAME,
+//				pagamentoDTO);
+		return ResponseEntity.ok("ok");
 	}
 
 	public static byte[] readFileBytes(String filename) throws IOException {

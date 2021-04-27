@@ -40,7 +40,7 @@ public class CryptoTeste {
 
         Notificavel notificador = new NotificacaoEmail(properties, "ifeiranotificacao@gmail.com", "123456Aa@");
 
-        notificador.enviarNotificacao("Teste de integração com SERVIDOR SMTP para envio de notificações por email", "brunofc11@gmail.com ", "TESTE DO IFEIRA EMAIL");
+        notificador.enviarNotificacao("Teste de integração com SERVIDOR SMTP para envio de notificações por email", "thiagoyukiox@hotmail.com", "TESTE DO IFEIRA EMAIL");
     }
 
     public static void handlePagamento() {

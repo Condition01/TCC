@@ -13,6 +13,7 @@ dependencies {
 
     implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
     implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.0'
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
 
 }
 
