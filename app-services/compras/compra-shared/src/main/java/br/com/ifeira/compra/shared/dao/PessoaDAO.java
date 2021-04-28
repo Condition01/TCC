@@ -1,10 +1,17 @@
 package br.com.ifeira.compra.shared.dao;
 
 import br.com.ifeira.compra.shared.entity.Pessoa;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public class PessoaDAO implements Persistivel<Pessoa>{
+public class PessoaDAO implements Persistivel<Pessoa, Integer>{
+
+    private JdbcTemplate jdbcTemplate;
+
+    public PessoaDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Pessoa salvar(Pessoa item) {
@@ -17,7 +24,7 @@ public class PessoaDAO implements Persistivel<Pessoa>{
     }
 
     @Override
-    public Pessoa buscar(Pessoa obj) {
+    public Pessoa buscar(Integer key) {
         return null;
     }
 
@@ -25,4 +32,5 @@ public class PessoaDAO implements Persistivel<Pessoa>{
     public Pessoa editar(Pessoa obj) {
         return null;
     }
+
 }

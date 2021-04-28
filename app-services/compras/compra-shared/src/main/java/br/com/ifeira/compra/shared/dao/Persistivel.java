@@ -2,9 +2,11 @@ package br.com.ifeira.compra.shared.dao;
 
 import java.util.List;
 
-public interface Persistivel<T> {
+public interface Persistivel<T, K> {
+
     T salvar(T item);
     List<T> listar();
-    T buscar(T obj);
-    T editar(T obj);
+    T buscar(K key);
+    T editar(T item);
+
 }

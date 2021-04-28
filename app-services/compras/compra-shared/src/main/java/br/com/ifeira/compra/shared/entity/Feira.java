@@ -8,11 +8,11 @@ public class Feira {
     private String nome;
     private Endereco endereco;
     private String context;
-    private Long latitute;
-    private Long longitude;
+    private String latitute;
+    private String longitude;
     private List<ProdutoFeira> produtosFeira;
 
-    public Feira(String nome, Endereco endereco, String context, Long latitute, Long longitude, List<ProdutoFeira> produtosFeira) {
+    public Feira(String nome, Endereco endereco, String context, String latitute, String longitude, List<ProdutoFeira> produtosFeira) {
         this.nome = nome;
         this.endereco = endereco;
         this.context = context;
@@ -49,19 +49,19 @@ public class Feira {
         this.context = context;
     }
 
-    public Long getLatitute() {
+    public String getLatitute() {
         return latitute;
     }
 
-    public void setLatitute(Long latitute) {
+    public void setLatitute(String latitute) {
         this.latitute = latitute;
     }
 
-    public Long getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 

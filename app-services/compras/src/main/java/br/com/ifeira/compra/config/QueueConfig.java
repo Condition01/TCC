@@ -8,13 +8,13 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-@Component
+@Configuration
 public class QueueConfig {
 
     public final String PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME;

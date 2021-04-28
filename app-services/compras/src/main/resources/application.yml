@@ -58,3 +58,9 @@ mq:
     queue-name: pagamentos_pendentes
     exchange-name: pagamentos_pendentes_exchange
     routing-key: pagamentos_pendentes_key
+
+database:
+  driver_class_name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/IFEIRA
+  username: root
+  password: 1234

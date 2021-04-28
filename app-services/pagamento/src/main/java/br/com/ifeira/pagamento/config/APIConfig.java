@@ -4,12 +4,12 @@ import br.com.ifeira.pagamento.handlers.ReqErrorHandler;
 import br.com.ifeira.pagamento.handlers.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
-@Component
+@Configuration
 public class APIConfig {
 
     public final String API_URL;

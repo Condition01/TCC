@@ -1,36 +1,35 @@
 package br.com.ifeira.compra.shared.dao;
 
-import br.com.ifeira.compra.shared.entity.Feira;
+import br.com.ifeira.compra.shared.entity.Produto;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public class FeiraDAO implements Persistivel<Feira, Integer> {
+public class ProdutoDAO implements Persistivel<Produto, String> {
 
     private JdbcTemplate jdbcTemplate;
 
-    public FeiraDAO(JdbcTemplate jdbcTemplate) {
+    public ProdutoDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public Feira salvar(Feira item) {
+    public Produto salvar(Produto item) {
         return null;
     }
 
     @Override
-    public List<Feira> listar() {
+    public List<Produto> listar() {
         return null;
     }
 
     @Override
-    public Feira buscar(Integer key) {
+    public Produto buscar(String key) {
         return null;
     }
 
     @Override
-    public Feira editar(Feira item) {
+    public Produto editar(Produto item) {
         return null;
     }
-
 }

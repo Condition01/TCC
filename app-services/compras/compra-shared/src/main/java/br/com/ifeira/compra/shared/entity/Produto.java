@@ -12,13 +12,15 @@ public class Produto {
     private String codProduto;
     private TipoProduto tipoProduto;
     private List<ProdutoFeira> produtosFeira;
+    private String unidadeMedida;
 
-    public Produto(String nome, String descricao, String codProduto, TipoProduto tipoProduto, List<ProdutoFeira> produtosFeira) {
+    public Produto(String nome, String descricao, String codProduto, TipoProduto tipoProduto, List<ProdutoFeira> produtosFeira, String unidadeMedida) {
         this.nome = nome;
         this.descricao = descricao;
         this.codProduto = codProduto;
         this.tipoProduto = tipoProduto;
         this.produtosFeira = produtosFeira;
+        this.unidadeMedida = unidadeMedida;
     }
 
     public Produto() {
@@ -63,6 +65,14 @@ public class Produto {
 
     public void setProdutosFeira(List<ProdutoFeira> produtosFeira) {
         this.produtosFeira = produtosFeira;
+    }
+
+    public String getUnidadeMedida() {
+        return unidadeMedida;
+    }
+
+    public void setUnidadeMedida(String unidadeMedida) {
+        this.unidadeMedida = unidadeMedida;
     }
 
 }
