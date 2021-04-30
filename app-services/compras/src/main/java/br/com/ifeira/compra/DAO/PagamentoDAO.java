@@ -29,6 +29,11 @@ public class PagamentoDAO implements Persistivel<Pagamento, Integer> {
     }
 
     @Override
+    public List<Pagamento> buscarMultiplos(Integer key) {
+        return null;
+    }
+
+    @Override
     public Pagamento editar(Pagamento item) {
         return null;
     }

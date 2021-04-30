@@ -45,7 +45,6 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
 
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(map, headers);
 
-
         ResponseEntity<String> response =
                 this.restTemplate.exchange(apiConfig.OAUTH_URL,
                         HttpMethod.POST,

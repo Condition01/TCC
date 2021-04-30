@@ -1,8 +1,12 @@
 package br.com.ifeira.compra.shared.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 public class ProdutoFeira {
 
+    @JsonManagedReference
     private Produto produto;
+    @JsonManagedReference
     private Feira feira;
     private Double preco;
     private Boolean ativo;

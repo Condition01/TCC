@@ -79,3 +79,9 @@ mail:
     port: 587
   myAccountEmail: ifeiranotificacao@gmail.com
   password: 123456Aa@
+
+bd:
+  url: jdbc:mysql://localhost:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
+  username: root
+  password: 1234
+  driverClassName: com.mysql.cj.jdbc.Driver

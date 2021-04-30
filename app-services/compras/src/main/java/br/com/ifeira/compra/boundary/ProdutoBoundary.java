@@ -5,10 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/produto")
@@ -18,20 +15,20 @@ public class ProdutoBoundary {
     private ProdutoController produtoController;
     private Logger logger = LoggerFactory.getLogger(ProdutoBoundary.class);
 
-    @GetMapping("/listar")
-    public ResponseEntity<?> listarFLV() {
+    @GetMapping("/{contexto}/listar")
+    public ResponseEntity<?> listarFLV(@PathVariable("contexto") String contexto) {
         try {
-            return ResponseEntity.ok(this.produtoController.listarFLV());
+            return ResponseEntity.ok(this.produtoController.listarFLV(contexto));
         }catch (Exception e) {
             logger.error(e.getMessage());
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
-    @GetMapping("/buscarFLV")
-    public ResponseEntity<?> buscarFLV(@RequestParam("nome") String nome) {
+    @GetMapping("/{contexto}/buscarFLVS")
+    public ResponseEntity<?> buscarFLVS(@RequestParam("nome") String nome, @PathVariable("contexto") String contexto) {
         try {
-            return ResponseEntity.ok(this.produtoController.buscarFLV(nome));
+            return ResponseEntity.ok(this.produtoController.buscarFLVS(nome, contexto));
         }catch (Exception e) {
             logger.error(e.getMessage());
             return ResponseEntity.status(500).body(e.getMessage());

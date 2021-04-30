@@ -1,4 +1,4 @@
-package br.com.ifeira.compra.config;
+package br.com.ifeira.pagamento.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -33,6 +33,7 @@ public class DatabaseConfig {
                 .username(this.USERNAME)
                 .password(this.PASSWORD)
                 .build();
+
     }
 
     @Bean

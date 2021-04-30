@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public class PedidoDAO implements Persistivel<Pedido, String> {
+public class PedidoDAO implements Persistivel<Pedido, Long> {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -24,7 +24,12 @@ public class PedidoDAO implements Persistivel<Pedido, String> {
     }
 
     @Override
-    public Pedido buscar(String key) {
+    public Pedido buscar(Long key) {
+        return null;
+    }
+
+    @Override
+    public List<Pedido> buscarMultiplos(Long key) {
         return null;
     }
 

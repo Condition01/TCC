@@ -14,12 +14,13 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
     implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
-    implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.4.1.jre8'
-    implementation 'org.springframework.boot:spring-boot-starter-amqp'
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+//    implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '8.4.1.jre8'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     compile(project(':app-services:compras:compra-shared'))
     compile(project(':app-services:pagamento:pagamento-shared'))

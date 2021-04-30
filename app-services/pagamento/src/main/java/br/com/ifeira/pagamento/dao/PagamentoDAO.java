@@ -6,13 +6,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public class PagamentoDAO implements Persistivel<PagamentoDTO> {
+public class PagamentoDAO implements Persistivel<PagamentoDTO, Integer> {
 
     private JdbcTemplate jdbcTemplate;
 
     public PagamentoDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
 
     @Override
     public PagamentoDTO salvar(PagamentoDTO item) {
@@ -25,13 +26,17 @@ public class PagamentoDAO implements Persistivel<PagamentoDTO> {
     }
 
     @Override
-    public PagamentoDTO buscar(PagamentoDTO obj) {
+    public PagamentoDTO buscar(Integer key) {
         return null;
     }
 
     @Override
-    public PagamentoDTO editar(PagamentoDTO obj) {
+    public List<PagamentoDTO> buscarMultiplos(Integer key) {
         return null;
     }
 
+    @Override
+    public PagamentoDTO editar(PagamentoDTO item) {
+        return null;
+    }
 }

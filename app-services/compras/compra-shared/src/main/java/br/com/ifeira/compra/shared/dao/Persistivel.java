@@ -6,7 +6,8 @@ public interface Persistivel<T, K> {
 
     T salvar(T item);
     List<T> listar();
-    T buscar(K key);
+    T buscar(K identificador);
+    List<T> buscarMultiplos(K key);
     T editar(T item);
 
 }

@@ -29,6 +29,11 @@ public class ProdutoDAO implements Persistivel<Produto, String> {
     }
 
     @Override
+    public List<Produto> buscarMultiplos(String key) {
+        return null;
+    }
+
+    @Override
     public Produto editar(Produto item) {
         return null;
     }

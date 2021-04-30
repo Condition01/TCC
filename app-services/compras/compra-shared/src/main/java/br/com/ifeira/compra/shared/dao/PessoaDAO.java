@@ -29,6 +29,11 @@ public class PessoaDAO implements Persistivel<Pessoa, Integer>{
     }
 
     @Override
+    public List<Pessoa> buscarMultiplos(Integer key) {
+        return null;
+    }
+
+    @Override
     public Pessoa editar(Pessoa obj) {
         return null;
     }

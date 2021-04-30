@@ -21,6 +21,7 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 	testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
 }
 
 dependencyManagement {

@@ -14,6 +14,8 @@ dependencies {
     implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
     implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.0'
     implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
 
 }
 

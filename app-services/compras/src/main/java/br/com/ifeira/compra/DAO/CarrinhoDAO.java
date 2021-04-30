@@ -30,6 +30,11 @@ public class CarrinhoDAO implements Persistivel<Carrinho, Integer> {
     }
 
     @Override
+    public List<Carrinho> buscarMultiplos(Integer key) {
+        return null;
+    }
+
+    @Override
     public Carrinho editar(Carrinho obj) {
         return null;
     }

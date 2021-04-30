@@ -15,6 +15,7 @@ import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,8 +32,10 @@ public class PagamentoController {
     @Autowired
     private MailingConfig mailingConfig;
     @Autowired
+    private JdbcTemplate jdbcTemplate;
+    @Autowired
     private PagamentosRealizadosProdutor pagamentoProdutor;
-    private Persistivel pagamentoDAO = new PagamentoDAO();
+    private Persistivel pagamentoDAO = new PagamentoDAO(this.jdbcTemplate);
 
     private Logger logger = LoggerFactory.getLogger(PagamentoController.class);
 
