@@ -41,6 +41,7 @@ public class PedidoController {
     private Logger logger = LoggerFactory.getLogger(PedidoController.class);
 
     public Pedido fecharPedido(Carrinho carrinho, Cupom cupom){
+        //TODO - FAZER PEDIDO CHAMAR COBRANÇA
         return null;
     }
 
