@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario.model';
+import { Usuario } from 'src/app/models/pessoa.model';
 import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 })
 export class HeaderComponent implements OnInit {
   url: string;
-  usuario: Usuario;
+  pessoa: Usuario;
   autenticacao: any;
 
   constructor(
@@ -28,14 +28,14 @@ export class HeaderComponent implements OnInit {
     this.autenticacao = JSON.parse(sessionStorage.getItem('autenticacao'));
 
     if (this.autenticacao) {
-      this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
+      this.pessoa = JSON.parse(sessionStorage.getItem('pessoa'));
     }
   }
 
   deslogar() {
     this.autenticacaoService.logout().subscribe((logout) => {
       sessionStorage.clear();
-      this.usuario = null;
+      this.pessoa = null;
       this.autenticacao = null;
       this.router.navigate(['/']);
     });

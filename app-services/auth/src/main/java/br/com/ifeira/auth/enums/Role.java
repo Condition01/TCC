@@ -1,6 +1,8 @@
-package br.com.ifeira.compra.shared.enums;
+package br.com.ifeira.auth.enums;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
 
     CLIENTE("0"),
     FEIRANTE("1"),
@@ -28,5 +30,9 @@ public enum Role {
         return null;
     }
 
+    @Override
+    public String getAuthority() {
+        return this.name();
+    }
 
 }

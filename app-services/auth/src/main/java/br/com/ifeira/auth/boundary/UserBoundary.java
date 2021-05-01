@@ -1,22 +1,17 @@
-package br.com.ifeira.auth.controller;
+package br.com.ifeira.auth.boundary;
 
-import br.com.ifeira.auth.model.Usuario;
-import br.com.ifeira.auth.model.dtos.UsuarioDTO;
+import br.com.ifeira.auth.entity.Pessoa;
+import br.com.ifeira.auth.dtos.PessoaDTO;
 import br.com.ifeira.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 @RestController
 @RequestMapping("/user")
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class UserController {
+public class UserBoundary {
 
     @Autowired
     private UserService userService;
@@ -26,8 +21,8 @@ public class UserController {
     public ResponseEntity<?> getUsuario() {
         try {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            Usuario usuario = (Usuario) principal;
-            return ResponseEntity.ok(this.userService.pegarUsuarioCpf(usuario.getCpf()));
+            Pessoa pessoa = (Pessoa) principal;
+            return ResponseEntity.ok(this.userService.pegarUsuarioCpf(pessoa.getCpf()));
         }catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
@@ -37,7 +32,7 @@ public class UserController {
     public ResponseEntity<?> userInfo() {
         try {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            Usuario usuario = (Usuario) principal;
+            Pessoa pessoa = (Pessoa) principal;
             return ResponseEntity.ok(principal);
         }catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
@@ -46,9 +41,9 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody PessoaDTO pessoaDTO) {
         try {
-            return ResponseEntity.ok(this.userService.cadastroUsuario(usuarioDTO));
+            return ResponseEntity.ok(this.userService.cadastroUsuario(pessoaDTO));
         }catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
@@ -56,9 +51,9 @@ public class UserController {
 
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
     @PutMapping
-    public ResponseEntity<?> alterarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<?> alterarUsuario(@RequestBody PessoaDTO pessoaDTO) {
         try {
-            return ResponseEntity.ok(this.userService.alterarUsuario(usuarioDTO));
+            return ResponseEntity.ok(this.userService.alterarUsuario(pessoaDTO));
         }catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }

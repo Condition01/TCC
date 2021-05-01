@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Usuario } from '../models/usuario.model';
+import { Usuario } from '../models/pessoa.model';
 import { environment } from 'src/environments/environment';
 import { map, take } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class AutenticacaoService {
     );
 
     this.actualUsuarioSubject = new BehaviorSubject<Usuario>(
-      JSON.parse(localStorage.getItem('usuario'))
+      JSON.parse(localStorage.getItem('pessoa'))
     );
 
     this.actualAutenticacao = this.actualAutenticacaoSubject.asObservable();
@@ -50,10 +50,10 @@ export class AutenticacaoService {
     return headers;
   }
 
-  login(usuario: string, senha: string) {
+  login(pessoa: string, senha: string) {
     let headers = this.getHeaders();
-    let body = `grant_type=${this.grant_type}&username=${usuario}&password=${senha}`;
-    
+    let body = `grant_type=${this.grant_type}&username=${pessoa}&password=${senha}`;
+
     return this.http
       .post<any>(`${this.apiUrl}/oauth/token`, body, { headers: headers })
       .pipe(
@@ -72,10 +72,10 @@ export class AutenticacaoService {
     return this.http
       .get<any>(`${this.apiUrl}/user`)
       .pipe(
-        map((usuario) => {
-          let usuarioAchado = usuario as Usuario;
-          sessionStorage.setItem('usuario', JSON.stringify(usuarioAchado));
-          this.actualUsuarioSubject.next(usuario);
+        map((pessoa) => {
+          let usuarioAchado = pessoa as Usuario;
+          sessionStorage.setItem('pessoa', JSON.stringify(usuarioAchado));
+          this.actualUsuarioSubject.next(pessoa);
         })
       );
   }

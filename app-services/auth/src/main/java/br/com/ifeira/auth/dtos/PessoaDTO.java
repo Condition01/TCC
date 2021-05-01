@@ -1,35 +1,36 @@
-package br.com.ifeira.auth.model.dtos;
+package br.com.ifeira.auth.dtos;
 
-import br.com.ifeira.auth.enums.Roles;
-import br.com.ifeira.auth.model.Usuario;
-import br.com.ifeira.auth.model.Endereco;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.ifeira.auth.enums.Role;
+import br.com.ifeira.auth.entity.Pessoa;
+import br.com.ifeira.auth.entity.Endereco;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
-public class UsuarioDTO {
+public class PessoaDTO {
 
     private String cpf;
     private String email;
     private String nome;
     private String sobrenome;
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
-
+    private String sexo;
+    private String telefone;
     private Date dataNasc;
     private Endereco endereco;
-    private Roles role;
+    private Role role;
 
-    public UsuarioDTO(String email,
-                      String nome,
-                      String sobrenome,
-                      String cpf,
-                      String senha,
-                      Date dataNasc,
-                      Endereco endereco,
-                      Roles role) {
+    public PessoaDTO(String email,
+                     String nome,
+                     String sobrenome,
+                     String cpf,
+                     String senha,
+                     Date dataNasc,
+                     Endereco endereco,
+                     Role role,
+                     String sexo,
+                     String telefone) {
         this.email = email;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -38,15 +39,19 @@ public class UsuarioDTO {
         this.dataNasc = dataNasc;
         this.endereco = endereco;
         this.role = role;
+        this.sexo = sexo;
+        this.telefone = telefone;
     }
 
-    public UsuarioDTO(String email,
-                      String nome,
-                      String sobrenome,
-                      String cpf,
-                      Date dataNasc,
-                      Endereco endereco,
-                      Roles role) {
+    public PessoaDTO(String email,
+                     String nome,
+                     String sobrenome,
+                     String cpf,
+                     Date dataNasc,
+                     Endereco endereco,
+                     Role role,
+                     String sexo,
+                     String telefone) {
         this.email = email;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -54,9 +59,19 @@ public class UsuarioDTO {
         this.dataNasc = dataNasc;
         this.endereco = endereco;
         this.role = role;
+        this.sexo = sexo;
+        this.telefone = telefone;
     }
 
-    public UsuarioDTO() { }
+    public PessoaDTO() { }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
     public Date getDataNasc() {
         return dataNasc;
@@ -74,11 +89,11 @@ public class UsuarioDTO {
         this.endereco = endereco;
     }
 
-    public Roles getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -122,15 +137,25 @@ public class UsuarioDTO {
         this.cpf = cpf;
     }
 
-    public static UsuarioDTO fromUsuario(Usuario usuario) {
-        return new UsuarioDTO(
-                usuario.getEmail(),
-                usuario.getNome(),
-                usuario.getSobrenome(),
-                usuario.getCpf(),
-                usuario.getDataNasc(),
-                usuario.getEndereco(),
-                usuario.getRole()
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public static PessoaDTO fromPessoa(Pessoa pessoa) {
+        return new PessoaDTO(
+                pessoa.getEmail(),
+                pessoa.getNome(),
+                pessoa.getSobrenome(),
+                pessoa.getCpf(),
+                pessoa.getDataNasc(),
+                pessoa.getEndereco(),
+                pessoa.getRole(),
+                pessoa.getSexo(),
+                pessoa.getTelefone()
         );
     }
 }

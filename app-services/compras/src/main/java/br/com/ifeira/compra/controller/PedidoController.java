@@ -4,10 +4,11 @@ import br.com.ifeira.compra.config.APIConfig;
 import br.com.ifeira.compra.entity.juno.JunoChargeReq;
 import br.com.ifeira.compra.shared.dao.PedidoDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
+import br.com.ifeira.compra.shared.dao.PessoaDAO;
 import br.com.ifeira.compra.shared.entity.Carrinho;
-import br.com.ifeira.compra.shared.entity.Cupom;
 import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
+import br.com.ifeira.compra.shared.enums.StatusPedido;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -22,7 +23,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.security.Principal;
 import java.util.Base64;
+import java.util.Date;
 
 @Component
 public class PedidoController {
@@ -31,25 +34,37 @@ public class PedidoController {
     private APIConfig apiConfig;
     @Autowired
     private RestTemplate restTemplate;
-    @Autowired
     private Persistivel<Pedido, Long> pedidoDAO;
+    private Persistivel<Pessoa, String> pessoaDAO;
 
     public PedidoController(@Autowired JdbcTemplate jdbcTemplate) {
         this.pedidoDAO = new PedidoDAO(jdbcTemplate);
+        this.pessoaDAO = new PessoaDAO(jdbcTemplate);
+
     }
 
     private Logger logger = LoggerFactory.getLogger(PedidoController.class);
 
-    public Pedido fecharPedido(Carrinho carrinho, Cupom cupom){
-        //TODO - FAZER PEDIDO CHAMAR COBRANÇA
-        return null;
+    public Pedido fecharPedido(Pedido pedido, Principal principal){
+        Pessoa pessoa = this.pessoaDAO.buscar(principal.getName());
+
+        Carrinho c = new Carrinho();
+        c.setValorTotal(40.2);
+
+        pedido.setData(new Date());
+        pedido.setNumeroPedido(1L);
+        pedido.setStatusPedido(StatusPedido.PENDENTE);
+        pedido.setCarrinho(c);
+
+        String cobranca = gerarCobranca(pedido, "CREDIT_CARD");
+
+        return pedido;
     }
 
-    //TODO - EXPURGAR VULNERABILIDADE (RECEBER PESSOA COMO PARAMETRO)
-    private String gerarCobranca(Double valor, Pessoa pessoa, String tpPagamento) {
+    private String gerarCobranca(Pedido pedido, String tpPagamento) {
         try {
             String token = pegarTokenAutorizacaoAPIExterna();
-            return enviarReqCobranca(valor, tpPagamento, token);
+            return enviarReqCobranca(pedido, tpPagamento, token);
         }catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -86,7 +101,7 @@ public class PedidoController {
         return jsonObjResp.get("access_token").asText();
     }
 
-    private String enviarReqCobranca(Double valor, String tpCobranca, String token) throws IOException {
+    private String enviarReqCobranca(Pedido pedido, String tipoPagamento, String token) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         headers.add("X-Api-Version", this.apiConfig.API_VERSION);

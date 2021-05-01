@@ -1,62 +1,75 @@
-package br.com.ifeira.auth.model;
+package br.com.ifeira.auth.entity;
 
-import javax.persistence.*;
-
-//import org.codehaus.jackson.annotate.JsonProperty;
-import br.com.ifeira.auth.model.dtos.UsuarioDTO;
-import br.com.ifeira.auth.enums.Roles;
+import br.com.ifeira.auth.dtos.PessoaDTO;
+import br.com.ifeira.auth.enums.Role;
 import br.com.ifeira.auth.enums.Situacao;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-//import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+//import org.codehaus.jackson.annotate.JsonProperty;
+//import org.springframework.data.annotation.Id;
+
 @Entity
-@Table(name = "tbl_usuario")
-public class Usuario implements UserDetails {
+@Table(name = "PESSOA")
+public class Pessoa implements UserDetails {
 
     private static final String ROLE_PREFIX = "ROLE_";
 
     @Id
-    @Column(length = 11)
+    @Column(length = 11, name = "CPF")
     private String cpf;
 
-    @Column(length = 50, unique=true)
-    private String email;
-
+    @Column(length = 200, name = "NOME")
     private String nome;
 
+    @Column(length = 15, name = "SEXO")
+    private String sexo;
+
+    @Column(length = 200, name = "SOBRENOME")
     private String sobrenome;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @Column(length = 200, unique=true, name = "EMAIL")
+    private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ENDERECO", referencedColumnName = "ID")
     private Endereco endereco;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
 
+    @Column(name = "DATA_NASC")
     private Date dataNasc;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 200, name = "SITUACAO")
     private Situacao situcao;
 
-    @Enumerated
-    private Roles role;
+    @Column(length = 15, name = "TELEFONE")
+    private String telefone;
 
-    public Usuario(String email,
-                   String nome,
-                   String sobrenome,
-                   Date dataNasc,
-                   String cpf,
-                   String senha,
-                   Situacao situacao,
-                   Endereco endereco,
-                   Roles role) {
+    @Enumerated
+    private Role role;
+
+    public Pessoa(String email,
+                  String nome,
+                  String sobrenome,
+                  Date dataNasc,
+                  String cpf,
+                  String senha,
+                  Situacao situacao,
+                  Endereco endereco,
+                  String sexo,
+                  String telefone,
+                  Role role) {
         this.email = email;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -66,16 +79,20 @@ public class Usuario implements UserDetails {
         this.dataNasc = dataNasc;
         this.endereco = endereco;
         this.role = role;
+        this.sexo = sexo;
+        this.telefone = telefone;
     }
 
-    public Usuario(String email,
-                   String nome,
-                   String sobrenome,
-                   String cpf,
-                   String senha,
-                   Endereco endereco,
-                   Date dataNasc,
-                   Roles role) {
+    public Pessoa(String email,
+                  String nome,
+                  String sobrenome,
+                  String cpf,
+                  String senha,
+                  Endereco endereco,
+                  Date dataNasc,
+                  String sexo,
+                  String telefone,
+                  Role role) {
         this.email = email;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -84,9 +101,11 @@ public class Usuario implements UserDetails {
         this.endereco = endereco;
         this.dataNasc = dataNasc;
         this.role = role;
+        this.sexo = sexo;
+        this.telefone = telefone;
     }
 
-    public Usuario() { }
+    public Pessoa() { }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -96,11 +115,27 @@ public class Usuario implements UserDetails {
         return roles;
     }
 
-    public Roles getRole() {
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -199,16 +234,18 @@ public class Usuario implements UserDetails {
         return this.situcao == Situacao.HABILITADO;
     }
 
-    public static Usuario fromDTO(UsuarioDTO usuarioDTO) {
-        return new Usuario(
-                usuarioDTO.getEmail(),
-                usuarioDTO.getNome(),
-                usuarioDTO.getSobrenome(),
-                usuarioDTO.getCpf(),
-                usuarioDTO.getSenha(),
-                usuarioDTO.getEndereco(),
-                usuarioDTO.getDataNasc(),
-                usuarioDTO.getRole()
+    public static Pessoa fromDTO(PessoaDTO pessoaDTO) {
+        return new Pessoa(
+                pessoaDTO.getEmail(),
+                pessoaDTO.getNome(),
+                pessoaDTO.getSobrenome(),
+                pessoaDTO.getCpf(),
+                pessoaDTO.getSenha(),
+                pessoaDTO.getEndereco(),
+                pessoaDTO.getDataNasc(),
+                pessoaDTO.getSexo(),
+                pessoaDTO.getTelefone(),
+                pessoaDTO.getRole()
         );
     }
 }

@@ -1,6 +1,6 @@
 package br.com.ifeira.auth.configuration;
 
-import br.com.ifeira.auth.enums.Roles;
+import br.com.ifeira.auth.enums.Role;
 import br.com.ifeira.auth.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -74,11 +73,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     private String[] getRoles() {
-        Roles[] rolesArrayObj = Roles.values();
-        String[] rolesArrayStrg = new String[rolesArrayObj.length];
-        int lenght = rolesArrayObj.length;
+        Role[] roleArrayObj = Role.values();
+        String[] rolesArrayStrg = new String[roleArrayObj.length];
+        int lenght = roleArrayObj.length;
         for(int i = 0; i < lenght; i++){
-            rolesArrayStrg[i] = rolesArrayObj[i].name();
+            rolesArrayStrg[i] = roleArrayObj[i].name();
         }
         return rolesArrayStrg;
     }

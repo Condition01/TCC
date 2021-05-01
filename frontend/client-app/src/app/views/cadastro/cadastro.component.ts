@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role, Usuario } from 'src/app/models/usuario.model';
+import { Role, Usuario } from 'src/app/models/pessoa.model';
 import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { CepService } from 'src/app/services/cep.service';
 import { NotificacaoService } from 'src/app/services/notificacao.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioService } from 'src/app/services/pessoa.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,7 +15,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class CadastroComponent implements OnInit {
   form: FormGroup;
-  usuario: Usuario;
+  pessoa: Usuario;
   reload: boolean = false;
 
   constructor(
@@ -67,12 +67,12 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrar() {
-    let usuario = this.formParaUsuario();
-    this.usuarioService.cadastrar(usuario).subscribe(
+    let pessoa = this.formParaUsuario();
+    this.usuarioService.cadastrar(pessoa).subscribe(
       (success) => {
         this.notificacaoService.sucessNotification('Cadastrado com sucesso!');
         this.authService
-          .login(usuario.email, usuario.senha)
+          .login(pessoa.email, pessoa.senha)
           .subscribe((success) => {
             this.authService.getUsuario().subscribe((user) => {
               this.notificacaoService.sucessNotification('Logado com sucesso!');

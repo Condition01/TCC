@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from '../models/usuario.model';
+import { Usuario } from '../models/pessoa.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -18,10 +18,10 @@ export class UsuarioService {
 
    }
 
-  cadastrar(usuario: Usuario): Observable<any> {
+  cadastrar(pessoa: Usuario): Observable<any> {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
-    return this.http.post(`${this.apiUrl}/user`, usuario, {headers: headers}).pipe(take(1));
+    return this.http.post(`${this.apiUrl}/user`, pessoa, {headers: headers}).pipe(take(1));
   }
-  
+
 }

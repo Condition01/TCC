@@ -1,6 +1,6 @@
 package br.com.ifeira.auth.service;
 
-import br.com.ifeira.auth.model.Usuario;
+import br.com.ifeira.auth.entity.Pessoa;
 import br.com.ifeira.auth.dao.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> usuarioOptional = this.usuarioRepository.findUsuarioByEmail(username);
+        Optional<Pessoa> usuarioOptional = this.usuarioRepository.findUsuarioByEmail(username);
 
         if(usuarioOptional.isPresent()){
             return usuarioOptional.get();

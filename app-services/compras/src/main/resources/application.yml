@@ -11,17 +11,22 @@ spring:
 server:
   port: 8085
   instance: PRIMEIRO
-#É AUTH-SERVER NÃO AUTH-SERVICE!!
-#authserver:
-#  hostname: http://auth-server:9092
 
-#security:
-#  oauth2:
-#    service-id: auth-service
-#    client:
-#      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
-#    resource:
-#      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
+security:
+  oauth2:
+    service-id: auth-service
+    client:
+      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
+    resource:
+      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
+
+#COMO EUREKA TA DISABILITADO, PRECISA ORIENTAR O RIBBON A PEGA A INSTANCIA CERTA
+ribbon:
+  eureka:
+    enabled: false
+auth-service:
+  ribbon:
+    listOfServers: http://localhost:9092
 
 eureka:
   instance:
@@ -34,8 +39,8 @@ eureka:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
     enabled: false
-    registerWithEureka: true
-    fetchRegistry: true
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:

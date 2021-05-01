@@ -1,6 +1,6 @@
 package br.com.ifeira.compra.shared.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Feira {
     private String context;
     private String latitute;
     private String longitude;
-    @JsonBackReference
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ProdutoFeira> produtosFeira;
 
     public Feira(String nome, Endereco endereco, String context, String latitute, String longitude, List<ProdutoFeira> produtosFeira) {

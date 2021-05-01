@@ -1,7 +1,7 @@
 package br.com.ifeira.compra.shared.entity;
 
 import br.com.ifeira.compra.shared.enums.TipoProduto;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Produto {
     private String descricao;
     private String codProduto;
     private TipoProduto tipoProduto;
-    @JsonBackReference
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ProdutoFeira> produtosFeira;
     private String unidadeMedida;
 

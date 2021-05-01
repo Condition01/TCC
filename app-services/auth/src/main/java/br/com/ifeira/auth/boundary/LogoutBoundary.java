@@ -1,4 +1,4 @@
-package br.com.ifeira.auth.controller;
+package br.com.ifeira.auth.boundary;
 
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/token")
-public class LogoutController {
+public class LogoutBoundary {
 
     private final String TOKEN_PREFIX = "Bearer";
 

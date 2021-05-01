@@ -1,9 +1,9 @@
 package br.com.ifeira.auth.service;
 
-import br.com.ifeira.auth.model.Usuario;
-import br.com.ifeira.auth.enums.Roles;
+import br.com.ifeira.auth.entity.Pessoa;
+import br.com.ifeira.auth.enums.Role;
 import br.com.ifeira.auth.enums.Situacao;
-import br.com.ifeira.auth.model.dtos.UsuarioDTO;
+import br.com.ifeira.auth.dtos.PessoaDTO;
 import br.com.ifeira.auth.dao.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -22,47 +22,47 @@ public class UserService {
     @Autowired
     private UsuarioDAO usuarioDAO;
 
-    public UsuarioDTO cadastroUsuario(UsuarioDTO usuarioDTO) {
-        if(usuarioExiste(usuarioDTO.getCpf())){
+    public PessoaDTO cadastroUsuario(PessoaDTO pessoaDTO) {
+        if(usuarioExiste(pessoaDTO.getCpf())){
             throw new DuplicateKeyException("Usuário já existe!!");
         }else {
-            Usuario usuario = Usuario.fromDTO(usuarioDTO);
-            usuario.getEndereco().setUsuario(usuario);
-            usuario.setRole(Roles.CLIENTE);
-            usuario.setSitucao(Situacao.HABILITADO);
-            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-            return UsuarioDTO.fromUsuario(usuarioDAO.save(usuario));
+            Pessoa pessoa = Pessoa.fromDTO(pessoaDTO);
+            pessoa.getEndereco().setUsuario(pessoa);
+            pessoa.setRole(Role.CLIENTE);
+            pessoa.setSitucao(Situacao.HABILITADO);
+            pessoa.setSenha(passwordEncoder.encode(pessoa.getSenha()));
+            return PessoaDTO.fromPessoa(usuarioDAO.save(pessoa));
         }
     }
 
-    public UsuarioDTO alterarUsuario(UsuarioDTO usuarioDTO) {
-        Usuario usuarioAlterado = Usuario.fromDTO(usuarioDTO);
-        Optional<Usuario> optUsuario = this.usuarioDAO.findUsuarioByCpf(usuarioAlterado.getCpf());
+    public PessoaDTO alterarUsuario(PessoaDTO pessoaDTO) {
+        Pessoa pessoaAlterado = Pessoa.fromDTO(pessoaDTO);
+        Optional<Pessoa> optUsuario = this.usuarioDAO.findUsuarioByCpf(pessoaAlterado.getCpf());
         if(optUsuario.isPresent()){
-            Usuario usuario = optUsuario.get();
-            usuario.setEmail(usuarioAlterado.getEmail());
-            usuario.setDataNasc(usuarioAlterado.getDataNasc());
-            usuario.setNome(usuarioAlterado.getNome());
-            usuario.setSobrenome(usuarioAlterado.getSobrenome());
-            return UsuarioDTO.fromUsuario(usuarioDAO.save(usuario));
+            Pessoa pessoa = optUsuario.get();
+            pessoa.setEmail(pessoaAlterado.getEmail());
+            pessoa.setDataNasc(pessoaAlterado.getDataNasc());
+            pessoa.setNome(pessoaAlterado.getNome());
+            pessoa.setSobrenome(pessoaAlterado.getSobrenome());
+            return PessoaDTO.fromPessoa(usuarioDAO.save(pessoa));
         }else{
             throw new UsernameNotFoundException("Não se pode alterar um usuario não presente");
         }
     }
 
-    public UsuarioDTO pegarUsuarioCpf(String cpf) {
-        Optional<Usuario> userOp = usuarioDAO.findUsuarioByCpf(cpf);
+    public PessoaDTO pegarUsuarioCpf(String cpf) {
+        Optional<Pessoa> userOp = usuarioDAO.findUsuarioByCpf(cpf);
         if(userOp.isPresent()){
-            return UsuarioDTO.fromUsuario(userOp.get());
+            return PessoaDTO.fromPessoa(userOp.get());
         }else{
             throw new UsernameNotFoundException("Usuário não encontrado");
         }
     }
 
-    public UsuarioDTO pegarUsuarioEmail(String email) {
-        Optional<Usuario> userOp = usuarioDAO.findUsuarioByEmail(email);
+    public PessoaDTO pegarUsuarioEmail(String email) {
+        Optional<Pessoa> userOp = usuarioDAO.findUsuarioByEmail(email);
         if(userOp.isPresent()){
-            return UsuarioDTO.fromUsuario(userOp.get());
+            return PessoaDTO.fromPessoa(userOp.get());
         }else{
             throw new UsernameNotFoundException("Usuário não encontrado");
         }
