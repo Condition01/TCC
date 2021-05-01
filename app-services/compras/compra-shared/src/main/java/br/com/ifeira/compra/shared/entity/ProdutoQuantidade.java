@@ -2,23 +2,23 @@ package br.com.ifeira.compra.shared.entity;
 
 public class ProdutoQuantidade {
 
-    private Produto produto;
+    private ProdutoFeira produtoFeira;
     private Integer quantidade;
 
-    public ProdutoQuantidade(Produto produto, Integer quantidade) {
-        this.produto = produto;
+    public ProdutoQuantidade(ProdutoFeira produtoFeira, Integer quantidade) {
+        this.produtoFeira = produtoFeira;
         this.quantidade = quantidade;
     }
 
     public ProdutoQuantidade() {
     }
 
-    public Produto getProduto() {
-        return produto;
+    public ProdutoFeira getProdutoFeira() {
+        return produtoFeira;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutoFeira(ProdutoFeira produtoFeira) {
+        this.produtoFeira = produtoFeira;
     }
 
     public Integer getQuantidade() {

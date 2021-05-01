@@ -5,10 +5,11 @@ import br.com.ifeira.compra.entity.juno.JunoAddress;
 import br.com.ifeira.compra.entity.juno.JunoBilling;
 import br.com.ifeira.compra.entity.juno.JunoCharge;
 import br.com.ifeira.compra.entity.juno.JunoChargeReq;
+import br.com.ifeira.compra.shared.dao.CupomDAO;
 import br.com.ifeira.compra.shared.dao.PedidoDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.dao.PessoaDAO;
-import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.entity.Cupom;
 import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
 import br.com.ifeira.compra.shared.enums.StatusPedido;
@@ -41,29 +42,25 @@ public class PedidoController {
     private RestTemplate restTemplate;
     private Persistivel<Pedido, Long> pedidoDAO;
     private Persistivel<Pessoa, String> pessoaDAO;
+    private Persistivel<Cupom, String> cupomDAO;
+    private Logger logger = LoggerFactory.getLogger(PedidoController.class);
 
     public PedidoController(@Autowired JdbcTemplate jdbcTemplate) throws Exception {
         this.pedidoDAO = new PedidoDAO(jdbcTemplate);
         this.pessoaDAO = new PessoaDAO(jdbcTemplate);
-
+        this.cupomDAO = new CupomDAO(jdbcTemplate);
     }
-
-    private Logger logger = LoggerFactory.getLogger(PedidoController.class);
 
     public Pedido fecharPedido(Pedido pedido, Principal principal) throws Exception {
         Pessoa pessoa = this.pessoaDAO.buscar(principal.getName());
-
-        Carrinho c = new Carrinho();
-        c.setValorTotal(40.2);
-
-        pedido.setData(new Date());
-        pedido.setNumeroPedido(1L);
-        pedido.setStatusPedido(StatusPedido.PENDENTE);
-        pedido.setCarrinho(c);
+        if(pedido.getCupom() != null) {
+            pedido.setCupom(this.cupomDAO.buscar(pedido.getCupom().getNome()));
+        }
         pedido.setCliente(pessoa);
-
+        pedido.setData(new Date());
+        pedido.setStatusPedido(StatusPedido.PENDENTE);
+        pedido.calcularValorTotal();
         pedido.setCobranca(gerarCobranca(pedido, "CREDIT_CARD"));
-
         return pedido;
     }
 
@@ -108,8 +105,8 @@ public class PedidoController {
         headers.add("Authorization", "Bearer " + token);
 
         JunoCharge junoCharge = new JunoCharge();
-        junoCharge.setAmount(pedido.getCarrinho().getValorTotal());
-        junoCharge.setDescription("Cobrança relativa ao pedido " + pedido.getNumeroPedido());
+        junoCharge.setAmount(pedido.getValorTotal());
+        junoCharge.setDescription("Cobrança sobre pedido");
         List<String> paymentTypes = new ArrayList<>();
         paymentTypes.add(tipoPagamento);
         junoCharge.setPaymentTypes(paymentTypes);

@@ -18,8 +18,7 @@ public class FeiraBoundary {
     private FeiraController feiraController;
     private Logger logger = LoggerFactory.getLogger(FeiraBoundary.class);
 
-    @GetMapping
-    @RequestMapping("/listar")
+    @GetMapping("/listar")
     public ResponseEntity<?> listarFeiras() {
         try {
             return ResponseEntity.ok(this.feiraController.listarFeiras());
@@ -29,8 +28,7 @@ public class FeiraBoundary {
         }
     }
 
-    @GetMapping
-    @RequestMapping("/buscar")
+    @GetMapping("/buscar")
     public ResponseEntity<?> selecionarFeira(@RequestParam("feira") String feira) {
         try {
             return ResponseEntity.ok(this.feiraController.selecionarFeira(feira));

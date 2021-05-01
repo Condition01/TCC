@@ -5,11 +5,23 @@ import br.com.ifeira.compra.shared.enums.StatusPagamento;
 import java.util.Date;
 
 public class Pagamento {
+
     private StatusPagamento statusPagamento;
     private String numeroCartao;
     private String validadeCartao;
     private String cvv;
     private Date data;
+
+    public Pagamento(StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data) {
+        this.statusPagamento = statusPagamento;
+        this.numeroCartao = numeroCartao;
+        this.validadeCartao = validadeCartao;
+        this.cvv = cvv;
+        this.data = data;
+    }
+
+    public Pagamento() {
+    }
 
     public StatusPagamento getStatusPagamento() {
         return statusPagamento;
@@ -50,4 +62,5 @@ public class Pagamento {
     public void setData(Date data) {
         this.data = data;
     }
+
 }

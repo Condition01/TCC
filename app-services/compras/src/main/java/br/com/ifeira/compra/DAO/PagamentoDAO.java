@@ -5,7 +5,7 @@ import br.com.ifeira.compra.shared.dao.Persistivel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
-public class PagamentoDAO implements Persistivel<Pagamento, Integer> {
+public class PagamentoDAO implements Persistivel<Pagamento, Long> {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -24,12 +24,12 @@ public class PagamentoDAO implements Persistivel<Pagamento, Integer> {
     }
 
     @Override
-    public Pagamento buscar(Integer key) {
+    public Pagamento buscar(Long key) {
         return null;
     }
 
     @Override
-    public List<Pagamento> buscarMultiplos(Integer key) {
+    public List<Pagamento> buscarMultiplos(Long key) {
         return null;
     }
 

@@ -35,15 +35,24 @@ public class PagamentoController {
     private PagamentosRealizadosProdutor pagamentoProdutor;
     private JdbcTemplate jdbcTemplate;
     private Persistivel<PagamentoDTO, Integer> pagamentoDAO;
+    private Notificavel notificador;
 
     private Logger logger = LoggerFactory.getLogger(PagamentoController.class);
 
     private PagamentoOutHandlerFactory pagFactory;
 
-    PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
+    public PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.pagFactory = new PagamentoOutConcretHandlerFactory();
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", this.mailingConfig.AUTH);
+        properties.put("mail.smtp.starttls.enable", this.mailingConfig.STARTTLS);
+        properties.put("mail.smtp.host", this.mailingConfig.HOST);
+        properties.put("mail.smtp.port", this.mailingConfig.PORT);
+
+        notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
     }
 
     public void processarRequisicao(PagamentoDTO pagamento) {
@@ -76,17 +85,8 @@ public class PagamentoController {
     }
 
     public void notificar(PagamentoDTO pagamento, String email) {
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", this.mailingConfig.AUTH);
-        properties.put("mail.smtp.starttls.enable", this.mailingConfig.STARTTLS);
-        properties.put("mail.smtp.host", this.mailingConfig.HOST);
-        properties.put("mail.smtp.port", this.mailingConfig.PORT);
-
-        Notificavel notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
-
         String mensagem = "Seu pagamento do pedido " + pagamento.getNumeroPedido() + " foi " + pagamento.getStatus();
-
-        notificador.enviarNotificacao(mensagem, email,"Status Pedido " + pagamento.getNumeroPedido());
+        this.notificador.enviarNotificacao(mensagem, email,"Status Pedido " + pagamento.getNumeroPedido());
     }
 
     public void atualizarSaldoADM(PagamentoDTO pagamento) {

@@ -22,12 +22,10 @@ public class PedidoBoundary {
     private PedidoController pedidoController;
     private Logger logger = LoggerFactory.getLogger(PedidoBoundary.class);
 
-    @PostMapping
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
-    @RequestMapping("/fechar")
+    @PostMapping("/fechar")
     public ResponseEntity<?> fecharPedido(@RequestBody Pedido pedido, Principal principal) {
         try {
-            System.out.println(principal.getName());
             return ResponseEntity.ok(this.pedidoController.fecharPedido(pedido, principal));
         }catch (Exception e) {
             logger.error(e.getMessage());

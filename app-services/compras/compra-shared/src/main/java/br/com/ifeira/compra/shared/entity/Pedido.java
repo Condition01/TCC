@@ -14,8 +14,9 @@ public class Pedido {
     private Pessoa cliente;
     private Carrinho carrinho;
     private String cobranca;
+    private Double valorTotal;
 
-    public Pedido(Date data, StatusPedido statusPedido, Long numeroPedido, Date dataEntrega, Cupom cupom, Pessoa cliente, Carrinho carrinho, String cobranca) {
+    public Pedido(Date data, StatusPedido statusPedido, Long numeroPedido, Date dataEntrega, Cupom cupom, Pessoa cliente, Carrinho carrinho, String cobranca, Double valorTotal) {
         this.data = data;
         this.statusPedido = statusPedido;
         this.numeroPedido = numeroPedido;
@@ -27,6 +28,14 @@ public class Pedido {
     }
 
     public Pedido() {
+    }
+
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public String getCobranca() {
@@ -91,6 +100,24 @@ public class Pedido {
 
     public void setCarrinho(Carrinho carrinho) {
         this.carrinho = carrinho;
+    }
+
+    public void calcularValorTotal() {
+        Double valor = 0.0;
+        for(ProdutoQuantidade prodQtd: this.getCarrinho().getListaProdutoQuantidade()) {
+            valor += (prodQtd.getProdutoFeira().getPreco() * prodQtd.getQuantidade());
+        }
+        if(this.cupom != null && this.cupom.getAtivo()) {
+            valor = valor - (valor*this.cupom.getPorcentagem()/100);
+        }
+        this.valorTotal = round(valor, 2);
+    }
+
+    public static double round(double value, int places) {
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
 }

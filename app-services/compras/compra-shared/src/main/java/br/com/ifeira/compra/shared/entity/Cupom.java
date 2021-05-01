@@ -2,23 +2,33 @@ package br.com.ifeira.compra.shared.entity;
 
 public class Cupom {
 
-    private String descricao;
+    private String nome;
     private Double porcentagem;
+    private Boolean ativo;
 
-    public Cupom(String descricao, Double porcentagem) {
-        this.descricao = descricao;
+    public Cupom(String nome, Double porcentagem, Boolean ativo) {
+        this.nome = nome;
         this.porcentagem = porcentagem;
+        this.ativo = ativo;
     }
 
     public Cupom() {
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Boolean getAtivo() {
+        return ativo;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Double getPorcentagem() {

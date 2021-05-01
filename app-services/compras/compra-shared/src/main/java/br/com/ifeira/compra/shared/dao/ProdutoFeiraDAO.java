@@ -123,6 +123,7 @@ public class ProdutoFeiraDAO implements PersistivelContextual<ProdutoFeira, Stri
                 while(rs.next()) {
                     Produto prod =  new Produto();
                     Feira feira =  new Feira();
+                    produtoFeira = new ProdutoFeira();
 
                     prod.setCodProduto(rs.getString("COD_PRODUTO"));
                     prod.setDescricao(rs.getString("DESCRICAO"));
