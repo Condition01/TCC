@@ -31,8 +31,6 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
     }
 
     public String pegarTokenAutorizacaoAPIExterna() throws IOException {
-        RestTemplate restTemplate = new RestTemplate();
-
         String preEncodedCliendAndSecret = this.apiConfig.API_ID + ":" + this.apiConfig.API_SECRET;
         String basicAuth = new String(Base64.getEncoder().encode(preEncodedCliendAndSecret.getBytes(StandardCharsets.UTF_8)));
 

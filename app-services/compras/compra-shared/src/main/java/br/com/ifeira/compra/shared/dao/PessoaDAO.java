@@ -49,6 +49,7 @@ public class PessoaDAO implements Persistivel<Pessoa, String> {
                     pessoa.setTelefone(rs.getString("TELEFONE"));
                     pessoa.setSobrenome(rs.getString("SOBRENOME"));
                     pessoa.setSituacao(rs.getString("SITUACAO"));
+                    pessoa.setEmail(rs.getString("EMAIL"));
                 }
             }
 

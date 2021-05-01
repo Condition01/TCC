@@ -32,17 +32,18 @@ public class PagamentoController {
     @Autowired
     private MailingConfig mailingConfig;
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-    @Autowired
     private PagamentosRealizadosProdutor pagamentoProdutor;
-    private Persistivel pagamentoDAO = new PagamentoDAO(this.jdbcTemplate);
+    private JdbcTemplate jdbcTemplate;
+    private Persistivel<PagamentoDTO, Integer> pagamentoDAO;
 
     private Logger logger = LoggerFactory.getLogger(PagamentoController.class);
 
     private PagamentoOutHandlerFactory pagFactory;
 
-    PagamentoController() {
+    PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
         this.pagFactory = new PagamentoOutConcretHandlerFactory();
+        this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
     }
 
     public void processarRequisicao(PagamentoDTO pagamento) {

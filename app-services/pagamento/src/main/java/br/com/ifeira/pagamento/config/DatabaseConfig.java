@@ -33,12 +33,10 @@ public class DatabaseConfig {
                 .username(this.USERNAME)
                 .password(this.PASSWORD)
                 .build();
-
     }
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
-
 }

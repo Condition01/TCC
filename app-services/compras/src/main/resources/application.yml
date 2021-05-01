@@ -12,21 +12,8 @@ server:
   port: 8085
   instance: PRIMEIRO
 
-security:
-  oauth2:
-    service-id: auth-service
-    client:
-      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
-    resource:
-      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
-
 #COMO EUREKA TA DISABILITADO, PRECISA ORIENTAR O RIBBON A PEGA A INSTANCIA CERTA
-ribbon:
-  eureka:
-    enabled: false
-auth-service:
-  ribbon:
-    listOfServers: http://localhost:9092
+
 
 eureka:
   instance:
@@ -56,17 +43,35 @@ mail:
   myAccountEmail: ifeiranotificacao@gmail.com
   password: 123456Aa@
 
+security:
+  oauth2:
+    service-id: auth-service
+    client:
+      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
+    resource:
+      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
+
+ribbon:
+  eureka:
+    enabled: false
+
+auth-service:
+  ribbon:
+    listOfServers: http://localhost:9092
+
 api-pagamento:
+  ribbon:
+    listOfServers: https://sandbox.boletobancario.com
+  pag-id: api-pagamento
   oauth:
     id: "XMkSp17rT9J8bbN5"
     secret: ">V}EsQg+48Xn}i[<0pJqBw9gwOy;XbCH"
     grant_type: "client_credentials"
-    oauth_url: https://sandbox.boletobancario.com/authorization-server/oauth/token
-  url: https://sandbox.boletobancario.com/api-integration/payments
+    oauth_url: https://${api-pagamento.pag-id}/authorization-server/oauth/token
+  url: https://${api-pagamento.pag-id}/api-integration/charges
   private_token: CA3499B3127E237FB9905E458EDC9401E1D299CF0813FDC5525B363E5E96D262
   public_token: B2D0B12E73A21E783D130F46AD79A05EFA4E3460D6D8ECCFB805C61CB02D1741
   api_version: 2
-
 
 mq:
   -

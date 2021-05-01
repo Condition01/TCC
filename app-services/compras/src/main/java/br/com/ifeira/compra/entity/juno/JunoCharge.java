@@ -1,8 +1,8 @@
 package br.com.ifeira.compra.entity.juno;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +14,7 @@ public class JunoCharge {
     @JsonProperty("amount")
     private Double amount;
     @JsonProperty("dueDate")
-    @JsonFormat(pattern = "YYYY-MM-dd")
-    private Date dueDate;
+    private String dueDate;
     @JsonProperty("installments")
     private Integer installments;
     @JsonProperty("maxOverdueDays")
@@ -36,8 +35,8 @@ public class JunoCharge {
     public JunoCharge(String description, Double amount) {
         this.description = description;
         this.amount = amount;
-        this.dueDate = new Date();
-        this.installments = -1;
+        this.dueDate = format(new Date());
+        this.installments = 1;
         this.maxOverdueDays = 0;
         this.fine = 0;
         this.interest = 0.0;
@@ -49,8 +48,8 @@ public class JunoCharge {
     }
 
     public JunoCharge() {
-        this.dueDate = new Date();
-        this.installments = -1;
+        this.dueDate = format(new Date());
+        this.installments = 1;
         this.maxOverdueDays = 0;
         this.fine = 0;
         this.interest = 0.0;
@@ -59,6 +58,11 @@ public class JunoCharge {
         this.paymentTypes = new ArrayList<>();
         this.paymentTypes.add("CREDIT_CARD");
         this.paymentAdvance = true;
+    }
+
+    public static String format(Date date){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
     }
 
     public String getDescription() {
@@ -77,11 +81,11 @@ public class JunoCharge {
         this.amount = amount;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 

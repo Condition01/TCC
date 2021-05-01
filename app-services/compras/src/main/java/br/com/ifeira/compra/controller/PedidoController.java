@@ -1,6 +1,9 @@
 package br.com.ifeira.compra.controller;
 
 import br.com.ifeira.compra.config.APIConfig;
+import br.com.ifeira.compra.entity.juno.JunoAddress;
+import br.com.ifeira.compra.entity.juno.JunoBilling;
+import br.com.ifeira.compra.entity.juno.JunoCharge;
 import br.com.ifeira.compra.entity.juno.JunoChargeReq;
 import br.com.ifeira.compra.shared.dao.PedidoDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
@@ -24,8 +27,10 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class PedidoController {
@@ -37,7 +42,7 @@ public class PedidoController {
     private Persistivel<Pedido, Long> pedidoDAO;
     private Persistivel<Pessoa, String> pessoaDAO;
 
-    public PedidoController(@Autowired JdbcTemplate jdbcTemplate) {
+    public PedidoController(@Autowired JdbcTemplate jdbcTemplate) throws Exception {
         this.pedidoDAO = new PedidoDAO(jdbcTemplate);
         this.pessoaDAO = new PessoaDAO(jdbcTemplate);
 
@@ -45,7 +50,7 @@ public class PedidoController {
 
     private Logger logger = LoggerFactory.getLogger(PedidoController.class);
 
-    public Pedido fecharPedido(Pedido pedido, Principal principal){
+    public Pedido fecharPedido(Pedido pedido, Principal principal) throws Exception {
         Pessoa pessoa = this.pessoaDAO.buscar(principal.getName());
 
         Carrinho c = new Carrinho();
@@ -55,20 +60,16 @@ public class PedidoController {
         pedido.setNumeroPedido(1L);
         pedido.setStatusPedido(StatusPedido.PENDENTE);
         pedido.setCarrinho(c);
+        pedido.setCliente(pessoa);
 
-        String cobranca = gerarCobranca(pedido, "CREDIT_CARD");
+        pedido.setCobranca(gerarCobranca(pedido, "CREDIT_CARD"));
 
         return pedido;
     }
 
-    private String gerarCobranca(Pedido pedido, String tpPagamento) {
-        try {
-            String token = pegarTokenAutorizacaoAPIExterna();
-            return enviarReqCobranca(pedido, tpPagamento, token);
-        }catch (Exception e) {
-            logger.error(e.getMessage());
-        }
-        return null;
+    private String gerarCobranca(Pedido pedido, String tpPagamento) throws Exception {
+        String token = pegarTokenAutorizacaoAPIExterna();
+        return enviarReqCobranca(pedido, tpPagamento, token);
     }
 
     public boolean cancelarPedido(int numeroPedido){
@@ -76,8 +77,6 @@ public class PedidoController {
     }
 
     public String pegarTokenAutorizacaoAPIExterna() throws IOException {
-        RestTemplate restTemplate = new RestTemplate();
-
         String preEncodedCliendAndSecret = this.apiConfig.API_ID + ":" + this.apiConfig.API_SECRET;
         String basicAuth = new String(Base64.getEncoder().encode(preEncodedCliendAndSecret.getBytes(StandardCharsets.UTF_8)));
 
@@ -108,16 +107,38 @@ public class PedidoController {
         headers.add("X-Resource-Token", this.apiConfig.PRIVATE_TOKEN);
         headers.add("Authorization", "Bearer " + token);
 
-        //TODO CRIAR OBJETO DE REQUISIÇÃO PARA RECEBER COBRANÇA
+        JunoCharge junoCharge = new JunoCharge();
+        junoCharge.setAmount(pedido.getCarrinho().getValorTotal());
+        junoCharge.setDescription("Cobrança relativa ao pedido " + pedido.getNumeroPedido());
+        List<String> paymentTypes = new ArrayList<>();
+        paymentTypes.add(tipoPagamento);
+        junoCharge.setPaymentTypes(paymentTypes);
+
+        JunoAddress junoAddress = new JunoAddress();
+        junoAddress.setNeighborhood(pedido.getCliente().getEndereco().getBairro());
+        junoAddress.setCity(pedido.getCliente().getEndereco().getCidade());
+        junoAddress.setComplement(pedido.getCliente().getEndereco().getComplemento());
+        junoAddress.setNumber(pedido.getCliente().getEndereco().getNumero());
+        junoAddress.setPostCode(pedido.getCliente().getEndereco().getCep());
+        junoAddress.setState(pedido.getCliente().getEndereco().getUF());
+        junoAddress.setStreet(pedido.getCliente().getEndereco().getLogradouro());
+
+        JunoBilling junoBilling = new JunoBilling();
+        junoBilling.setEmail(pedido.getCliente().getEmail());
+        junoBilling.setName(pedido.getCliente().getNome());
+        junoBilling.setDocument(pedido.getCliente().getCpf());
+        junoBilling.setAddress(junoAddress);
 
         JunoChargeReq junoChargeReq = new JunoChargeReq();
+        junoChargeReq.setCharge(junoCharge);
+        junoChargeReq.setBilling(junoBilling);
 
         HttpEntity<JunoChargeReq> entity = new HttpEntity<>(junoChargeReq, headers);
 
         ResponseEntity<String> response = this.restTemplate.postForEntity(this.apiConfig.API_URL, entity, String.class);
 
         JsonNode jsonObjResp = new ObjectMapper().readTree(response.getBody());
-        return jsonObjResp.get("_embedded").get("charges").get(1).get("id").asText();
+        return jsonObjResp.get("_embedded").get("charges").get(0).get("id").asText();
     }
 
 }

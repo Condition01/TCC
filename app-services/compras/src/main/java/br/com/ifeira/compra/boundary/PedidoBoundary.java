@@ -31,6 +31,7 @@ public class PedidoBoundary {
             return ResponseEntity.ok(this.pedidoController.fecharPedido(pedido, principal));
         }catch (Exception e) {
             logger.error(e.getMessage());
+            e.getStackTrace();
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }

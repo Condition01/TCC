@@ -6,17 +6,17 @@ public class JunoBilling {
 
     @JsonProperty("name")
     private String name;
-    @JsonProperty("email")
-    private String email;
     @JsonProperty("document")
     private String document;
+    @JsonProperty("email")
+    private String email;
     @JsonProperty("address")
     private JunoAddress address;
 
-    public JunoBilling(String name, String email, String document, JunoAddress address) {
+    public JunoBilling(String name, String document, String email, JunoAddress address) {
         this.name = name;
-        this.email = email;
         this.document = document;
+        this.email = email;
         this.address = address;
     }
 

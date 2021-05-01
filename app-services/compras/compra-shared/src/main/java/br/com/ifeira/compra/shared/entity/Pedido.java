@@ -13,8 +13,9 @@ public class Pedido {
     private Cupom cupom;
     private Pessoa cliente;
     private Carrinho carrinho;
+    private String cobranca;
 
-    public Pedido(Date data, StatusPedido statusPedido, Long numeroPedido, Date dataEntrega, Cupom cupom, Pessoa cliente, Carrinho carrinho) {
+    public Pedido(Date data, StatusPedido statusPedido, Long numeroPedido, Date dataEntrega, Cupom cupom, Pessoa cliente, Carrinho carrinho, String cobranca) {
         this.data = data;
         this.statusPedido = statusPedido;
         this.numeroPedido = numeroPedido;
@@ -22,9 +23,18 @@ public class Pedido {
         this.cupom = cupom;
         this.cliente = cliente;
         this.carrinho = carrinho;
+        this.cobranca = cobranca;
     }
 
     public Pedido() {
+    }
+
+    public String getCobranca() {
+        return cobranca;
+    }
+
+    public void setCobranca(String cobranca) {
+        this.cobranca = cobranca;
     }
 
     public Date getData() {

@@ -1,5 +1,6 @@
 package br.com.ifeira.pagamento.handlers;
 
+import br.com.ifeira.pagamento.PagamentoApplication;
 import br.com.ifeira.pagamento.entity.PagamentoResponse;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 
@@ -22,7 +23,7 @@ public class HandlerDecriptacao extends PagamentoOutBaseHandler {
     public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception {
         try {
             if (this.getNext() != null) {
-                PrivateKey privateKey = readPrivateKey("keys/private.der");
+                PrivateKey privateKey = readPrivateKey(PagamentoApplication.RESOURCES_DIR + "private.der");
                 pagamento.setNumeroCartao(new String(decrypt(privateKey, pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
                 pagamento.setCvv(new String(decrypt(privateKey, pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
                 pagamento.setValidadeCartao(new String(decrypt(privateKey, pagamento.getValidadeCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));

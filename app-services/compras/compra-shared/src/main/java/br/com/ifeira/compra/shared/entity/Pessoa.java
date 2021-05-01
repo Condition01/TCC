@@ -10,6 +10,7 @@ public class Pessoa {
     private String nome;
     private String sobrenome;
     private String cpf;
+    private String email;
     private Date dataNascimento;
     private Sexo sexo;
     private Endereco endereco;
@@ -17,7 +18,7 @@ public class Pessoa {
     private Role role;
     private String situacao;
 
-    public Pessoa(String nome, String sobrenome, String cpf, Date dataNascimento, Sexo sexo, Endereco endereco, String telefone, Role role, String situacao) {
+    public Pessoa(String nome, String sobrenome, String cpf, Date dataNascimento, Sexo sexo, Endereco endereco, String telefone, Role role, String situacao, String email) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
@@ -27,9 +28,18 @@ public class Pessoa {
         this.telefone = telefone;
         this.role = role;
         this.situacao = situacao;
+        this.email = email;
     }
 
     public Pessoa() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSobrenome() {

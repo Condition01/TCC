@@ -53,13 +53,16 @@ public class PagamentoApplication {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	public final static String RESOURCES_DIR = "src/main/resources/";
+
 	public static void main(String[] args) {
 		SpringApplication.run(PagamentoApplication.class, args);
 	}
 
 	@GetMapping("/teste")
 	ResponseEntity<?> teste() throws Exception {
-		PublicKey publicKey = readPublicKey("keys/public.der");
+		System.out.println(System.getProperty("user.dir"));
+		PublicKey publicKey = readPublicKey(RESOURCES_DIR + "public.der");
 
 		PagamentoOutHandlerFactory pagFactory = new PagamentoOutConcretHandlerFactory();
 

@@ -11,7 +11,7 @@ public class ReqErrorHandler extends DefaultResponseErrorHandler {
     public void handleError(ClientHttpResponse response) throws IOException {
 
 //        System.out.println(response.getBody().READ);
-
+//
 //        StringWriter writer = new StringWriter();
 //        IOUtils.copy(response.getBody(),  "UTF-8");
     }
