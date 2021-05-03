@@ -23,6 +23,11 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
     private APIConfig apiConfig;
     private RestTemplate restTemplate;
 
+    public HandlerPagamento(APIConfig apiConfig, RestTemplate restTemplate) {
+        this.apiConfig = apiConfig;
+        this.restTemplate = restTemplate;
+    }
+
     @Override
     public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception  {
         String token = pegarTokenAutorizacaoAPIExterna();

@@ -15,8 +15,9 @@ public class Pedido {
     private Carrinho carrinho;
     private String cobranca;
     private Double valorTotal;
+    private Double valorOriginal;
 
-    public Pedido(Date data, StatusPedido statusPedido, Long numeroPedido, Date dataEntrega, Cupom cupom, Pessoa cliente, Carrinho carrinho, String cobranca, Double valorTotal) {
+    public Pedido(Date data, StatusPedido statusPedido, Long numeroPedido, Date dataEntrega, Cupom cupom, Pessoa cliente, Carrinho carrinho, String cobranca, Double valorTotal, Double valorOriginal) {
         this.data = data;
         this.statusPedido = statusPedido;
         this.numeroPedido = numeroPedido;
@@ -25,6 +26,8 @@ public class Pedido {
         this.cliente = cliente;
         this.carrinho = carrinho;
         this.cobranca = cobranca;
+        this.valorTotal = valorTotal;
+        this.valorOriginal = valorOriginal;
     }
 
     public Pedido() {
@@ -36,6 +39,14 @@ public class Pedido {
 
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public Double getValorOriginal() {
+        return valorOriginal;
+    }
+
+    public void setValorOriginal(Double valorOriginal) {
+        this.valorOriginal = valorOriginal;
     }
 
     public String getCobranca() {
@@ -107,17 +118,34 @@ public class Pedido {
         for(ProdutoQuantidade prodQtd: this.getCarrinho().getListaProdutoQuantidade()) {
             valor += (prodQtd.getProdutoFeira().getPreco() * prodQtd.getQuantidade());
         }
+        this.valorOriginal = valor;
         if(this.cupom != null && this.cupom.getAtivo()) {
             valor = valor - (valor*this.cupom.getPorcentagem()/100);
         }
         this.valorTotal = round(valor, 2);
     }
 
-    public static double round(double value, int places) {
+    public double round(double value, int places) {
         long factor = (long) Math.pow(10, places);
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "data=" + data +
+                ", statusPedido=" + statusPedido +
+                ", numeroPedido=" + numeroPedido +
+                ", dataEntrega=" + dataEntrega +
+                ", cupom=" + cupom +
+                ", cliente=" + cliente +
+                ", carrinho=" + carrinho +
+                ", cobranca='" + cobranca + '\'' +
+                ", valorTotal=" + valorTotal +
+                ", valorOriginal=" + valorOriginal +
+                '}';
     }
 
 }

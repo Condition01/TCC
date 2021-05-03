@@ -12,9 +12,7 @@ public class PagamentoOutConcretHandlerFactory implements PagamentoOutHandlerFac
     public PagamentoOutHandler criarPagamentoOutChain(APIConfig apiConfig, RestTemplate restTemplate) {
         PagamentoOutHandler handlerLogs = new HandlerLogs();
         PagamentoOutHandler handlerDecriptacao = new HandlerDecriptacao();
-        HandlerPagamento handlerPagamento = new HandlerPagamento();
-        handlerPagamento.setApiConfig(apiConfig);
-        handlerPagamento.setRestTemplate(restTemplate);
+        PagamentoOutHandler handlerPagamento = new HandlerPagamento(apiConfig, restTemplate);
 
         handlerLogs.setarProximo(handlerDecriptacao);
         handlerDecriptacao.setarProximo(handlerPagamento);

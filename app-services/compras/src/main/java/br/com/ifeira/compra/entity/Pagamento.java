@@ -13,17 +13,37 @@ public class Pagamento {
     private String cvv;
     private Date data;
     private Pedido pedido;
+    private String creditCardHash;
+    private String creditCardId;
 
-    public Pagamento(StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido) {
+    public Pagamento(StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId) {
         this.statusPagamento = statusPagamento;
         this.numeroCartao = numeroCartao;
         this.validadeCartao = validadeCartao;
         this.cvv = cvv;
         this.data = data;
         this.pedido = pedido;
+        this.creditCardHash = creditCardHash;
+        this.creditCardId = creditCardId;
     }
 
     public Pagamento() {
+    }
+
+    public String getCreditCardHash() {
+        return creditCardHash;
+    }
+
+    public void setCreditCardHash(String creditCardHash) {
+        this.creditCardHash = creditCardHash;
+    }
+
+    public String getCreditCardId() {
+        return creditCardId;
+    }
+
+    public void setCreditCardId(String creditCardId) {
+        this.creditCardId = creditCardId;
     }
 
     public StatusPagamento getStatusPagamento() {
@@ -74,4 +94,12 @@ public class Pagamento {
         this.pedido = pedido;
     }
 
+    @Override
+    public String toString() {
+        return "Pagamento{" +
+                "statusPagamento=" + statusPagamento +
+                ", data=" + data +
+                ", pedido=" + pedido +
+                '}';
+    }
 }
