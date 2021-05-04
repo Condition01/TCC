@@ -3,20 +3,26 @@ package br.com.ifeira.compra.handlers;
 import br.com.ifeira.compra.dao.PagamentoDAO;
 import br.com.ifeira.compra.entity.Pagamento;
 import br.com.ifeira.compra.entity.PagamentoProdutor;
+import br.com.ifeira.compra.shared.dao.CarrinhoDAO;
 import br.com.ifeira.compra.shared.dao.PedidoDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
+import br.com.ifeira.compra.shared.dao.PersistivelContextual;
+import br.com.ifeira.compra.shared.entity.Carrinho;
 import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
+import javafx.util.Pair;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class HandlerPersistencia extends PagamentoInBaseHandler {
 
     Persistivel<Pagamento, Long> pagamentoDAO;
     Persistivel<Pedido, Long> pedidoDAO;
+    PersistivelContextual<Carrinho, Pair<Long, String>> carrinhoDAO;
 
     public HandlerPersistencia(JdbcTemplate jdbcTemplate, PagamentoProdutor pagamentoProdutor) {
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
         this.pedidoDAO = new PedidoDAO(jdbcTemplate);
+        this.carrinhoDAO = new CarrinhoDAO(jdbcTemplate);
     }
 
     @Override

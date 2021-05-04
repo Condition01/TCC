@@ -1,33 +1,42 @@
 package br.com.ifeira.compra.shared.dao;
 
+import br.com.ifeira.compra.shared.entity.Carrinho;
 import javafx.util.Pair;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public class CarrinhoDAO implements PersistivelContextual<Pair<Long, String>, String> {
+public class CarrinhoDAO implements PersistivelContextual<Carrinho, Pair<Long, String>> {
+
+    private JdbcTemplate jdbcTemplate;
+
+    public CarrinhoDAO(@Autowired JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
-    public Pair<Long, String> salvar(Pair<Long, String> item, String contexto) {
+    public Carrinho salvar(Carrinho item, String contexto) {
         return null;
     }
 
     @Override
-    public List<Pair<Long, String>> listar(String contexto) {
+    public List<Carrinho> listar(String contexto) {
         return null;
     }
 
     @Override
-    public Pair<Long, String> buscar(String key, String contexto) {
+    public Carrinho buscar(Pair<Long, String> key, String contexto) {
         return null;
     }
 
     @Override
-    public List<Pair<Long, String>> buscarMultiplos(String key, String contexto) {
+    public List<Carrinho> buscarMultiplos(Pair<Long, String> key, String contexto) {
         return null;
     }
 
     @Override
-    public Pair<Long, String> editar(Pair<Long, String> item) {
+    public Carrinho editar(Carrinho item) {
         return null;
     }
 
