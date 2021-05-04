@@ -1,5 +1,6 @@
-package br.com.ifeira.compra.shared.dao;
+package br.com.ifeira.compra.dao;
 
+import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.entity.Cupom;
 import org.springframework.jdbc.core.JdbcTemplate;
 

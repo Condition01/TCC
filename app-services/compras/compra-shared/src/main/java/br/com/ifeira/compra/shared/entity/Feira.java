@@ -12,20 +12,30 @@ public class Feira {
     private String context;
     private String latitute;
     private String longitude;
+    private Integer diaEntrega;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ProdutoFeira> produtosFeira;
 
-    public Feira(String nome, Endereco endereco, String context, String latitute, String longitude, List<ProdutoFeira> produtosFeira) {
+    public Feira(String nome, Endereco endereco, String context, String latitute, String longitude, Integer diaEntrega, List<ProdutoFeira> produtosFeira) {
         this.nome = nome;
         this.endereco = endereco;
         this.context = context;
         this.latitute = latitute;
         this.longitude = longitude;
         this.produtosFeira = produtosFeira;
+        this.diaEntrega = diaEntrega;
     }
 
     public Feira() {
         this.produtosFeira = new ArrayList<>();
+    }
+
+    public Integer getDiaEntrega() {
+        return diaEntrega;
+    }
+
+    public void setDiaEntrega(Integer diaEntrega) {
+        this.diaEntrega = diaEntrega;
     }
 
     public String getNome() {

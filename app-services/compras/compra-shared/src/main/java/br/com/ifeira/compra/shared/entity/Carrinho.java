@@ -7,7 +7,7 @@ public class Carrinho {
 
     private List<ProdutoQuantidade> listaProdutoQuantidade = new ArrayList<ProdutoQuantidade>();
 
-    public Carrinho(Double valorTotal, List<ProdutoQuantidade> listaProdutoQuantidade) {
+    public Carrinho(List<ProdutoQuantidade> listaProdutoQuantidade) {
         this.listaProdutoQuantidade = listaProdutoQuantidade;
     }
 

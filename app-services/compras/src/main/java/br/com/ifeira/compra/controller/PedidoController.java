@@ -5,14 +5,16 @@ import br.com.ifeira.compra.entity.juno.JunoAddress;
 import br.com.ifeira.compra.entity.juno.JunoBilling;
 import br.com.ifeira.compra.entity.juno.JunoCharge;
 import br.com.ifeira.compra.entity.juno.JunoChargeReq;
-import br.com.ifeira.compra.shared.dao.CupomDAO;
+import br.com.ifeira.compra.factories.PedidoConcretFactory;
+import br.com.ifeira.compra.factories.PedidoFactory;
+import br.com.ifeira.compra.dao.CupomDAO;
 import br.com.ifeira.compra.shared.dao.PedidoDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.dao.PessoaDAO;
+import br.com.ifeira.compra.shared.entity.Carrinho;
 import br.com.ifeira.compra.shared.entity.Cupom;
 import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
-import br.com.ifeira.compra.shared.enums.StatusPedido;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -30,7 +32,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -44,22 +45,19 @@ public class PedidoController {
     private Persistivel<Pessoa, String> pessoaDAO;
     private Persistivel<Cupom, String> cupomDAO;
     private Logger logger = LoggerFactory.getLogger(PedidoController.class);
+    private PedidoFactory pedidoFactory;
 
     public PedidoController(@Autowired JdbcTemplate jdbcTemplate) throws Exception {
         this.pedidoDAO = new PedidoDAO(jdbcTemplate);
         this.pessoaDAO = new PessoaDAO(jdbcTemplate);
         this.cupomDAO = new CupomDAO(jdbcTemplate);
+        this.pedidoFactory = new PedidoConcretFactory();
     }
 
-    public Pedido fecharPedido(Pedido pedido, Principal principal) throws Exception {
+    public Pedido fecharPedido(Carrinho carrinho, String cupom, Principal principal) throws Exception {
         Pessoa pessoa = this.pessoaDAO.buscar(principal.getName());
-        if(pedido.getCupom() != null) {
-            pedido.setCupom(this.cupomDAO.buscar(pedido.getCupom().getNome()));
-        }
-        pedido.setCliente(pessoa);
-        pedido.setData(new Date());
-        pedido.setStatusPedido(StatusPedido.PENDENTE);
-        pedido.calcularValorTotal();
+        Cupom cupomObj = this.cupomDAO.buscar(cupom);
+        Pedido pedido = pedidoFactory.criarPedido(carrinho, cupomObj, pessoa);
         pedido.setCobranca(gerarCobranca(pedido, "CREDIT_CARD"));
         return pedido;
     }

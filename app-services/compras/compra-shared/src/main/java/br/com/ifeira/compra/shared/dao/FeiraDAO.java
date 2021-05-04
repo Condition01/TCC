@@ -32,6 +32,7 @@ public class FeiraDAO implements Persistivel<Feira, String> {
             while(rs.next()) {
                 Feira feira = new Feira();
 
+                feira.setDiaEntrega(rs.getInt("DIA_ENTREGA"));
                 feira.setNome(rs.getString("NOME"));
                 feira.setContext(rs.getString("CONTEXTO"));
                 feira.setEndereco(enderecoDAO.buscar(rs.getInt("ID_ENDERECO")));
@@ -58,6 +59,7 @@ public class FeiraDAO implements Persistivel<Feira, String> {
             while(rs.next()) {
                 if(feira == null) {
                     feira = new Feira();
+                    feira.setDiaEntrega(rs.getInt("DIA_ENTREGA"));
                     feira.setNome(rs.getString("NOME"));
                     feira.setContext(rs.getString("CONTEXTO"));
                     feira.setEndereco(enderecoDAO.buscar(rs.getInt("ID_ENDERECO")));

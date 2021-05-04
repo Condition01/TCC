@@ -10,13 +10,14 @@ public class Pagamento {
     private StatusPagamento statusPagamento;
     private String numeroCartao;
     private String validadeCartao;
+    private String nomeCartao;
     private String cvv;
     private Date data;
     private Pedido pedido;
     private String creditCardHash;
     private String creditCardId;
 
-    public Pagamento(StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId) {
+    public Pagamento(StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId, String nomeCartao) {
         this.statusPagamento = statusPagamento;
         this.numeroCartao = numeroCartao;
         this.validadeCartao = validadeCartao;
@@ -25,6 +26,7 @@ public class Pagamento {
         this.pedido = pedido;
         this.creditCardHash = creditCardHash;
         this.creditCardId = creditCardId;
+        this.nomeCartao = nomeCartao;
     }
 
     public Pagamento() {
@@ -48,6 +50,14 @@ public class Pagamento {
 
     public StatusPagamento getStatusPagamento() {
         return statusPagamento;
+    }
+
+    public String getNomeCartao() {
+        return nomeCartao;
+    }
+
+    public void setNomeCartao(String nomeCartao) {
+        this.nomeCartao = nomeCartao;
     }
 
     public void setStatusPagamento(StatusPagamento statusPagamento) {

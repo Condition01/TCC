@@ -42,6 +42,7 @@ public class ProdutoFeiraDAO implements PersistivelContextual<ProdutoFeira, Stri
                 "\tpf.UNIDADE_MEDIDA,\n" +
                 "\tp.TIPO_PRODUTO,\n" +
                 "\tf.NOME AS NOME_FEIRA,\n" +
+                "\tf.DIA_ENTREGA,\n" +
                 "\tpf.CONTEXTO,\n" +
                 "\tf.TELEFONE_CONTATO,\n" +
                 "\tf.LATITUDE,\n" +
@@ -75,6 +76,7 @@ public class ProdutoFeiraDAO implements PersistivelContextual<ProdutoFeira, Stri
                 feira.setEndereco(enderecoDAO.buscar(rs.getInt("ID_ENDERECO")));
                 feira.setLatitute(rs.getString("LATITUDE"));
                 feira.setLongitude(rs.getString("LONGITUDE"));
+                feira.setDiaEntrega(rs.getInt("DIA_ENTREGA"));
 
                 ProdutoFeira produtoFeira = new ProdutoFeira();
                 produtoFeira.setProduto(prod);
@@ -104,6 +106,7 @@ public class ProdutoFeiraDAO implements PersistivelContextual<ProdutoFeira, Stri
                 "\tpf.UNIDADE_MEDIDA,\n" +
                 "\tp.TIPO_PRODUTO,\n" +
                 "\tf.NOME AS NOME_FEIRA,\n" +
+                "\tf.DIA_ENTREGA,\n" +
                 "\tf.TELEFONE_CONTATO,\n" +
                 "\tf.LATITUDE,\n" +
                 "\tf.LONGITUDE,\n" +
@@ -136,6 +139,7 @@ public class ProdutoFeiraDAO implements PersistivelContextual<ProdutoFeira, Stri
                     feira.setEndereco(enderecoDAO.buscar(rs.getInt("ID_ENDERECO")));
                     feira.setLatitute(rs.getString("LATITUDE"));
                     feira.setLongitude(rs.getString("LONGITUDE"));
+                    feira.setDiaEntrega(rs.getInt("DIA_ENTREGA"));
 
                     produtoFeira.setProduto(prod);
                     produtoFeira.setFeira(feira);
@@ -164,6 +168,7 @@ public class ProdutoFeiraDAO implements PersistivelContextual<ProdutoFeira, Stri
                 "\tpf.UNIDADE_MEDIDA,\n" +
                 "\tp.TIPO_PRODUTO,\n" +
                 "\tf.NOME AS NOME_FEIRA,\n" +
+                "\tf.DIA_ENTREGA,\n" +
                 "\tpf.CONTEXTO,\n" +
                 "\tf.TELEFONE_CONTATO,\n" +
                 "\tf.LATITUDE,\n" +
@@ -198,6 +203,7 @@ public class ProdutoFeiraDAO implements PersistivelContextual<ProdutoFeira, Stri
                 feira.setEndereco(enderecoDAO.buscar(rs.getInt("ID_ENDERECO")));
                 feira.setLatitute(rs.getString("LATITUDE"));
                 feira.setLongitude(rs.getString("LONGITUDE"));
+                feira.setDiaEntrega(rs.getInt("DIA_ENTREGA"));
 
                 ProdutoFeira produtoFeira = new ProdutoFeira();
                 produtoFeira.setProduto(prod);

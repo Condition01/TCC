@@ -39,34 +39,34 @@ public class QueueConfig {
     }
 
     @Bean
-    Queue queuePendentes() {
+    public Queue queuePendentes() {
         return new Queue(PAGAMENTOS_PENDENTES_QUEUE_NAME, true);
     }
 
     @Bean
-    CustomExchange exchangePendentes() {
+    public CustomExchange exchangePendentes() {
         Map<String, Object> args = new HashMap<String, Object>();
         args.put("x-delayed-type", "direct");
         return new CustomExchange(PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME, "x-delayed-message", true, false, args);
     }
 
     @Bean
-    Binding bindingPendentes(@Qualifier("queuePendentes") Queue queue, @Qualifier("exchangePendentes") Exchange exchange) {
+    public Binding bindingPendentes(@Qualifier("queuePendentes") Queue queue, @Qualifier("exchangePendentes") Exchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(PAGAMENTOS_PENDENTES_KEY_NAME).noargs();
     }
 
     @Bean
-    Queue queueConcluidos() {
+    public Queue queueConcluidos() {
         return new Queue(PAGAMENTOS_CONCLUIDOS_QUEUE_NAME, true);
     }
 
     @Bean
-    TopicExchange exchangeConcluidos() {
+    public TopicExchange exchangeConcluidos() {
         return new TopicExchange(PAGAMENTOS_CONCLUIDOS_TOPIC_EXCHANGE_NAME);
     }
 
     @Bean
-    Binding bindingConcluidos(@Qualifier("queueConcluidos") Queue queue, @Qualifier("exchangeConcluidos") TopicExchange exchange) {
+    public Binding bindingConcluidos(@Qualifier("queueConcluidos") Queue queue, @Qualifier("exchangeConcluidos") TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(PAGAMENTOS_CONCLUIDOS_KEY_NAME);
     }
 

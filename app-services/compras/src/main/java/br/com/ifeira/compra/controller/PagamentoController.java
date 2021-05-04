@@ -4,11 +4,14 @@ import br.com.ifeira.compra.config.APIConfig;
 import br.com.ifeira.compra.config.MailingConfig;
 import br.com.ifeira.compra.dao.PagamentoDAO;
 import br.com.ifeira.compra.entity.Pagamento;
+import br.com.ifeira.compra.entity.PagamentoProdutor;
 import br.com.ifeira.compra.factories.PagamentoInConcretHandlerFactory;
 import br.com.ifeira.compra.factories.PagamentoInHandlerFactory;
 import br.com.ifeira.compra.handlers.PagamentoInHandler;
 import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.enums.StatusPagamento;
+import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
 import br.com.ifeira.compra.shared.utils.Notificavel;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,6 +29,9 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
 
 @Component
 public class PagamentoController {
@@ -36,26 +42,24 @@ public class PagamentoController {
     private RestTemplate restTemplate;
     @Autowired
     private MailingConfig mailingConfig;
+    @Autowired
+    private PagamentoProdutor pagamentoProdutor;
     private Persistivel<Pagamento, Long> pagamentoDAO;
+    private JdbcTemplate jdbcTemplate;
     private Notificavel notificador;
     private PagamentoInHandlerFactory pagFactory;
     private Logger logger = LoggerFactory.getLogger(PagamentoController.class);
 
     public PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
         this.pagFactory = new PagamentoInConcretHandlerFactory();
-
-//        Properties properties = new Properties();
-//        properties.put("mail.smtp.auth", this.mailingConfig.AUTH);
-//        properties.put("mail.smtp.starttls.enable", this.mailingConfig.STARTTLS);
-//        properties.put("mail.smtp.host", this.mailingConfig.HOST);
-//        properties.put("mail.smtp.port", this.mailingConfig.PORT);
-//
-//        notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
     }
 
     public PagamentoDTO enfileirarPagamento(Pagamento pagamento) throws Exception {
-        PagamentoInHandler pagChain = this.pagFactory.criarPagamentoInChain();
+        PagamentoInHandler pagChain = this.pagFactory.criarPagamentoInChain(jdbcTemplate, pagamentoProdutor);
+        setarDiaEntrega(pagamento);
+        pagamento.setStatusPagamento(StatusPagamento.PENDENTE);
         String token = pegarTokenAutorizacaoAPIExterna();
         pagamento.setCreditCardId(tokenizarCartao(pagamento.getCreditCardHash(), token));
         PagamentoDTO pagDTO = pagChain.handle(pagamento);
@@ -110,8 +114,41 @@ public class PagamentoController {
         return jsonObjResp.get("access_token").asText();
     }
 
-    public void notificar(PagamentoDTO pagamentoDTO){
+    private void setarDiaEntrega(Pagamento pagamento) {
+        Integer dia = pagamento
+                .getPedido()
+                .getCarrinho()
+                .getListaProdutoQuantidade()
+                .get(0)
+                .getProdutoFeira()
+                .getFeira()
+                .getDiaEntrega();
 
+        Date now = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+
+        Integer hoje = calendar.get(Calendar.DAY_OF_WEEK);
+
+        Integer diasAdicionados = hoje.equals(dia) ? 7 : dia - hoje;
+
+        calendar.add(Calendar.DATE, diasAdicionados);
+
+        pagamento.getPedido().setDataEntrega(calendar.getTime());
+    }
+
+    public void notificar(PagamentoDTO pagamento){
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", this.mailingConfig.AUTH);
+        properties.put("mail.smtp.starttls.enable", this.mailingConfig.STARTTLS);
+        properties.put("mail.smtp.host", this.mailingConfig.HOST);
+        properties.put("mail.smtp.port", this.mailingConfig.PORT);
+
+        notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
+
+        String mensagem = "Seu pagamento do pedido " + pagamento.getNumeroPedido() + " foi " + pagamento.getStatus();
+        this.notificador.enviarNotificacao(mensagem, pagamento.getEmail(),"Status Pedido " + pagamento.getNumeroPedido());
     }
 
 }
