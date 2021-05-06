@@ -85,7 +85,7 @@ public class PagamentoController {
 
         notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
 
-        String mensagem = "Seu pagamento do pedido " + pagamento.getNumeroPedido() + " foi " + pagamento.getStatus();
+        String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: " + pagamento.getStatus();
         this.notificador.enviarNotificacao(mensagem, email,"Status Pedido " + pagamento.getNumeroPedido());
     }
 

@@ -59,4 +59,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public RequestContextListener requestContextListener() {
         return new RequestContextListener();
     }
+
 }

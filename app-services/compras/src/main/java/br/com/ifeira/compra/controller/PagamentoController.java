@@ -59,7 +59,7 @@ public class PagamentoController {
         pagamento.setData(new Date());
         pagamento.setStatusPagamento(StatusPagamento.PENDENTE);
         String token = pegarTokenAutorizacaoAPIExterna();
-        if(pagamento.getCreditCardId() == null) {
+        if (pagamento.getCreditCardId() == null) {
             pagamento.setCreditCardId(tokenizarCartao(pagamento.getCreditCardHash(), token));
         }
         PagamentoDTO pagDTO = pagChain.handle(pagamento);
@@ -67,7 +67,7 @@ public class PagamentoController {
         return pagDTO;
     }
 
-    public Pagamento gerarPagamento(Carrinho carrinho){
+    public Pagamento gerarPagamento(Carrinho carrinho) {
         return null;
     }
 
@@ -141,7 +141,7 @@ public class PagamentoController {
         pagamento.getPedido().setDataEntrega(calendar.getTime());
     }
 
-    public void notificar(PagamentoDTO pagamento){
+    public void notificar(PagamentoDTO pagamento) {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", this.mailingConfig.AUTH);
         properties.put("mail.smtp.starttls.enable", this.mailingConfig.STARTTLS);
@@ -150,8 +150,8 @@ public class PagamentoController {
 
         notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
 
-        String mensagem = "Seu pagamento do pedido " + pagamento.getNumeroPedido() + " foi " + pagamento.getStatus();
-        this.notificador.enviarNotificacao(mensagem, pagamento.getEmail(),"Status Pedido " + pagamento.getNumeroPedido());
+        String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: " + pagamento.getStatus();
+        this.notificador.enviarNotificacao(mensagem, pagamento.getEmail(), "Status Pedido " + pagamento.getNumeroPedido());
     }
 
 }

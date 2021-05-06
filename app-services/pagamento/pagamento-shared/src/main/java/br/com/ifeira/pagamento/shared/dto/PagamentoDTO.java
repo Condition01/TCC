@@ -1,7 +1,5 @@
 package br.com.ifeira.pagamento.shared.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Date;
 
 public class PagamentoDTO {
@@ -11,14 +9,11 @@ public class PagamentoDTO {
     private String cpfCliente;
     private String email;
     private String idCobranca;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String numeroCartao;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String validadeCartao;
     private String credId;
     private String status;
     private Date data;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String cvv;
     private String nomeCartao;
     private Double valorTotalPedido;
