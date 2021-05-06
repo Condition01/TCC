@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Pagamento {
 
+    private Long id;
     private StatusPagamento statusPagamento;
     private String numeroCartao;
     private String validadeCartao;
@@ -17,7 +18,8 @@ public class Pagamento {
     private String creditCardHash;
     private String creditCardId;
 
-    public Pagamento(StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId, String nomeCartao) {
+    public Pagamento(Long id, StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId, String nomeCartao) {
+        this.id = id;
         this.statusPagamento = statusPagamento;
         this.numeroCartao = numeroCartao;
         this.validadeCartao = validadeCartao;
@@ -31,6 +33,15 @@ public class Pagamento {
 
     public Pagamento() {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getCreditCardHash() {
         return creditCardHash;

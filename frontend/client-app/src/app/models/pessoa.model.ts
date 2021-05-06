@@ -1,6 +1,6 @@
 import { Endereco } from './endereco.model';
 
-export interface Usuario {
+export interface Pessoa {
     cpf: string
     email: string
     nome: string

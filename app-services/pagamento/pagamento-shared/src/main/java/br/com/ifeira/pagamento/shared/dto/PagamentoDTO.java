@@ -1,18 +1,24 @@
 package br.com.ifeira.pagamento.shared.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class PagamentoDTO {
 
+    private Long idPagamento;
+    private Long numeroPedido;
     private String cpfCliente;
     private String email;
     private String idCobranca;
-    private Long numeroPedido;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String numeroCartao;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String validadeCartao;
     private String credId;
     private String status;
     private Date data;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String cvv;
     private String nomeCartao;
     private Double valorTotalPedido;
@@ -24,7 +30,8 @@ public class PagamentoDTO {
     private String UF;
     private String codigoPostal;
 
-    public PagamentoDTO(String cpfCliente, String email, String idCobranca, Long numeroPedido, String numeroCartao, String validadeCartao, String credId, String status, Date data, String cvv, String nomeCartao, Double valorTotalPedido, String rua, String numeroCasa, String complemento, String bairro, String cidade, String UF, String codigoPostal) {
+    public PagamentoDTO(Long idPagamento, String cpfCliente, String email, String idCobranca, Long numeroPedido, String numeroCartao, String validadeCartao, String credId, String status, Date data, String cvv, String nomeCartao, Double valorTotalPedido, String rua, String numeroCasa, String complemento, String bairro, String cidade, String UF, String codigoPostal) {
+        this.idPagamento = idPagamento;
         this.cpfCliente = cpfCliente;
         this.email = email;
         this.idCobranca = idCobranca;
@@ -47,6 +54,14 @@ public class PagamentoDTO {
     }
 
     public PagamentoDTO() {
+    }
+
+    public Long getIdPagamento() {
+        return idPagamento;
+    }
+
+    public void setIdPagamento(Long idPagamento) {
+        this.idPagamento = idPagamento;
     }
 
     public String getCpfCliente() {

@@ -18,20 +18,37 @@ public class HandlerPersistencia extends PagamentoInBaseHandler {
     Persistivel<Pagamento, Long> pagamentoDAO;
     Persistivel<Pedido, Long> pedidoDAO;
     PersistivelContextual<Carrinho, Pair<Long, String>> carrinhoDAO;
+    PagamentoProdutor pagamentoProdutor;
 
     public HandlerPersistencia(JdbcTemplate jdbcTemplate, PagamentoProdutor pagamentoProdutor) {
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
         this.pedidoDAO = new PedidoDAO(jdbcTemplate);
         this.carrinhoDAO = new CarrinhoDAO(jdbcTemplate);
+        this.pagamentoProdutor = pagamentoProdutor;
     }
 
     @Override
     public PagamentoDTO handle(Pagamento pagamento) {
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
 
-        Pedido pedidoRetornado = this.pedidoDAO.salvar(pagamento.getPedido());
-        Pagamento pagamentoRetornado = this.pagamentoDAO.salvar(pagamento);
+        String contextoFeira = pagamento.getPedido()
+                .getCarrinho()
+                .getListaProdutoQuantidade()
+                .get(0)
+                .getProdutoFeira()
+                .getFeira()
+                .getContext();
 
+        Carrinho carrinho = pagamento.getPedido().getCarrinho();
+
+        Pedido pedidoRetornado = this.pedidoDAO.salvar(pagamento.getPedido());
+
+        pagamento.setPedido(pedidoRetornado);
+        pagamento = this.pagamentoDAO.salvar(pagamento);
+
+        carrinho.setPedidoRef(pedidoRetornado.getNumeroPedido());
+
+        this.carrinhoDAO.salvar(carrinho, contextoFeira);
 
         //Pagamento
         pagamentoDTO.setValidadeCartao(pagamento.getValidadeCartao());
@@ -52,15 +69,16 @@ public class HandlerPersistencia extends PagamentoInBaseHandler {
         pagamentoDTO.setRua(pagamento.getPedido().getCliente().getEndereco().getLogradouro());
 
         //Pedido
+        pagamentoDTO.setIdPagamento(pagamento.getId());
         pagamentoDTO.setEmail(pagamento.getPedido().getCliente().getEmail());
         pagamentoDTO.setCpfCliente(pagamento.getPedido().getCliente().getCpf());
         pagamentoDTO.setStatus(pagamento.getStatusPagamento().name());
         pagamentoDTO.setNumeroPedido(pagamento.getPedido().getNumeroPedido());
         pagamentoDTO.setValorTotalPedido(pagamento.getPedido().getValorTotal());
 
+        this.pagamentoProdutor.enfileiraPagamento(pagamentoDTO);
 
-
-        return null;
+        return pagamentoDTO;
     }
 
 

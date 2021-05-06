@@ -20,6 +20,7 @@ public class APIConfig {
     public final String PUBLIC_TOKEN;
     public final String OAUTH_URL;
     public final String API_VERSION;
+    public final String URL_TOKENIZACAO;
 
     public APIConfig(@Value("${api-pagamento.url}") String API_URL,
                      @Value("${api-pagamento.oauth.id}") String API_ID,
@@ -28,7 +29,8 @@ public class APIConfig {
                      @Value("${api-pagamento.private_token}") String PRIVATE_TOKEN,
                      @Value("${api-pagamento.public_token}") String PUBLIC_TOKEN,
                      @Value("${api-pagamento.oauth.oauth_url}") String OAUTH_URL,
-                     @Value("${api-pagamento.api_version}") String API_VERSION) {
+                     @Value("${api-pagamento.api_version}") String API_VERSION,
+                     @Value("${api-pagamento.url_tokenizacao}") String URL_TOKENIZACAO) {
         this.API_URL = API_URL;
         this.API_ID = API_ID;
         this.API_SECRET = API_SECRET;
@@ -37,6 +39,7 @@ public class APIConfig {
         this.PUBLIC_TOKEN = PUBLIC_TOKEN;
         this.OAUTH_URL = OAUTH_URL;
         this.API_VERSION = API_VERSION;
+        this.URL_TOKENIZACAO = URL_TOKENIZACAO;
     }
 
     @Bean

@@ -26,7 +26,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (err.status === 401) {
           return this.autenticacaoService.refreshToken().pipe(
             switchMap((tokens: any) => {
-              this.autenticacaoService.novoUsuario(tokens);
+              this.autenticacaoService.novoPessoa(tokens);
               return next.handle(request);
             })
           );

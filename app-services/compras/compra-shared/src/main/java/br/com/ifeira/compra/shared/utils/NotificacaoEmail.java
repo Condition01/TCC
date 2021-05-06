@@ -33,7 +33,6 @@ public class NotificacaoEmail implements Notificavel{
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public Message prepareMessage(Session session, String remetente, String titulo, String mensagem) {

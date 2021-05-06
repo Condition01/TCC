@@ -33,7 +33,7 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
                             pagQtd.getProdutoFeira().getFeira().getContext());
             ProdutoQuantidade prodQtd = new ProdutoQuantidade();
             prodQtd.setProdutoFeira(produtoFeira);
-            prodQtd.setQuantidade(prodQtd.getQuantidade());
+            prodQtd.setQuantidade(pagQtd.getQuantidade());
 
             prodQtdList.add(prodQtd);
         }
@@ -41,8 +41,8 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
 
         Double valorTotal = calcularValorTotal(prodQtdList, cupom);
 
-        if(valorTotal != pagamento.getPedido().getValorTotal()) {
-            throw new Exception("Valore de pedido inválido");
+        if(!valorTotal.equals(pagamento.getPedido().getValorTotal())) {
+            throw new Exception("Valores de pedido inválidos");
         }
 
         return getNext().handle(pagamento);

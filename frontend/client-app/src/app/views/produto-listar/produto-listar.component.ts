@@ -21,7 +21,7 @@ export class ProdutoListarComponent implements OnInit {
 
   list() {
     
-    this.script.load('cardhash', 'cardhashcode').then(data => {
+    this.script.load('cardhashcode', 'cardhash').then(data => {
         console.log('script loaded ', data);
     }).catch(error => console.log(error));
 

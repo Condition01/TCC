@@ -3,6 +3,6 @@ interface Scripts {
     src: string;
 }  
 export const ScriptStore: Scripts[] = [
-    {name: 'cardhash', src: 'https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js'},
-    {name: 'cardhashcode', src: '../assets/cardhash.js'}
+    {name: 'cardhashcode', src: 'https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js'},
+    {name: 'cardhash', src: '../assets/cardhash.js'}
 ];

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     let senha = this.form.get('senha').value;
     if (login && senha) {
       this.authService.login(login, senha).subscribe((login) => {
-        this.authService.getUsuario().subscribe(
+        this.authService.getPessoa().subscribe(
           (user) => {
             this.notificacaoService.sucessNotification('Logado com sucesso!');
             this.router.navigate(['/']);

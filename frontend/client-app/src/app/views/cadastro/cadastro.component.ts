@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role, Usuario } from 'src/app/models/pessoa.model';
+import { Role, Pessoa } from 'src/app/models/pessoa.model';
 import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { CepService } from 'src/app/services/cep.service';
 import { NotificacaoService } from 'src/app/services/notificacao.service';
-import { UsuarioService } from 'src/app/services/pessoa.service';
+import { PessoaService } from 'src/app/services/pessoa.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,14 +15,14 @@ import { UsuarioService } from 'src/app/services/pessoa.service';
 })
 export class CadastroComponent implements OnInit {
   form: FormGroup;
-  pessoa: Usuario;
+  pessoa: Pessoa;
   reload: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService,
+    private PessoaService: PessoaService,
     private cepService: CepService,
     private notificacaoService: NotificacaoService,
     private authService: AutenticacaoService
@@ -63,18 +63,18 @@ export class CadastroComponent implements OnInit {
         complemento: this.form.get('complemento').value,
       },
       senha: this.form.get('senha').value,
-    } as Usuario;
+    } as Pessoa;
   }
 
   cadastrar() {
     let pessoa = this.formParaUsuario();
-    this.usuarioService.cadastrar(pessoa).subscribe(
+    this.PessoaService.cadastrar(pessoa).subscribe(
       (success) => {
         this.notificacaoService.sucessNotification('Cadastrado com sucesso!');
         this.authService
           .login(pessoa.email, pessoa.senha)
           .subscribe((success) => {
-            this.authService.getUsuario().subscribe((user) => {
+            this.authService.getPessoa().subscribe((user) => {
               this.notificacaoService.sucessNotification('Logado com sucesso!');
               this.router.navigate(['/']);
             });

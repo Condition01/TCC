@@ -28,10 +28,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
+import java.util.*;
 
 @Component
 public class PagamentoController {
@@ -59,9 +56,12 @@ public class PagamentoController {
     public PagamentoDTO enfileirarPagamento(Pagamento pagamento) throws Exception {
         PagamentoInHandler pagChain = this.pagFactory.criarPagamentoInChain(jdbcTemplate, pagamentoProdutor);
         setarDiaEntrega(pagamento);
+        pagamento.setData(new Date());
         pagamento.setStatusPagamento(StatusPagamento.PENDENTE);
         String token = pegarTokenAutorizacaoAPIExterna();
-        pagamento.setCreditCardId(tokenizarCartao(pagamento.getCreditCardHash(), token));
+        if(pagamento.getCreditCardId() == null) {
+            pagamento.setCreditCardId(tokenizarCartao(pagamento.getCreditCardHash(), token));
+        }
         PagamentoDTO pagDTO = pagChain.handle(pagamento);
         notificar(pagDTO);
         return pagDTO;
@@ -78,10 +78,13 @@ public class PagamentoController {
         headers.add("X-Resource-Token", this.apiConfig.PRIVATE_TOKEN);
         headers.add("Authorization", "Bearer " + token);
 
-        HttpEntity<String> entity = new HttpEntity<>(creditCardHash, headers);
+        Map<String, String> cardHash = new HashMap();
+        cardHash.put("creditCardHash", creditCardHash);
+
+        HttpEntity<Map<String, String>> entity = new HttpEntity<Map<String, String>>(cardHash, headers);
 
         ResponseEntity<String> response =
-                this.restTemplate.exchange(apiConfig.OAUTH_URL,
+                this.restTemplate.exchange(apiConfig.URL_TOKENIZACAO,
                         HttpMethod.POST,
                         entity,
                         String.class);

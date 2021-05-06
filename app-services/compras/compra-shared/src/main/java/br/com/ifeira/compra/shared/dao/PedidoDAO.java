@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 public class PedidoDAO implements Persistivel<Pedido, Long> {
@@ -23,27 +24,25 @@ public class PedidoDAO implements Persistivel<Pedido, Long> {
 
         String sql
                 = "INSERT INTO PEDIDO\n" +
-                "(DATA_PEDIDO, STATUS_PEDIDO, DATA_ENTREGA, CUPOM, CPF_PESSOA, COD_PRODUTO, CONTEXTO_FEIRA, COBRANCA, VALOR_TOTAL)\n" +
-                "VALUES('', '', '', '', '', '', '', '', 0);\n";
+                "(DATA_PEDIDO, STATUS_PEDIDO, DATA_ENTREGA, CUPOM, CPF_PESSOA, COBRANCA, VALOR_TOTAL)\n" +
+                "VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-                    .prepareStatement(sql);
+                    .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, new Date(item.getData().getTime()));
             ps.setString(2, item.getStatusPedido().name());
             ps.setDate(3, new Date(item.getDataEntrega().getTime()));
-            ps.setString(5, item.getCupom().getNome());
-            ps.setString(6, item.getCliente().getCpf());
-//            ps.setString(item.getCarrinho().getListaProdutoQuantidade().get(0).getProdutoFeira().getFeira().);
-            ps.setString(7, item.getCarrinho().getListaProdutoQuantidade().get(0).getProdutoFeira().getFeira().getContext());
-            ps.setString(8, item.getCobranca());
-            ps.setDouble(9, item.getValorTotal());
+            ps.setString(4, item.getCupom().getNome());
+            ps.setString(5, item.getCliente().getCpf());
+            ps.setString(6, item.getCobranca());
+            ps.setDouble(7, item.getValorTotal());
             return ps;
         }, keyHolder);
 
-
         Long primaryKey = keyHolder.getKey().longValue();
-        return this.buscar(primaryKey);
+        item.setNumeroPedido(primaryKey);
+        return item;
     }
 
     @Override
@@ -53,7 +52,9 @@ public class PedidoDAO implements Persistivel<Pedido, Long> {
 
     @Override
     public Pedido buscar(Long key) {
+
         return null;
+
     }
 
     @Override
