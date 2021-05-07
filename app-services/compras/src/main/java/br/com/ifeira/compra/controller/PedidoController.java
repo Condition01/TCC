@@ -7,7 +7,7 @@ import br.com.ifeira.compra.entity.juno.JunoCharge;
 import br.com.ifeira.compra.entity.juno.JunoChargeReq;
 import br.com.ifeira.compra.factories.PedidoConcretFactory;
 import br.com.ifeira.compra.factories.PedidoFactory;
-import br.com.ifeira.compra.dao.CupomDAO;
+import br.com.ifeira.compra.shared.dao.CupomDAO;
 import br.com.ifeira.compra.shared.dao.PedidoDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.dao.PessoaDAO;
@@ -134,6 +134,13 @@ public class PedidoController {
 
         JsonNode jsonObjResp = new ObjectMapper().readTree(response.getBody());
         return jsonObjResp.get("_embedded").get("charges").get(0).get("id").asText();
+    }
+
+    public List<Pedido> listarPedidos(Principal principal) {
+        Pessoa pessoa = this.pessoaDAO.buscar(principal.getName());
+        Object[] parametros = new Object[5];
+        parametros[0] = pessoa;
+        return this.pedidoDAO.buscarComParametros(parametros);
     }
 
 }

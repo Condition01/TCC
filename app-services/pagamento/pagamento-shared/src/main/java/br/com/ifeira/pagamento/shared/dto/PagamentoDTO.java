@@ -24,8 +24,9 @@ public class PagamentoDTO {
     private String cidade;
     private String UF;
     private String codigoPostal;
+    private Integer tentativasMQ;
 
-    public PagamentoDTO(Long idPagamento, String cpfCliente, String email, String idCobranca, Long numeroPedido, String numeroCartao, String validadeCartao, String credId, String status, Date data, String cvv, String nomeCartao, Double valorTotalPedido, String rua, String numeroCasa, String complemento, String bairro, String cidade, String UF, String codigoPostal) {
+    public PagamentoDTO(Long idPagamento, String cpfCliente, String email, String idCobranca, Long numeroPedido, String numeroCartao, String validadeCartao, String credId, String status, Date data, String cvv, String nomeCartao, Double valorTotalPedido, String rua, String numeroCasa, String complemento, String bairro, String cidade, String UF, String codigoPostal, Integer tentativasMQ) {
         this.idPagamento = idPagamento;
         this.cpfCliente = cpfCliente;
         this.email = email;
@@ -46,9 +47,19 @@ public class PagamentoDTO {
         this.cidade = cidade;
         this.UF = UF;
         this.codigoPostal = codigoPostal;
+        this.tentativasMQ = tentativasMQ;
     }
 
     public PagamentoDTO() {
+        this.tentativasMQ = 0;
+    }
+
+    public Integer getTentativasMQ() {
+        return tentativasMQ;
+    }
+
+    public void setTentativasMQ(Integer tentativasMQ) {
+        this.tentativasMQ = tentativasMQ;
     }
 
     public Long getIdPagamento() {

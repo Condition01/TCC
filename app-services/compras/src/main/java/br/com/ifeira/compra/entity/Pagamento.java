@@ -17,8 +17,9 @@ public class Pagamento {
     private Pedido pedido;
     private String creditCardHash;
     private String creditCardId;
+    private Boolean salvaDadosPag;
 
-    public Pagamento(Long id, StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId, String nomeCartao) {
+    public Pagamento(Long id, StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId, String nomeCartao, Boolean salvaDadosPag) {
         this.id = id;
         this.statusPagamento = statusPagamento;
         this.numeroCartao = numeroCartao;
@@ -29,9 +30,11 @@ public class Pagamento {
         this.creditCardHash = creditCardHash;
         this.creditCardId = creditCardId;
         this.nomeCartao = nomeCartao;
+        this.salvaDadosPag = salvaDadosPag;
     }
 
     public Pagamento() {
+        this.salvaDadosPag = false;
     }
 
     public Long getId() {
@@ -42,6 +45,13 @@ public class Pagamento {
         this.id = id;
     }
 
+    public Boolean getSalvaDadosPag() {
+        return salvaDadosPag;
+    }
+
+    public void setSalvaDadosPag(Boolean salvaDadosPag) {
+        this.salvaDadosPag = salvaDadosPag;
+    }
 
     public String getCreditCardHash() {
         return creditCardHash;

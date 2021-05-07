@@ -32,4 +32,16 @@ public class PedidoBoundary {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
+    @GetMapping("/listar")
+    public ResponseEntity<?> listarPedidos(Principal principal) {
+        try {
+            return ResponseEntity.ok(this.pedidoController.listarPedidos(principal));
+        }catch (Exception e) {
+            logger.error(e.getMessage());
+            e.getStackTrace();
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
 }

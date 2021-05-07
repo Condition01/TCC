@@ -7,10 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/pagamento")
@@ -25,6 +24,17 @@ public class PagamentoBoundary {
     public ResponseEntity<?> enviarPagamento(@RequestBody Pagamento pagamento) {
         try {
             return ResponseEntity.ok(this.pagamentoController.enfileirarPagamento(pagamento));
+        }catch (Exception e) {
+            logger.error(e.getMessage());
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
+    @GetMapping("/listar")
+    public ResponseEntity<?> listarPagamentos(Principal principal) {
+        try {
+            return ResponseEntity.ok(this.pagamentoController.listarPagamentos(principal));
         }catch (Exception e) {
             logger.error(e.getMessage());
             return ResponseEntity.status(500).body(e.getMessage());

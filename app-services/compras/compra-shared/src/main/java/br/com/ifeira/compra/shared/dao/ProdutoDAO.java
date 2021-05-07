@@ -37,4 +37,9 @@ public class ProdutoDAO implements Persistivel<Produto, String> {
     public Produto editar(Produto item) {
         return null;
     }
+
+    @Override
+    public List<Produto> buscarComParametros(Object[] params) {
+        return null;
+    }
 }

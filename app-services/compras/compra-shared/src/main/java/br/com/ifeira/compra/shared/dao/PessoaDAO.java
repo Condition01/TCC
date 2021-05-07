@@ -67,4 +67,9 @@ public class PessoaDAO implements Persistivel<Pessoa, String> {
         return null;
     }
 
+    @Override
+    public List<Pessoa> buscarComParametros(Object[] params) {
+        return null;
+    }
+
 }

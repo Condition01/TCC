@@ -69,4 +69,9 @@ public class EnderecoDAO implements Persistivel<Endereco, Integer>{
     public Endereco editar(Endereco item) {
         return null;
     }
+
+    @Override
+    public List<Endereco> buscarComParametros(Object[] params) {
+        return null;
+    }
 }

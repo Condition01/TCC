@@ -82,4 +82,9 @@ public class FeiraDAO implements Persistivel<Feira, String> {
         return null;
     }
 
+    @Override
+    public List<Feira> buscarComParametros(Object[] params) {
+        return null;
+    }
+
 }

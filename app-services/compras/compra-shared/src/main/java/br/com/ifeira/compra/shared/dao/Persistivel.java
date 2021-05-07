@@ -9,5 +9,6 @@ public interface Persistivel<T, K> {
     T buscar(K identificador);
     List<T> buscarMultiplos(K key);
     T editar(T item);
+    List<T> buscarComParametros(Object[] params);
 
 }

@@ -1,6 +1,5 @@
-package br.com.ifeira.compra.dao;
+package br.com.ifeira.compra.shared.dao;
 
-import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.entity.Cupom;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -53,6 +52,11 @@ public class CupomDAO implements Persistivel<Cupom, String> {
 
     @Override
     public Cupom editar(Cupom item) {
+        return null;
+    }
+
+    @Override
+    public List<Cupom> buscarComParametros(Object[] params) {
         return null;
     }
 }

@@ -9,7 +9,9 @@ import br.com.ifeira.compra.factories.PagamentoInConcretHandlerFactory;
 import br.com.ifeira.compra.factories.PagamentoInHandlerFactory;
 import br.com.ifeira.compra.handlers.PagamentoInHandler;
 import br.com.ifeira.compra.shared.dao.Persistivel;
+import br.com.ifeira.compra.shared.dao.PessoaDAO;
 import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.entity.Pessoa;
 import br.com.ifeira.compra.shared.enums.StatusPagamento;
 import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
 import br.com.ifeira.compra.shared.utils.Notificavel;
@@ -28,6 +30,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.security.Principal;
 import java.util.*;
 
 @Component
@@ -42,6 +45,7 @@ public class PagamentoController {
     @Autowired
     private PagamentoProdutor pagamentoProdutor;
     private Persistivel<Pagamento, Long> pagamentoDAO;
+    private Persistivel<Pessoa, String> pessoaDAO;
     private JdbcTemplate jdbcTemplate;
     private Notificavel notificador;
     private PagamentoInHandlerFactory pagFactory;
@@ -50,6 +54,7 @@ public class PagamentoController {
     public PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
+        this.pessoaDAO = new PessoaDAO(jdbcTemplate);
         this.pagFactory = new PagamentoInConcretHandlerFactory();
     }
 
@@ -139,6 +144,13 @@ public class PagamentoController {
         calendar.add(Calendar.DATE, diasAdicionados);
 
         pagamento.getPedido().setDataEntrega(calendar.getTime());
+    }
+
+    public List<Pagamento> listarPagamentos(Principal principal) {
+        Pessoa pessoa = this.pessoaDAO.buscar(principal.getName());
+        Object[] parametros = new Object[5];
+        parametros[0] = pessoa;
+        return this.pagamentoDAO.buscarComParametros(parametros);
     }
 
     public void notificar(PagamentoDTO pagamento) {

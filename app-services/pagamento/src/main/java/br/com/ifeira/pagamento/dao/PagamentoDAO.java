@@ -1,12 +1,9 @@
 package br.com.ifeira.pagamento.dao;
 
-import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
-
-public class PagamentoDAO implements Persistivel<PagamentoDTO, Integer> {
+public class PagamentoDAO {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -14,29 +11,16 @@ public class PagamentoDAO implements Persistivel<PagamentoDTO, Integer> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
-    @Override
-    public PagamentoDTO salvar(PagamentoDTO item) {
-        return null;
+    public boolean verificarCancelamento(PagamentoDTO pagamento) {
+        return false;
     }
 
-    @Override
-    public List<PagamentoDTO> listar() {
-        return null;
+    public void persistirPagamentosComErro(PagamentoDTO pagamento) {
+
     }
 
-    @Override
-    public PagamentoDTO buscar(Integer key) {
-        return null;
+    public void persistirPagamentosComSucesso(PagamentoDTO pagamento) {
+
     }
 
-    @Override
-    public List<PagamentoDTO> buscarMultiplos(Integer key) {
-        return null;
-    }
-
-    @Override
-    public PagamentoDTO editar(PagamentoDTO item) {
-        return null;
-    }
 }

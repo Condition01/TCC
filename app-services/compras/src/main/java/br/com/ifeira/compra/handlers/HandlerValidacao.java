@@ -1,7 +1,7 @@
 package br.com.ifeira.compra.handlers;
 
 import br.com.ifeira.compra.entity.Pagamento;
-import br.com.ifeira.compra.dao.CupomDAO;
+import br.com.ifeira.compra.shared.dao.CupomDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.dao.PersistivelContextual;
 import br.com.ifeira.compra.shared.dao.ProdutoFeiraDAO;
