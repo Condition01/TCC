@@ -7,6 +7,7 @@ import java.util.Date;
 
 
 public class Entrega {
+
     Pessoa entregador;
     Date dataRealizacao;
     StatusEntrega statusEntrega;
@@ -45,4 +46,5 @@ public class Entrega {
     public boolean cancelarEntrega(){
         return false;
     }
+
 }

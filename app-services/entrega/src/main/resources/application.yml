@@ -1,11 +1,6 @@
 spring:
   application:
     name: entrega-service
-  datasource:
-    url: jdbc:mysql://localhost:3306/fatectcc?useTimezone=true&serverTimezone=UTC
-    username: root
-    password: 1234
-    driverClassName: com.mysql.cj.jdbc.Driver
   jackson:
     serialization:
       fail-on-empty-beans: false
@@ -42,3 +37,19 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 3000
+
+mail:
+  smtp:
+    auth: true
+    starttls:
+      enable: true
+    host: smtp.gmail.com
+    port: 587
+  myAccountEmail: ifeiranotificacao@gmail.com
+  password: 123456Aa@
+
+bd:
+  url: jdbc:mysql://localhost:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
+  username: root
+  password: 1234
+  driverClassName: com.mysql.cj.jdbc.Driver
