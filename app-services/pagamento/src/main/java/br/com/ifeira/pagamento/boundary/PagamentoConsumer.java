@@ -17,7 +17,7 @@ public class PagamentoConsumer {
     private PagamentoController pagamentoController;
 
     @RabbitListener(queues = "${mq[0].queue-name}")
-    public void consumir(PagamentoDTO pagamento) {
+    public void consumir(PagamentoDTO pagamento) throws Exception {
         this.pagamentoController.processarRequisicao(pagamento);
     }
 

@@ -6,6 +6,7 @@ import br.com.ifeira.pagamento.entity.juno.JunoAddress;
 import br.com.ifeira.pagamento.entity.juno.JunoBilling;
 import br.com.ifeira.pagamento.entity.juno.JunoCreditCardDetails;
 import br.com.ifeira.pagamento.entity.juno.JunoPaymentReq;
+import br.com.ifeira.pagamento.exceptions.PagamentoInvalidoException;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,7 +60,7 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
         return jsonObjResp.get("access_token").asText();
     }
 
-    private PagamentoResponse enviarPagamento(PagamentoDTO pagamento, String token) throws IOException {
+    private PagamentoResponse enviarPagamento(PagamentoDTO pagamento, String token) throws IOException, PagamentoInvalidoException {
         this.restTemplate.setErrorHandler(new ReqErrorHandler());
 
         JunoPaymentReq junoPaymentReq = parseDTOtoJuno(pagamento);
@@ -73,6 +74,10 @@ public class HandlerPagamento extends PagamentoOutBaseHandler {
         HttpEntity<JunoPaymentReq> entity = new HttpEntity<>(junoPaymentReq, headers);
 
         ResponseEntity<String> response = this.restTemplate.postForEntity(this.apiConfig.API_URL, entity, String.class);
+
+        if(response.getStatusCode() == HttpStatus.BAD_REQUEST) {
+            throw new PagamentoInvalidoException(pagamento);
+        }
 
         JsonNode jsonObjResp = new ObjectMapper().readTree(response.getBody());
         String txId = jsonObjResp.get("transactionId").asText();

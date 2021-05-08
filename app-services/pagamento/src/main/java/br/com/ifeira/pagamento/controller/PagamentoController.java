@@ -14,6 +14,7 @@ import br.com.ifeira.pagamento.handlers.PagamentoOutHandler;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -47,18 +48,11 @@ public class PagamentoController {
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
     }
 
-    public boolean validaDadosPag(PagamentoDTO pagamento) {
-        return (pagamento.getNumeroCartao() != null
-                && pagamento.getCvv() != null && pagamento.getValidadeCartao() != null && pagamento.getNomeCartao() != null);
-    }
-
-    public boolean validaCancelamento(PagamentoDTO pagamentoDTO) {
-        return this.pagamentoDAO.verificarCancelamento(pagamentoDTO);
-    }
-
-    public void processarRequisicao(PagamentoDTO pagamento) {
-        PagamentoOutHandler pagChain = this.pagFactory.criarPagamentoOutChain(this.apiConfig, this.rTemplate);
+    public void processarRequisicao(PagamentoDTO pagamento) throws Exception {
+        PagamentoOutHandler pagChain = this.pagFactory.criarPagamentoOutChain(this.apiConfig, this.rTemplate, this.jdbcTemplate);
         try {
+            checarTentativas(pagamento);
+            pagamento.setTentativasMQ(pagamento.getTentativasMQ() + 1);
             PagamentoResponse pagamentoResponse = pagChain.handle(pagamento);
             mapearEstadoPagamento(pagamento, pagamentoResponse.getStatus());
             persistirPagamentosRealizados(pagamento);
@@ -67,9 +61,18 @@ public class PagamentoController {
             atualizarSaldoADM(pagamento);
         } catch (Exception e) {
             if(!(e instanceof PagamentoInvalidoException)) {
-                pagamentoProdutor.enfileirarPagamentosComErro(pagamento);
-                logger.error(e.getMessage());
+                this.pagamentoProdutor.enfileirarPagamentosComErro(pagamento);
+                this.logger.error(e.getMessage());
+            } else {
+                this.pagamentoDAO.persistirPagamentosComErro(pagamento);
+                throw new AmqpRejectAndDontRequeueException("DONT");
             }
+        }
+    }
+
+    public void checarTentativas(PagamentoDTO pagamento) throws PagamentoInvalidoException {
+        if (pagamento.getTentativasMQ() >= 3) {
+            throw new PagamentoInvalidoException(pagamento);
         }
     }
 
@@ -81,7 +84,7 @@ public class PagamentoController {
         }
     }
 
-    public void persistirPagamentosRealizados(PagamentoDTO pagamento) {
+    public void persistirPagamentosRealizados(PagamentoDTO pagamento) throws Exception {
         if (pagamento.getStatus().equals("CONFIRMADO")) {
             pagamentoProdutor.enfileirarPagamentosConcluidos(pagamento);
             pagamentoDAO.persistirPagamentosComSucesso(pagamento);
@@ -103,7 +106,9 @@ public class PagamentoController {
     }
 
     public void atualizarSaldoADM(PagamentoDTO pagamento) {
-
+        if(pagamento.getStatus().equals("CONFIRMADO")) {
+            this.pagamentoDAO.atualizarSaldoADM(pagamento);
+        }
     }
 
     @PostConstruct

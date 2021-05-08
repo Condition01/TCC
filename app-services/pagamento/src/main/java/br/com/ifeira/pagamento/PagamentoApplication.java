@@ -15,6 +15,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,10 +67,13 @@ public class PagamentoApplication {
 
 		PagamentoOutHandlerFactory pagFactory = new PagamentoOutConcretHandlerFactory();
 
-		PagamentoOutHandler pagHandlers = pagFactory.criarPagamentoOutChain(this.apiConfig, this.restTemplate);
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+
+		PagamentoOutHandler pagHandlers = pagFactory.criarPagamentoOutChain(this.apiConfig, this.restTemplate, jdbcTemplate);
 
 		//cryptos
 		PagamentoDTO pagamentoDTO = new PagamentoDTO();
+		pagamentoDTO.setIdPagamento(10L);
 		pagamentoDTO.setNumeroCartao(new String(encrypt(publicKey,"12312313".getBytes()), StandardCharsets.ISO_8859_1));
 		pagamentoDTO.setCvv(new String(encrypt(publicKey,"123".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
 		pagamentoDTO.setValidadeCartao(new String(encrypt(publicKey,"20/03".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
@@ -82,13 +86,13 @@ public class PagamentoApplication {
 		pagamentoDTO.setBairro("São Lucas");
 		pagamentoDTO.setUF("SP");
 		pagamentoDTO.setCodigoPostal("18767030");
-		pagamentoDTO.setNumeroPedido(1L);
+		pagamentoDTO.setNumeroPedido(25L);
 
 		//email
 		pagamentoDTO.setEmail("brunofc11@gmail.com");
 
 		//billings
-		pagamentoDTO.setIdCobranca("chr_3C7874304226B927002AEFBDC30C479B");
+		pagamentoDTO.setIdCobranca("chr_F8266EB16136F84B130DF2DDC7C9451E");
 		pagamentoDTO.setCredId("2e16c846-5bfb-4f69-842a-399fc31c099c");
 
 //		this.rabbitTemplate.convertAndSend(this.config.TOPIC_EXCHANGE_NAME, this.config.KEY_NAME, a);

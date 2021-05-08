@@ -2,6 +2,7 @@ package br.com.ifeira.pagamento.dao;
 
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 public class PagamentoDAO {
 
@@ -12,15 +13,58 @@ public class PagamentoDAO {
     }
 
     public boolean verificarCancelamento(PagamentoDTO pagamento) {
-        return false;
+        String sql = "SELECT p.STATUS_PEDIDO FROM PEDIDO p WHERE p.NUMERO = ?";
+
+        return jdbcTemplate.query(sql, ps -> {
+            ps.setLong(1, pagamento.getNumeroPedido());
+        }, rs -> {
+
+            Boolean cancelado = false;
+
+            while (rs.next()) {
+                String statusPedido = rs.getString("STATUS_PEDIDO");
+
+                if(statusPedido.equals("CANCELADO")) {
+                    cancelado = true;
+                }
+            }
+
+            return cancelado;
+        });
     }
 
+    @Transactional
     public void persistirPagamentosComErro(PagamentoDTO pagamento) {
+        String statusPagamento = "CANCELADO";
+        String statusPedido = "CANCELADO";
 
+        if(pagamento.getNumeroPedido() != null && pagamento.getNumeroCartao() != null) {
+            this.jdbcTemplate.update(
+                    "UPDATE PAGAMENTO pa SET pa.STATUS_PAGAMENTO = ? WHERE pa.ID = ?", statusPagamento, pagamento.getIdPagamento());
+
+            this.jdbcTemplate.update("UPDATE PEDIDO p SET p.STATUS_PEDIDO = ? WHERE p.NUMERO = ?", statusPedido, pagamento.getNumeroPedido());
+        }
     }
 
+    @Transactional
     public void persistirPagamentosComSucesso(PagamentoDTO pagamento) {
+        String statusPagamento = "CONFIRMADO";
 
+        String statusPedido = "PAGO";
+
+        if(pagamento.getNumeroPedido() != null && pagamento.getNumeroCartao() != null) {
+            this.jdbcTemplate.update(
+                    "UPDATE PAGAMENTO pa SET pa.STATUS_PAGAMENTO = ? WHERE pa.ID = ?", statusPagamento, pagamento.getIdPagamento());
+
+            this.jdbcTemplate.update("UPDATE PEDIDO p SET p.STATUS_PEDIDO = ? WHERE p.NUMERO = ?", statusPedido, pagamento.getNumeroPedido());
+        }
+    }
+
+    public void atualizarSaldoADM(PagamentoDTO pagamento) {
+        this.jdbcTemplate.update(
+                "INSERT INTO SALDO_ADMIN\n" +
+                        "(ID_PAGAMENTO, VALOR_TOTAL)\n" +
+                        "VALUES(?, ?);\n", pagamento.getIdPagamento(), pagamento.getValorTotalPedido());
     }
 
 }

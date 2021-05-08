@@ -24,7 +24,7 @@ public class HandlerCriptografia extends PagamentoInBaseHandler {
         if(this.getNext() != null) {
             PublicKey publicKey = readPublicKey(ComprasApplication.RESOURCES_DIR + "public.der");
 
-            pagamento.setNumeroCartao(new String(encrypt(publicKey,pagamento.getNumeroCartao().getBytes()), StandardCharsets.ISO_8859_1));
+            pagamento.setNumeroCartao(new String(encrypt(publicKey,pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
             pagamento.setCvv(new String(encrypt(publicKey,pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
             pagamento.setValidadeCartao(new String(encrypt(publicKey,pagamento.getValidadeCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
 

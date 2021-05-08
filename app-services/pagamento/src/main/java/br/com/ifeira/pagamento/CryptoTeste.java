@@ -7,6 +7,7 @@ import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
 import br.com.ifeira.pagamento.factories.PagamentoOutHandlerFactory;
 import br.com.ifeira.pagamento.handlers.PagamentoOutHandler;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.BadPaddingException;
@@ -55,7 +56,7 @@ public class CryptoTeste {
 
 
             PagamentoOutHandlerFactory pagFacotory = new PagamentoOutConcretHandlerFactory();
-            PagamentoOutHandler pagChain = pagFacotory.criarPagamentoOutChain(new APIConfig("", "", "", "", "", "", "", ""), new RestTemplate());
+            PagamentoOutHandler pagChain = pagFacotory.criarPagamentoOutChain(new APIConfig("", "", "", "", "", "", "", ""), new RestTemplate(), new JdbcTemplate());
 
             PagamentoDTO pagamentoDTO = new PagamentoDTO();
             pagamentoDTO.setNumeroCartao(new String(encrypt(publicKey, "12312313".getBytes()), StandardCharsets.ISO_8859_1));

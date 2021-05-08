@@ -11,7 +11,6 @@ public class HandlerValidacao extends PagamentoOutBaseHandler {
     private PagamentoDAO pagamentoDAO;
 
     public HandlerValidacao(JdbcTemplate jdbcTemplate) {
-        //TODO - PROGRAMAR PERSISTÊNCIA NAS CAMADAS DE DADOS, FAZER STATUS DE PAGAMENTO SER ENUM
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
     }
 
@@ -26,9 +25,7 @@ public class HandlerValidacao extends PagamentoOutBaseHandler {
 
     @Override
     public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception {
-        if (pagamento.getTentativasMQ() < 3 && validaDadosPag(pagamento) & validaCancelamento(pagamento)) {
-            pagamento.setTentativasMQ(pagamento.getTentativasMQ() + 1);
-        } else {
+        if (!validaDadosPag(pagamento) & validaCancelamento(pagamento)) {
             throw new PagamentoInvalidoException(pagamento);
         }
 
