@@ -1,5 +1,6 @@
 package br.com.ifeira.entrega.entity;
 
+import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
 import br.com.ifeira.entrega.enums.StatusEntrega;
 
@@ -8,9 +9,36 @@ import java.util.Date;
 
 public class Entrega {
 
-    Pessoa entregador;
-    Date dataRealizacao;
-    StatusEntrega statusEntrega;
+    private Pessoa entregador;
+    private Date dataRealizacao;
+    private StatusEntrega statusEntrega;
+    private Pedido pedido;
+
+    public Entrega(Pessoa entregador, Date dataRealizacao, StatusEntrega statusEntrega, Pedido pedido) {
+        this.entregador = entregador;
+        this.dataRealizacao = dataRealizacao;
+        this.statusEntrega = statusEntrega;
+        this.pedido = pedido;
+    }
+
+    public Entrega() {
+    }
+
+    public void marcarRealizada() {
+        this.statusEntrega = StatusEntrega.REALIZADA;
+    }
+
+    public void marcarAtribuida() {
+        this.statusEntrega = StatusEntrega.ATRIBUIDA;
+    }
+
+    public void marcarCancelada() {
+        this.statusEntrega = StatusEntrega.CANCELADA;
+    }
+
+    public void marcarPendente() {
+        this.statusEntrega = StatusEntrega.PENDENTE;
+    }
 
     public Pessoa getEntregador() {
         return entregador;
@@ -36,15 +64,12 @@ public class Entrega {
         this.statusEntrega = statusEntrega;
     }
 
-    public boolean Entregue(){
-        return false;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public boolean atribuirEntrega(){
-        return false;
-    }
-    public boolean cancelarEntrega(){
-        return false;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
 }

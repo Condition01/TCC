@@ -33,6 +33,22 @@ public class Pedido {
     public Pedido() {
     }
 
+    public void marcarPendente() {
+        this.statusPedido = StatusPedido.PENDENTE;
+    }
+
+    public void marcarCancelado() {
+        this.statusPedido = StatusPedido.CANCELADO;
+    }
+
+    public void marcarPago() {
+        this.statusPedido = StatusPedido.PAGO;
+    }
+
+    public void marcarEntregue() {
+        this.statusPedido = StatusPedido.ENTREGUE;
+    }
+
     public Double getValorTotal() {
         return valorTotal;
     }

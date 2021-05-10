@@ -63,8 +63,8 @@ public class PagamentoController {
         setarDiaEntrega(pagamento);
         pagamento.setData(new Date());
         pagamento.setStatusPagamento(StatusPagamento.PENDENTE);
-        String token = pegarTokenAutorizacaoAPIExterna();
         if (pagamento.getCreditCardId() == null) {
+            String token = pegarTokenAutorizacaoAPIExterna();
             pagamento.setCreditCardId(tokenizarCartao(pagamento.getCreditCardHash(), token));
         }
         PagamentoDTO pagDTO = pagChain.handle(pagamento);

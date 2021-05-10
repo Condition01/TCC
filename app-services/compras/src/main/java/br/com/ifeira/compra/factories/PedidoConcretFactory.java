@@ -4,7 +4,6 @@ import br.com.ifeira.compra.shared.entity.Carrinho;
 import br.com.ifeira.compra.shared.entity.Cupom;
 import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
-import br.com.ifeira.compra.shared.enums.StatusPedido;
 
 import java.util.Date;
 
@@ -16,7 +15,7 @@ public class PedidoConcretFactory implements PedidoFactory {
         pedido.setCupom(cupom);
         pedido.setCliente(pessoa);
         pedido.setData(new Date());
-        pedido.setStatusPedido(StatusPedido.PENDENTE);
+        pedido.marcarPendente();
         pedido.calcularValorTotal();
         return pedido;
     }

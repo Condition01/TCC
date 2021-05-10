@@ -3,8 +3,8 @@ package br.com.ifeira.entrega.enums;
 public enum StatusEntrega {
 
     PENDENTE("PENDENTE"),
-    CANCELADO("CANCELADO"),
-    ENTREGUE("ENTREGUE"),
+    CANCELADA("CANCELADA"),
+    REALIZADA("REALIZADA"),
     ATRIBUIDA("ATRIBUIDA");
 
     private String value;

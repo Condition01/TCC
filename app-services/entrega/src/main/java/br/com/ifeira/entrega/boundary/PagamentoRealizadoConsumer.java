@@ -18,7 +18,7 @@ public class PagamentoRealizadoConsumer {
 
     @RabbitListener(queues = "${mq[0].queue-name}")
     public void consumir(PagamentoDTO pagamento) throws Exception {
-
+        this.entregaController.gerarEntrega(pagamento);
     }
 
 }

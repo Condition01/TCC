@@ -22,7 +22,7 @@ public class FeiraController {
         return this.feiraDAO.listar();
     }
 
-    public Feira selecionarFeira(String feira){
+    public Feira selecionarFeira(String feira) {
         return this.feiraDAO.buscar(feira);
     }
 
