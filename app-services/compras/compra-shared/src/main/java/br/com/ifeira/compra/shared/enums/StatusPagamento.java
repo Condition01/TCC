@@ -2,10 +2,9 @@ package br.com.ifeira.compra.shared.enums;
 
 public enum StatusPagamento {
 
-    PENDENTE("Pendente"),
-    CONFIRMADO("Confirmado"),
-    RECUSADO("Recusado"),
-    CANCELADO("Cancelado");
+    PENDENTE("PENDENTE"),
+    CONFIRMADO("CONFIRMADO"),
+    CANCELADO("CANCELADO");
 
     StatusPagamento(String value) {
         this.value = value;
