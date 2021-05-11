@@ -1,123 +1,117 @@
 package br.com.ifeira.entrega.dao;
 
+import br.com.ifeira.compra.shared.dao.PedidoDAO;
 import br.com.ifeira.compra.shared.dao.Persistivel;
+import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.entrega.entity.Entrega;
+import br.com.ifeira.entrega.entity.Entregador;
+import br.com.ifeira.entrega.enums.StatusEntrega;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EntregaDAO implements Persistivel<Entrega, Long> {
 
     private JdbcTemplate jdbcTemplate;
+    private Persistivel<Pedido, Long> pedidoDAO;
+    private Persistivel<Entregador, String> entregadorDAO;
 
     public EntregaDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.pedidoDAO = new PedidoDAO(jdbcTemplate);
+        this.entregadorDAO = new EntregadorDAO(jdbcTemplate);
     }
 
     @Override
     public Entrega salvar(Entrega item) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-//        KeyHolder keyHolder = new GeneratedKeyHolder();
-//
-//        String sql
-//                = "INSERT INTO PEDIDO\n" +
-//                "(DATA_PEDIDO, STATUS_PEDIDO, DATA_ENTREGA, CUPOM, CPF_PESSOA, COBRANCA, VALOR_TOTAL, VALOR_ORIGINAL)\n" +
-//                "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-//
-//        jdbcTemplate.update(connection -> {
-//            PreparedStatement ps = connection
-//                    .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//            ps.setDate(1, new Date(item.getData().getTime()));
-//            ps.setString(2, item.getStatusPedido().name());
-//            ps.setDate(3, new Date(item.getDataEntrega().getTime()));
-//            ps.setString(4, item.getCupom().getNome());
-//            ps.setString(5, item.getCliente().getCpf());
-//            ps.setString(6, item.getCobranca());
-//            ps.setDouble(7, item.getValorTotal());
-//            ps.setDouble(8, item.getValorOriginal());
-//            return ps;
-//        }, keyHolder);
-//
-//        Long primaryKey = keyHolder.getKey().longValue();
-//        item.setNumeroPedido(primaryKey);
-//        return item;
-        return null;
+        String sql
+                = "INSERT INTO ENTREGA\n" +
+                "(CPF_ENTREGADOR, NUMERO_PEDIDO, STATUS_ENTREGA)\n" +
+                "VALUES(?, ?, ?);\n";
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection
+                    .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, item.getEntregador().getCpf());
+            ps.setLong(2, item.getPedido().getNumeroPedido());
+            ps.setString(3, item.getStatusEntrega().getValue());
+            return ps;
+        }, keyHolder);
+
+        Long primaryKey = keyHolder.getKey().longValue();
+        item.setId(primaryKey);
+        return item;
     }
 
     @Override
     public List<Entrega> listar() {
-        return null;
+        String sql = "SELECT\n" +
+                "\te.ID,\n" +
+                "\te.CPF_ENTREGADOR,\n" +
+                "\te.NUMERO_PEDIDO,\n" +
+                "\te.DATA_REALIZACAO,\n" +
+                "\te.STATUS_ENTREGA\n" +
+                "FROM\n" +
+                "\tENTREGA e";
+
+        return jdbcTemplate.query(sql, rs -> {
+            List<Entrega> entregas = new ArrayList<>();
+
+            while (rs.next()) {
+                Entrega entrega = new Entrega();
+                entrega.setId(rs.getLong("ID"));
+                entrega.setEntregador(this.entregadorDAO.buscar(rs.getString("CPF_ENTREGADOR")));
+                entrega.setPedido(this.pedidoDAO.buscar(rs.getLong("NUMERO_PEDIDO")));
+                entrega.setDataRealizacao(rs.getDate("DATA_REALIZACAO"));
+                entrega.setStatusEntrega(StatusEntrega.valueOf(rs.getString("STATUS_ENTREGA")));
+
+                entregas.add(entrega);
+            }
+
+            return entregas;
+        });
     }
 
     @Override
     public Entrega buscar(Long identificador) {
-//        String sql = "SELECT\n" +
-//                "\tpd.NUMERO,\n" +
-//                "\tpd.DATA_PEDIDO,\n" +
-//                "\tpd.STATUS_PEDIDO,\n" +
-//                "\tpd.DATA_ENTREGA,\n" +
-//                "\tpd.CUPOM,\n" +
-//                "\tpd.CPF_PESSOA,\n" +
-//                "\tpd.COBRANCA,\n" +
-//                "\tpd.VALOR_TOTAL,\n" +
-//                "\tpd.VALOR_ORIGINAL,\n" +
-//                "\tc.COD_PRODUTO,\n" +
-//                "\tc.CONTEXTO,\n" +
-//                "\tc.QUANTIDADE,\n" +
-//                "\tp.EMAIL\n" +
-//                "FROM\n" +
-//                "\tPEDIDO pd\n" +
-//                "INNER JOIN PESSOA p ON\n" +
-//                "\tp.CPF = pd.CPF_PESSOA\n" +
-//                "INNER JOIN CARRINHO c ON\n" +
-//                "\tc.NUMERO_PEDIDO = pd.NUMERO\n" +
-//                "WHERE\n" +
-//                "\tpd.NUMERO = ?";
-//
-//        return jdbcTemplate.query(sql, ps -> {
-//            ps.setLong(1, key);
-//        }, rs -> {
-//            Pedido pedido = null;
-//
-//            while (rs.next()) {
-//                if(pedido == null) {
-//                    pedido = new Pedido();
-//
-//                    Carrinho carrinho = new Carrinho();
-//
-//                    pedido.setCarrinho(carrinho);
-//                    pedido.setNumeroPedido(rs.getLong("NUMERO"));
-//                    pedido.setData(rs.getDate("DATA_PEDIDO"));
-//                    pedido.setStatusPedido(StatusPedido.valueOf(rs.getString("STATUS_PEDIDO")));
-//                    pedido.setDataEntrega(rs.getDate("DATA_ENTREGA"));
-//                    pedido.setCupom(this.cupomDAO.buscar(rs.getString("CUPOM")));
-//                    pedido.setCliente(this.pessoaDAO.buscar(rs.getString("EMAIL")));
-//                    pedido.setCobranca(rs.getString("COBRANCA"));
-//                    pedido.setValorTotal(rs.getDouble("VALOR_TOTAL"));
-//                    pedido.setValorOriginal(rs.getDouble("VALOR_ORIGINAL"));
-//
-//                    ProdutoFeira produtoFeira = this.produtoFeiraDAO.buscar(
-//                            rs.getString("COD_PRODUTO"),
-//                            rs.getString("CONTEXTO"));
-//
-//                    List<ProdutoQuantidade> prodQtdList = new ArrayList<>();
-//                    prodQtdList.add(new ProdutoQuantidade(produtoFeira, rs.getInt("QUANTIDADE")));
-//
-//                    carrinho.setListaProdutoQuantidade(prodQtdList);
-//                } else {
-//                    List<ProdutoQuantidade> prodQtdList = pedido.getCarrinho().getListaProdutoQuantidade();
-//
-//                    ProdutoFeira produtoFeira = this.produtoFeiraDAO.buscar(
-//                            rs.getString("COD_PRODUTO"),
-//                            rs.getString("CONTEXTO"));
-//
-//                    prodQtdList.add(new ProdutoQuantidade(produtoFeira, rs.getInt("QUANTIDADE")));
-//                }
-//            }
-//
-//            return pedido;
-//        });
-        return null;
+        String sql = "SELECT\n" +
+                "\te.ID,\n" +
+                "\te.CPF_ENTREGADOR,\n" +
+                "\te.NUMERO_PEDIDO,\n" +
+                "\te.DATA_REALIZACAO,\n" +
+                "\te.STATUS_ENTREGA,\n" +
+                "\tp.EMAIL\n" +
+                "\tFROM\n" +
+                "\tENTREGA e " +
+                "\tINNER JOIN PESSOA p ON p.CPF = e.CPF_ENTREGADOR\n" +
+                "\tWHERE e.ID = ?";
+
+        return jdbcTemplate.query(sql, ps -> {
+            ps.setLong(1, identificador);
+        }, rs -> {
+            Entrega entrega = null;
+
+            while (rs.next()) {
+                entrega = new Entrega();
+                entrega.setId(rs.getLong("ID"));
+                entrega.setEntregador(this.entregadorDAO.buscar(rs.getString("EMAIL")));
+                entrega.setPedido(this.pedidoDAO.buscar(rs.getLong("NUMERO_PEDIDO")));
+                entrega.setDataRealizacao(rs.getDate("DATA_REALIZACAO"));
+                entrega.setStatusEntrega(StatusEntrega.valueOf(rs.getString("STATUS_ENTREGA")));
+            }
+
+            return entrega;
+        });
     }
 
     @Override
@@ -127,11 +121,67 @@ public class EntregaDAO implements Persistivel<Entrega, Long> {
 
     @Override
     public Entrega editar(Entrega item) {
-        return null;
+        String sql = "UPDATE ENTREGA e SET e.STATUS_ENTREGA = ?, e.DATA_REALIZACAO = ? WHERE e.NUMERO_PEDIDO = ?";
+        this.jdbcTemplate.update(sql, ps -> {
+            ps.setString(1, item.getStatusEntrega().name());
+            ps.setDate(2, new Date(item.getDataRealizacao().getTime()));
+            ps.setLong(3, item.getPedido().getNumeroPedido());
+        });
+        return item;
     }
 
     @Override
     public List<Entrega> buscarComParametros(Object[] params) {
-        return null;
+        StatusEntrega status = (StatusEntrega) params[0];
+        Entregador entregador = (Entregador) params[1];
+
+        String sql = "SELECT\n" +
+                "\te.ID,\n" +
+                "\te.CPF_ENTREGADOR,\n" +
+                "\te.NUMERO_PEDIDO,\n" +
+                "\te.DATA_REALIZACAO,\n" +
+                "\te.STATUS_ENTREGA\n" +
+                "FROM\n" +
+                "\tENTREGA e \n";
+
+        PreparedStatementSetter ps;
+        String WHERE = "";
+
+        if(status != null) {
+            WHERE = "WHERE e.CPF_ENTREGADOR = ? and e.STATUS_ENTREGA = ?";
+            ps = new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                    ps.setString(1, entregador.getCpf());
+                    ps.setString(2, status.name());
+                }
+            };
+        } else {
+            WHERE = "WHERE e.CPF_ENTREGADOR = ?";
+            ps = new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                    ps.setString(1, entregador.getCpf());
+                }
+            };
+        }
+
+        sql += WHERE;
+
+        return jdbcTemplate.query(sql, ps, rs -> {
+            List<Entrega> entregas = new ArrayList<>();
+
+            while (rs.next()) {
+                Entrega entrega = new Entrega();
+                entrega.setId(rs.getLong("ID"));
+                entrega.setEntregador(entregador);
+                entrega.setPedido(this.pedidoDAO.buscar(rs.getLong("NUMERO_PEDIDO")));
+                entrega.setDataRealizacao(rs.getDate("DATA_REALIZACAO"));
+                entrega.setStatusEntrega(StatusEntrega.valueOf(rs.getString("STATUS_ENTREGA")));
+                entregas.add(entrega);
+            }
+
+            return entregas;
+        });
     }
 }

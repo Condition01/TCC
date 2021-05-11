@@ -141,7 +141,11 @@ public class PedidoDAO implements Persistivel<Pedido, Long> {
 
     @Override
     public Pedido editar(Pedido item) {
-        return null;
+        String sql = "UPDATE PEDIDO SET STATUS_PEDIDO = ?, DATA_ENTREGA = ? WHERE NUMERO = ?";
+
+        this.jdbcTemplate.update(sql, item.getStatusPedido().name(), item.getDataEntrega(), item.getNumeroPedido());
+
+        return item;
     }
 
     @Override

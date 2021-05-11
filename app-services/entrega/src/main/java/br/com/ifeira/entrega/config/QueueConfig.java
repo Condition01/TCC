@@ -1,4 +1,4 @@
-package br.com.ifeira.pagamento.config;
+package br.com.ifeira.entrega.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -18,9 +18,9 @@ public class QueueConfig {
     public final String PAGAMENTOS_CONCLUIDOS_QUEUE_NAME;
     public final String PAGAMENTOS_CONCLUIDOS_KEY_NAME;
 
-    public QueueConfig(@Value("${mq[1].exchange-name}") String PAGAMENTOS_CONCLUIDOS_TOPIC_EXCHANGE_NAME,
-                       @Value("${mq[1].queue-name}") String PAGAMENTOS_CONCLUIDOS_QUEUE_NAME,
-                       @Value("${mq[1].routing-key}") String PAGAMENTOS_CONCLUIDOS_KEY_NAME) {
+    public QueueConfig(@Value("${mq[0].exchange-name}") String PAGAMENTOS_CONCLUIDOS_TOPIC_EXCHANGE_NAME,
+                       @Value("${mq[0].queue-name}") String PAGAMENTOS_CONCLUIDOS_QUEUE_NAME,
+                       @Value("${mq[0].routing-key}") String PAGAMENTOS_CONCLUIDOS_KEY_NAME) {
         this.PAGAMENTOS_CONCLUIDOS_TOPIC_EXCHANGE_NAME = PAGAMENTOS_CONCLUIDOS_TOPIC_EXCHANGE_NAME;
         this.PAGAMENTOS_CONCLUIDOS_QUEUE_NAME = PAGAMENTOS_CONCLUIDOS_QUEUE_NAME;
         this.PAGAMENTOS_CONCLUIDOS_KEY_NAME = PAGAMENTOS_CONCLUIDOS_KEY_NAME;

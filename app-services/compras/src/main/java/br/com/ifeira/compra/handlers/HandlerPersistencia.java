@@ -12,6 +12,7 @@ import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import javafx.util.Pair;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 public class HandlerPersistencia extends PagamentoInBaseHandler {
 
@@ -28,6 +29,7 @@ public class HandlerPersistencia extends PagamentoInBaseHandler {
     }
 
     @Override
+    @Transactional
     public PagamentoDTO handle(Pagamento pagamento) {
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
 

@@ -30,4 +30,18 @@ public class Entregador extends Pessoa {
         this.feiras = feiras;
     }
 
+    public static Entregador pessoaToEntregador(Pessoa pessoa) {
+        Entregador entregador = new Entregador();
+        entregador.setCpf(pessoa.getCpf());
+        entregador.setDataNascimento(pessoa.getDataNascimento());
+        entregador.setEndereco(pessoa.getEndereco());
+        entregador.setNome(pessoa.getNome());
+        entregador.setRole(pessoa.getRole());
+        entregador.setSituacao(pessoa.getSituacao());
+        entregador.setSobrenome(pessoa.getSobrenome());
+        entregador.setSexo(pessoa.getSexo());
+        entregador.setTelefone(pessoa.getTelefone());
+        return entregador;
+    }
+
 }

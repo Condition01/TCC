@@ -18,6 +18,7 @@ import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
@@ -84,6 +85,7 @@ public class PagamentoController {
         }
     }
 
+    @Transactional
     public void persistirPagamentosRealizados(PagamentoDTO pagamento) throws Exception {
         if (pagamento.getStatus().equals("CONFIRMADO")) {
             pagamentoProdutor.enfileirarPagamentosConcluidos(pagamento);
@@ -106,9 +108,10 @@ public class PagamentoController {
     }
 
     public void atualizarSaldoADM(PagamentoDTO pagamento) {
-        if(pagamento.getStatus().equals("CONFIRMADO")) {
-            this.pagamentoDAO.atualizarSaldoADM(pagamento);
-        }
+        this.jdbcTemplate.update(
+                "INSERT INTO SALDO_ADMIN\n" +
+                        "(ID_PAGAMENTO, VALOR_TOTAL)\n" +
+                        "VALUES(?, ?);\n", pagamento.getIdPagamento(), pagamento.getValorTotalPedido());
     }
 
     @PostConstruct

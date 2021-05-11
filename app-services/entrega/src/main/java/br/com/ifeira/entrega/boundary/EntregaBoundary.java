@@ -19,23 +19,23 @@ public class EntregaBoundary {
 
     @PreAuthorize("hasRole('ROLE_ENTREGADOR')")
     @GetMapping("/listar")
-    public ResponseEntity<?> listarEntregas(Principal principal) {
+    public ResponseEntity<?> listarEntregas(Principal principal, @RequestParam(name = "status", required = false) String status) {
         try {
-            return ResponseEntity.ok(this.entregaController.buscarEntregas(principal));
+            return ResponseEntity.ok(this.entregaController.buscarEntregas(principal, status));
         }catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ENTREGADOR')")
-    @PostMapping("/entregar")
-    public ResponseEntity<?> listarEntregas(@RequestBody String reqEntregar) {
+    @PostMapping("/realizar")
+    public ResponseEntity<?> realizarEntrega(@RequestBody String idEntregaBody) {
         try {
-            JsonNode jsonObjResp = new ObjectMapper().readTree(reqEntregar);
+            JsonNode jsonObjResp = new ObjectMapper().readTree(idEntregaBody);
 
-            Long numeroEntrega = jsonObjResp.get("numeroEntrega").asLong();
+            Long idEntrega = jsonObjResp.get("idEntrega").asLong();
 
-            return ResponseEntity.ok(this.entregaController.realizarEntrega(numeroEntrega));
+            return ResponseEntity.ok(this.entregaController.realizarEntrega(idEntrega));
         }catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }
