@@ -67,6 +67,8 @@ public class PagamentoController {
                 this.logger.error(e.getMessage());
             } else {
                 this.pagamentoDAO.persistirPagamentosComErro(pagamento);
+                String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: " + pagamento.getStatus();
+                this.notificar(pagamento, pagamento.getEmail(), mensagem);
                 throw new AmqpRejectAndDontRequeueException("DONT");
             }
         }

@@ -18,8 +18,8 @@ dependencies {
 
 	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
 
-	implementation(project(':app-services:compras:compra-shared'))
-	implementation(project(':app-services:pagamento:pagamento-shared'))
+	compile(project(':app-services:compras:compra-shared'))
+	compile(project(':app-services:pagamento:pagamento-shared'))
 }
 
 dependencyManagement {
