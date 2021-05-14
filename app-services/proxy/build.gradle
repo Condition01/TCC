@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 dependencies {
-	compile group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.4.RELEASE'
+	implementation group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.4.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'

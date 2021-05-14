@@ -31,8 +31,6 @@ public class HandlerPersistencia extends PagamentoInBaseHandler {
     @Override
     @Transactional
     public PagamentoDTO handle(Pagamento pagamento) {
-        PagamentoDTO pagamentoDTO = new PagamentoDTO();
-
         String contextoFeira = pagamento.getPedido()
                 .getCarrinho()
                 .getListaProdutoQuantidade()
@@ -51,6 +49,8 @@ public class HandlerPersistencia extends PagamentoInBaseHandler {
         carrinho.setPedidoRef(pedidoRetornado.getNumeroPedido());
 
         this.carrinhoDAO.salvar(carrinho, contextoFeira);
+
+        PagamentoDTO pagamentoDTO = new PagamentoDTO();
 
         //Pagamento
         pagamentoDTO.setValidadeCartao(pagamento.getValidadeCartao());

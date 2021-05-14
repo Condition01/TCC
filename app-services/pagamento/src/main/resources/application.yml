@@ -20,33 +20,6 @@ server:
   instance: PRIMEIRO
 
 
-#security:
-#  oauth2:
-#    service-id: auth-service
-#    client:
-#      resource-id: 368b0ae8-09be-11eb-adc1-0242ac120002
-#    resource:
-#      userInfoUri: http://${security.oauth2.service-id}/user/userinfo
-
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 2
-    leaseExpirationDurationInSeconds: 30
-    preferIpAddress: true
-    hostname: localhost
-    port: 8081
-    metadataMap:
-      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
-  client:
-    enabled: false
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
-  server:
-    wait-time-in-ms-when-sync-empty: 3000
-
-
 mq:
   -
     queue-name: pagamentos_pendentes

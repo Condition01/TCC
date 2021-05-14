@@ -39,7 +39,6 @@ public class PedidoController {
 
     @Autowired
     private APIConfig apiConfig;
-    @Autowired
     private RestTemplate restTemplate;
     private Persistivel<Pedido, Long> pedidoDAO;
     private Persistivel<Pessoa, String> pessoaDAO;
@@ -52,6 +51,7 @@ public class PedidoController {
         this.pessoaDAO = new PessoaDAO(jdbcTemplate);
         this.cupomDAO = new CupomDAO(jdbcTemplate);
         this.pedidoFactory = new PedidoConcretFactory();
+        this.restTemplate = new RestTemplate();
     }
 
     public Pedido fecharPedido(Carrinho carrinho, String cupom, Principal principal) throws Exception {

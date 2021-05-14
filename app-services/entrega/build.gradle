@@ -13,13 +13,13 @@ dependencies {
 	implementation('org.springframework.cloud:spring-cloud-starter-oauth2')
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-    compile('org.springframework.boot:spring-boot-starter-jdbc')
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation('org.springframework.boot:spring-boot-starter-jdbc')
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
-    compile(project(':app-services:compras:compra-shared'))
-    compile(project(':app-services:pagamento:pagamento-shared'))
+    implementation(project(':app-services:compras:compra-shared'))
+    implementation(project(':app-services:pagamento:pagamento-shared'))
 }
 
 dependencyManagement {
@@ -31,5 +31,10 @@ dependencyManagement {
 task runEntrega(type: JavaExec, dependsOn: assemble) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'br.com.ifeira.entrega.EntregaApplication'
-//	args '--spring.profiles.active=dev'
+}
+
+task runEntregaDev(type: JavaExec, dependsOn: assemble) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'br.com.ifeira.entrega.EntregaApplication'
+	args '--spring.profiles.active=dev'
 }

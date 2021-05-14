@@ -13,7 +13,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.*;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
@@ -21,13 +24,13 @@ public class HandlerCriptografia extends PagamentoInBaseHandler {
 
     @Override
     public PagamentoDTO handle(Pagamento pagamento) throws Exception {
+        PublicKey publicKey = readPublicKey(ComprasApplication.RESOURCES_DIR + "public.der");
+
+        pagamento.setNumeroCartao(new String(encrypt(publicKey,pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+        pagamento.setCvv(new String(encrypt(publicKey,pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+        pagamento.setValidadeCartao(new String(encrypt(publicKey,pagamento.getValidadeCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+
         if(this.getNext() != null) {
-            PublicKey publicKey = readPublicKey(ComprasApplication.RESOURCES_DIR + "public.der");
-
-            pagamento.setNumeroCartao(new String(encrypt(publicKey,pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-            pagamento.setCvv(new String(encrypt(publicKey,pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-            pagamento.setValidadeCartao(new String(encrypt(publicKey,pagamento.getValidadeCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-
             return this.getNext().handle(pagamento);
         }
         return null;

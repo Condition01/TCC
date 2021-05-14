@@ -2,7 +2,14 @@ spring:
   application:
     name: proxy
 
+server:
+  port: 8080
+  instance: PRIMEIRO
+
 zuul:
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
   retryable: true
   prefix: /api
   sensitive-headers: Cookie,Set-Cookie
@@ -19,10 +26,15 @@ zuul:
       serviceId: auth-service
       stripPrefix: true
       retryable: true
+    entrega:
+      path: /entrega/**
+      serviceId: entregas-service
+      stripPrefix: true
+      retryable: true
 
 ribbon:
-  ConnectTimeout: 3000
-  ReadTimeout: 60000
+  ConnectTimeout: 30000
+  ReadTimeout: 30000
 
 hystrix:
   command:
@@ -30,7 +42,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 3000
+            timeoutInMilliseconds: 30000
 
 eureka:
   instance:

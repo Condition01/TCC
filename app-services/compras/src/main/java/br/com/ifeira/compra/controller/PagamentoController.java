@@ -10,7 +10,6 @@ import br.com.ifeira.compra.factories.PagamentoInHandlerFactory;
 import br.com.ifeira.compra.handlers.PagamentoInHandler;
 import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.dao.PessoaDAO;
-import br.com.ifeira.compra.shared.entity.Carrinho;
 import br.com.ifeira.compra.shared.entity.Pessoa;
 import br.com.ifeira.compra.shared.enums.StatusPagamento;
 import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
@@ -22,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -38,7 +38,6 @@ public class PagamentoController {
 
     @Autowired
     private APIConfig apiConfig;
-    @Autowired
     private RestTemplate restTemplate;
     @Autowired
     private MailingConfig mailingConfig;
@@ -56,13 +55,15 @@ public class PagamentoController {
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
         this.pessoaDAO = new PessoaDAO(jdbcTemplate);
         this.pagFactory = new PagamentoInConcretHandlerFactory();
+        this.restTemplate = new RestTemplate();
+        this.restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
     }
 
     public PagamentoDTO enfileirarPagamento(Pagamento pagamento) throws Exception {
         PagamentoInHandler pagChain = this.pagFactory.criarPagamentoInChain(jdbcTemplate, pagamentoProdutor);
-        setarDiaEntrega(pagamento);
         pagamento.setData(new Date());
         pagamento.setStatusPagamento(StatusPagamento.PENDENTE);
+        setarDiaEntrega(pagamento);
         if (pagamento.getCreditCardId() == null) {
             String token = pegarTokenAutorizacaoAPIExterna();
             pagamento.setCreditCardId(tokenizarCartao(pagamento.getCreditCardHash(), token));
@@ -70,10 +71,6 @@ public class PagamentoController {
         PagamentoDTO pagDTO = pagChain.handle(pagamento);
         notificar(pagDTO);
         return pagDTO;
-    }
-
-    public Pagamento gerarPagamento(Carrinho carrinho) {
-        return null;
     }
 
     private String tokenizarCartao(String creditCardHash, String token) throws IOException {

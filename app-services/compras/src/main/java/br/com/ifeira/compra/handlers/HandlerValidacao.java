@@ -42,7 +42,8 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
         Double valorTotal = calcularValorTotal(prodQtdList, cupom);
 
         if(!valorTotal.equals(pagamento.getPedido().getValorTotal())) {
-            throw new Exception("Valores de pedido inválidos");
+            throw new Exception("Valor total do pedido\n" +
+                    "inválido com o calculado");
         }
 
         return getNext().handle(pagamento);

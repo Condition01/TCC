@@ -27,7 +27,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
 @Component
-public class PagamentosRealizadosProdutor {
+public class PagamentosProdutor {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;

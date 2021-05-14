@@ -3,6 +3,8 @@ package br.com.ifeira.pagamento.dao;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.Date;
+
 public class PagamentoDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -50,8 +52,10 @@ public class PagamentoDAO {
         String statusPedido = "PAGO";
 
         if(pagamento.getNumeroPedido() != null && pagamento.getNumeroCartao() != null) {
+            Date dataPagamento = pagamento.getData() != null ? new Date(pagamento.getData().getTime()) : null;
+
             this.jdbcTemplate.update(
-                    "UPDATE PAGAMENTO pa SET pa.STATUS_PAGAMENTO = ? WHERE pa.ID = ?", statusPagamento, pagamento.getIdPagamento());
+                    "UPDATE PAGAMENTO pa SET pa.STATUS_PAGAMENTO = ?, pa.DATA_PAGAMENTO = ? WHERE pa.ID = ?", statusPagamento, dataPagamento, pagamento.getIdPagamento());
 
             this.jdbcTemplate.update("UPDATE PEDIDO p SET p.STATUS_PEDIDO = ? WHERE p.NUMERO = ?", statusPedido, pagamento.getNumeroPedido());
         }

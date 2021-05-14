@@ -6,7 +6,7 @@ import br.com.ifeira.pagamento.config.APIConfig;
 import br.com.ifeira.pagamento.config.MailingConfig;
 import br.com.ifeira.pagamento.dao.PagamentoDAO;
 import br.com.ifeira.pagamento.entity.PagamentoResponse;
-import br.com.ifeira.pagamento.entity.PagamentosRealizadosProdutor;
+import br.com.ifeira.pagamento.entity.PagamentosProdutor;
 import br.com.ifeira.pagamento.exceptions.PagamentoInvalidoException;
 import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
 import br.com.ifeira.pagamento.factories.PagamentoOutHandlerFactory;
@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 import java.util.Properties;
 
 @Component
@@ -34,7 +35,7 @@ public class PagamentoController {
     @Autowired
     private MailingConfig mailingConfig;
     @Autowired
-    private PagamentosRealizadosProdutor pagamentoProdutor;
+    private PagamentosProdutor pagamentoProdutor;
     private JdbcTemplate jdbcTemplate;
     private PagamentoDAO pagamentoDAO;
     private Notificavel notificador;
@@ -79,6 +80,7 @@ public class PagamentoController {
 
     public void mapearEstadoPagamento(PagamentoDTO pagamento, String status) {
         if (status.equals("CONFIRMED")) {
+            pagamento.setData(new Date());
             pagamento.setStatus("CONFIRMADO");
         } else {
             pagamento.setStatus("CANCELADO");

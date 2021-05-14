@@ -24,11 +24,11 @@ public class HandlerDecriptacao extends PagamentoOutBaseHandler {
     @Override
     public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception {
         try {
+            PrivateKey privateKey = readPrivateKey(PagamentoApplication.RESOURCES_DIR + "private.der");
+            pagamento.setNumeroCartao(new String(decrypt(privateKey, pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+            pagamento.setCvv(new String(decrypt(privateKey, pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+            pagamento.setValidadeCartao(new String(decrypt(privateKey, pagamento.getValidadeCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
             if (this.getNext() != null) {
-                PrivateKey privateKey = readPrivateKey(PagamentoApplication.RESOURCES_DIR + "private.der");
-                pagamento.setNumeroCartao(new String(decrypt(privateKey, pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-                pagamento.setCvv(new String(decrypt(privateKey, pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-                pagamento.setValidadeCartao(new String(decrypt(privateKey, pagamento.getValidadeCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
                 return this.getNext().handle(pagamento);
             }
             return null;
