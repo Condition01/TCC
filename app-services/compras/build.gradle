@@ -23,6 +23,7 @@ dependencies {
 
     implementation(project(':app-services:compras:compra-shared'))
     implementation(project(':app-services:pagamento:pagamento-shared'))
+    implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
 }
 
 dependencyManagement {

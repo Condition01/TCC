@@ -16,7 +16,6 @@ include 'services:webservice'
 */
 
 rootProject.name = 'tcc'
-include 'app-services:docs'
 include 'app-services:auth'
 include 'app-services:discovery'
 include 'app-services:proxy'

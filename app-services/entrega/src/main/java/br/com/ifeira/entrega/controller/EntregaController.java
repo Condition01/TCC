@@ -20,6 +20,7 @@ import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,9 +67,9 @@ public class EntregaController {
         this.pedidoDAO.editar(pedido);
 
         String mensagem = "Pedido numero: " + entregaSalva.getPedido().getNumeroPedido() + "Status: " + pedido.getStatusPedido().name();
-
+        String assunto = "Status Pedido " + entrega.getPedido().getNumeroPedido();
         atualizarSaldo(entregaSalva);
-        notificar(entregaSalva, pedido.getCliente().getEmail(), mensagem);
+        notificar(entregaSalva, pedido.getCliente().getEmail(), mensagem, assunto);
         return entregaSalva;
     }
 
@@ -108,10 +109,14 @@ public class EntregaController {
                 .getContext();
         Entregador entregador = selecionarEntregador(contexto);
         Entrega entrega = this.entregaFactory.criarEntrega(pedido, entregador);
-        return this.entregaDAO.salvar(entrega);
+        Entrega entregaRetornada = this.entregaDAO.salvar(entrega);
+        String mensagem = "Entrega referente ao pedido " + pedido.getNumeroPedido() + " na data: " + pedido.getDataEntrega();
+        String assunto = "Entrega referente ao pedido " + pedido.getNumeroPedido();
+        notificar(entregaRetornada, entregaRetornada.getEntregador().getEmail(), mensagem, assunto);
+        return entregaRetornada;
     }
 
-    public void notificar(Entrega entrega, String email, String mensagem) {
+    public void notificar(Entrega entrega, String email, String mensagem, String assunto) {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", this.mailingConfig.AUTH);
         properties.put("mail.smtp.starttls.enable", this.mailingConfig.STARTTLS);
@@ -120,7 +125,7 @@ public class EntregaController {
 
         notificador = new NotificacaoEmail(properties, this.mailingConfig.ACCOUNT, this.mailingConfig.PASSWORD);
 
-        this.notificador.enviarNotificacao(mensagem, email, "Status Pedido " + entrega.getPedido().getNumeroPedido());
+        this.notificador.enviarNotificacao(mensagem, email, assunto);
     }
 
     public void atualizarSaldo(Entrega entrega) {
@@ -141,6 +146,21 @@ public class EntregaController {
                 "INSERT INTO SALDO_FEIRANTE\n" +
                         "(NUMERO_PEDIDO, ID_FEIRA, VALOR_TOTAL)\n" +
                         "VALUES(?, ?, ?);\n", pedido.getNumeroPedido(), contextoFeira, pagFeirante);
+    }
+
+    @Scheduled(cron = "0 0 1 * * SAT")
+    public void processarEntregasAtrasadas() {
+        EntregaDAO parsedEntregaDAO = (EntregaDAO) this.entregaDAO;
+        List<Entrega> entregasAtrasadas = parsedEntregaDAO.buscarEntregasAtrasadas();
+        entregasAtrasadas.forEach(entrega -> {
+            Pedido pedido = this.pedidoDAO.buscar(entrega.getPedido().getNumeroPedido());
+            entrega.setStatusEntrega(StatusEntrega.CANCELADA);
+            pedido.setStatusPedido(StatusPedido.CANCELADO);
+            this.entregaDAO.editar(entrega);
+            this.pedidoDAO.editar(pedido);
+            String mensagem = "Pedido " + pedido.getNumeroPedido() + " CANCELADO na data: " + new Date() + " devido ao ATRASO na entrega.";
+            String assunto = "Entrega referente ao pedido " + pedido.getNumeroPedido();
+        });
     }
 
 }

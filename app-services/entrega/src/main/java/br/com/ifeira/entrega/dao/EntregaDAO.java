@@ -6,6 +6,7 @@ import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.entrega.entity.Entrega;
 import br.com.ifeira.entrega.entity.Entregador;
 import br.com.ifeira.entrega.enums.StatusEntrega;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -16,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class EntregaDAO implements Persistivel<Entrega, Long> {
@@ -184,4 +186,45 @@ public class EntregaDAO implements Persistivel<Entrega, Long> {
             return entregas;
         });
     }
+
+    public List<Entrega> buscarEntregasAtrasadas() {
+        java.util.Date truncatedDate = DateUtils.truncate(new java.util.Date(), Calendar.DATE);
+
+
+        String sql = "SELECT\n" +
+                "\te.ID,\n" +
+                "\te.CPF_ENTREGADOR,\n" +
+                "\te.NUMERO_PEDIDO,\n" +
+                "\te.DATA_REALIZACAO,\n" +
+                "\te.STATUS_ENTREGA\n" +
+                "FROM\n" +
+                "\tENTREGA e\n" +
+                "INNER JOIN PEDIDO p ON\n" +
+                "\te.NUMERO_PEDIDO = p.NUMERO\n" +
+                "WHERE\n" +
+                "\te.STATUS_ENTREGA = ?\n" +
+                "\tAND p.DATA_ENTREGA < ?";
+
+        return jdbcTemplate.query(sql, ps -> {
+            ps.setString(1, StatusEntrega.ATRIBUIDA.name());
+            ps.setDate(2, new Date(truncatedDate.getTime()));
+        }, rs -> {
+            List<Entrega> entregas = new ArrayList<>();
+
+
+            while (rs.next()) {
+                Entrega entrega = new Entrega();
+                entrega.setId(rs.getLong("ID"));
+                entrega.setEntregador(this.entregadorDAO.buscar(rs.getString("CPF_ENTREGADOR")));
+                entrega.setPedido(this.pedidoDAO.buscar(rs.getLong("NUMERO_PEDIDO")));
+                entrega.setDataRealizacao(rs.getDate("DATA_REALIZACAO"));
+                entrega.setStatusEntrega(StatusEntrega.valueOf(rs.getString("STATUS_ENTREGA")));
+
+                entregas.add(entrega);
+            }
+
+            return entregas;
+        });
+    }
+
 }

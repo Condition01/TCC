@@ -1,6 +1,5 @@
 package br.com.ifeira.pagamento.handlers;
 
-import br.com.ifeira.pagamento.PagamentoApplication;
 import br.com.ifeira.pagamento.entity.PagamentoResponse;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 
@@ -8,23 +7,23 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidKeyException;
-import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
 
 public class HandlerDecriptacao extends PagamentoOutBaseHandler {
     @Override
     public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception {
         try {
-            PrivateKey privateKey = readPrivateKey(PagamentoApplication.RESOURCES_DIR + "private.der");
+            PrivateKey privateKey = readPrivateKey("./keys/private.key");
             pagamento.setNumeroCartao(new String(decrypt(privateKey, pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
             pagamento.setCvv(new String(decrypt(privateKey, pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
             pagamento.setValidadeCartao(new String(decrypt(privateKey, pagamento.getValidadeCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
@@ -43,10 +42,9 @@ public class HandlerDecriptacao extends PagamentoOutBaseHandler {
         return Files.readAllBytes(path);
     }
 
-    public PrivateKey readPrivateKey(String filename) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(readFileBytes(filename));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePrivate(keySpec);
+    public PrivateKey readPrivateKey(String filePath) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, ClassNotFoundException {
+        ObjectInputStream privateKeyStream = new ObjectInputStream(new FileInputStream(filePath));
+        return (PrivateKey) privateKeyStream.readObject();
     }
 
     public byte[] decrypt(PrivateKey key, byte[] ciphertext) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {

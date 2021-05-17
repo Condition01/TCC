@@ -1,6 +1,5 @@
 package br.com.ifeira.compra.handlers;
 
-import br.com.ifeira.compra.ComprasApplication;
 import br.com.ifeira.compra.entity.Pagamento;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 
@@ -8,23 +7,23 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidKeyException;
-import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
 
 public class HandlerCriptografia extends PagamentoInBaseHandler {
 
     @Override
     public PagamentoDTO handle(Pagamento pagamento) throws Exception {
-        PublicKey publicKey = readPublicKey(ComprasApplication.RESOURCES_DIR + "public.der");
+        PublicKey publicKey = readPublicKey("./keys/public.key");
 
         pagamento.setNumeroCartao(new String(encrypt(publicKey,pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
         pagamento.setCvv(new String(encrypt(publicKey,pagamento.getCvv().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
@@ -41,10 +40,9 @@ public class HandlerCriptografia extends PagamentoInBaseHandler {
         return Files.readAllBytes(path);
     }
 
-    public PublicKey readPublicKey(String filename) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(readFileBytes(filename));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePublic(publicSpec);
+    public PublicKey readPublicKey(String filePath) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, ClassNotFoundException {
+        ObjectInputStream publicKeyStream =  new ObjectInputStream(new FileInputStream(filePath));
+        return (PublicKey) publicKeyStream.readObject();
     }
 
     public byte[] encrypt(PublicKey key, byte[] plaintext) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {

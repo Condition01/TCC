@@ -9,7 +9,7 @@ spring:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 server:
-  port: 8086
+  port: 8085
   instance: PRIMEIRO
 
 eureka:
