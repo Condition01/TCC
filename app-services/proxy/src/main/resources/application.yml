@@ -27,7 +27,7 @@ zuul:
       stripPrefix: true
       retryable: true
     entrega:
-      path: /entrega/**
+      path: /entregas/**
       serviceId: entregas-service
       stripPrefix: true
       retryable: true
