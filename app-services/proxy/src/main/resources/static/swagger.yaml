@@ -23,7 +23,6 @@ tags:
       url: "http://swagger.io"
 schemes:
   - "http"
-
 paths:
   /compras/produto/{contexto}/listar:
     get:
@@ -50,6 +49,10 @@ paths:
             description: "Devolve uma lista de produtos vinculados com a feira procurada."
             items:
               $ref: "#/definitions/ProdutoFeira"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
   /compras/produto/{contexto}/buscarFLVS:
     get:
       tags:
@@ -80,6 +83,10 @@ paths:
             description: "Devolve uma lista de produtos vinculados com a feira procurada."
             items:
               $ref: "#/definitions/ProdutoFeira"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
   /compras/carrinho/{contexto}/recuperar:
     post:
       tags:
@@ -108,6 +115,10 @@ paths:
           description: "Devolve um carrinho com os detalhes referentes ao produto."
           schema:
             $ref: "#/definitions/Carrinho"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
   /compras/feira/listar:
     get:
       tags:
@@ -126,6 +137,10 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Feira"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
   /compras/pedido/listar:
     get:
       tags:
@@ -144,6 +159,14 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Pedido"
+        "401":
+          description: "Devolve objeto com a decrição de erro para acessos não autorizados."
+          schema:
+            $ref: "#/definitions/AuthUnauthorizedResp"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
       security:
         - oauth2:
             - "write"
@@ -152,7 +175,7 @@ paths:
     post:
       tags:
         - "compras"
-      summary: "Envia o carrinho do cliente para criar e processar um pedido."
+      summary: "Executa o processamento do pedido."
       description: "Envia o carrinho do cliente para criar e processar um pedido. No processamento este pedido será vinculado a uma cobrança."
       operationId: "pedidoFechar"
       consumes:
@@ -176,6 +199,53 @@ paths:
           description: "Devolve um pedido fechado com os atributos necessarios para ser utilizado em um pagamento."
           schema:
             $ref: "#/definitions/Pedido"
+        "401":
+          description: "Devolve objeto com a decrição de erro para acessos não autorizados."
+          schema:
+            $ref: "#/definitions/AuthUnauthorizedResp"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
+      security:
+        - oauth2:
+            - "write"
+            - "read"
+  /compras/pedido/cancelar:
+    put:
+      tags:
+        - "compras"
+      summary: "Executa o cancelamento do pedido."
+      description: "Envia o numero do pedido para que este possa ser cancelado. Só funciona com pedidos com status PENDENTE"
+      operationId: "pedidoCancelar"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "Recebe o numero do pedido no corpo da requisição."
+          required: true
+          schema:
+            $ref: "#/definitions/PedidoEditarRed"
+      responses:
+        "200":
+          description: "Devolve o pedido cancelado."
+          schema:
+            $ref: "#/definitions/Pedido"
+        "401":
+          description: "Devolve objeto com a decrição de erro para acessos não autorizados."
+          schema:
+            $ref: "#/definitions/AuthUnauthorizedResp"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
+      security:
+        - oauth2:
+            - "write"
+            - "read"
   /compras/pagamento/listar:
     get:
       tags:
@@ -194,6 +264,14 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Pagamento"
+        "401":
+          description: "Devolve objeto com a decrição de erro para acessos não autorizados."
+          schema:
+            $ref: "#/definitions/AuthUnauthorizedResp"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
       security:
         - oauth2:
             - "write"
@@ -221,6 +299,14 @@ paths:
           description: "Devolve um pagamento processado com sucesso."
           schema:
             $ref: "#/definitions/Pagamento"
+        "401":
+          description: "Devolve objeto com a decrição de erro para acessos não autorizados."
+          schema:
+            $ref: "#/definitions/AuthUnauthorizedResp"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
       security:
         - oauth2:
             - "write"
@@ -249,6 +335,14 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Entrega"
+        "401":
+          description: "Devolve objeto com a decrição de erro para acessos não autorizados."
+          schema:
+            $ref: "#/definitions/AuthUnauthorizedResp"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
       security:
         - oauth2:
             - "write"
@@ -276,6 +370,14 @@ paths:
           description: "Devolve o objeto da entrega realizada."
           schema:
             $ref: "#/definitions/Entrega"
+        "401":
+          description: "Devolve objeto com a descrição de erro pelo servidor de autorização."
+          schema:
+            $ref: "#/definitions/AuthUnauthorizedResp"
+        "500":
+          description: "Erro interno geral devolvido pelo servidor."
+          schema:
+            $ref: "#/definitions/500DefaultError"
       security:
         - oauth2:
             - "write"
@@ -283,12 +385,31 @@ paths:
 securityDefinitions:
   oauth2:
     type: "oauth2"
-    tokenUrl: "http://localhost:9092/auth/oauth/token"
+    tokenUrl: "http://localhost:8080/api/auth/oauth/token"
     flow: "password"
     scopes:
       write: "Permite escritas enviando um corpo de requisição."
       read: "Permite leituras."
 definitions:
+  500DefaultError:
+    type: "object"
+    properties:
+      timestamp:
+        type: "string"
+        example: "2021-05-18T22:39:49.673+0000"
+      status:
+        type: "integer"
+      error:
+        type: "string"
+      message:
+        type: "string"
+  AuthUnauthorizedResp:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+      error_description:
+        type: "string"
   EntregaReq:
     type: "object"
     properties:
@@ -366,6 +487,11 @@ definitions:
         type: "string"
       salvaDadosPag:
         type: "boolean"
+  PedidoEditarRed:
+    type: "object"
+    properties:
+      numeroPedido:
+        type: "integer"
   Pedido:
     type: "object"
     properties:
@@ -508,4 +634,4 @@ definitions:
   CarrinhoReq:
     type: "object"
     additionalProperties:
-      type: "string"
+      type: "integer"

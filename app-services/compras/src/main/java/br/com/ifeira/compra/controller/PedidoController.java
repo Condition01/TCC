@@ -15,6 +15,7 @@ import br.com.ifeira.compra.shared.entity.Carrinho;
 import br.com.ifeira.compra.shared.entity.Cupom;
 import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
+import br.com.ifeira.compra.shared.enums.StatusPedido;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -67,8 +68,10 @@ public class PedidoController {
         return enviarReqCobranca(pedido, tpPagamento, token);
     }
 
-    public boolean cancelarPedido(int numeroPedido){
-        return false;
+    public Pedido cancelarPedido(Long numeroPedido){
+        Pedido pedido = this.pedidoDAO.buscar(numeroPedido);
+        pedido.setStatusPedido(StatusPedido.CANCELADO);
+        return this.pedidoDAO.editar(pedido);
     }
 
     public String pegarTokenAutorizacaoAPIExterna() throws IOException {

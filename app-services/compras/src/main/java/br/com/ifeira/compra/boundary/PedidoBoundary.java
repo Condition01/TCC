@@ -2,6 +2,8 @@ package br.com.ifeira.compra.boundary;
 
 import br.com.ifeira.compra.controller.PedidoController;
 import br.com.ifeira.compra.shared.entity.Carrinho;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,22 @@ public class PedidoBoundary {
     public ResponseEntity<?> listarPedidos(Principal principal) {
         try {
             return ResponseEntity.ok(this.pedidoController.listarPedidos(principal));
+        }catch (Exception e) {
+            logger.error(e.getMessage());
+            e.getStackTrace();
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
+    @PutMapping("/cancelar")
+    public ResponseEntity<?> cancelarPedido(String pedCancReq) {
+        try {
+            JsonNode jsonObjResp = new ObjectMapper().readTree(pedCancReq);
+
+            Long numeroPedido = jsonObjResp.get("idEntrega").asLong();
+
+            return ResponseEntity.ok(this.pedidoController.cancelarPedido(numeroPedido));
         }catch (Exception e) {
             logger.error(e.getMessage());
             e.getStackTrace();
