@@ -12,6 +12,7 @@ import br.com.ifeira.compra.shared.dao.Persistivel;
 import br.com.ifeira.compra.shared.dao.PessoaDAO;
 import br.com.ifeira.compra.shared.entity.Pessoa;
 import br.com.ifeira.compra.shared.enums.StatusPagamento;
+import br.com.ifeira.compra.shared.enums.StatusPedido;
 import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
 import br.com.ifeira.compra.shared.utils.Notificavel;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
@@ -60,6 +61,7 @@ public class PagamentoController {
     }
 
     public PagamentoDTO enfileirarPagamento(Pagamento pagamento) throws Exception {
+        if(pagamento.getPedido() != null && pagamento.getPedido().getStatusPedido().equals(StatusPedido.PENDENTE)) throw new Exception("Não é possivel inserir PEDIDO que não esta PENDENTE");
         PagamentoInHandler pagChain = this.pagFactory.criarPagamentoInChain(jdbcTemplate, pagamentoProdutor);
         pagamento.setData(new Date());
         pagamento.setStatusPagamento(StatusPagamento.PENDENTE);

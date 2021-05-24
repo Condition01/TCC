@@ -98,22 +98,30 @@ public class EntregaController {
 
     public Entrega gerarEntrega(PagamentoDTO pagamento) {
         Pedido pedido = this.pedidoDAO.buscar(pagamento.getNumeroPedido());
-        if(pedido == null || pedido.getStatusPedido().equals(StatusPedido.CANCELADO)) {
-            throw new AmqpRejectAndDontRequeueException("REJEITADO");
+        if(pedido == null) throw new AmqpRejectAndDontRequeueException("REJEITADO");
+        try {
+            String contexto = pedido.getCarrinho()
+                    .getListaProdutoQuantidade()
+                    .get(0)
+                    .getProdutoFeira()
+                    .getFeira()
+                    .getContext();
+            Entregador entregador = selecionarEntregador(contexto);
+
+            if(entregador == null || !pedido.getStatusPedido().equals(StatusPedido.PAGO)) throw new AmqpRejectAndDontRequeueException("REJEITADO");
+
+            Entrega entrega = this.entregaFactory.criarEntrega(pedido, entregador);
+            Entrega entregaRetornada = this.entregaDAO.salvar(entrega);
+            String mensagem = "Entrega referente ao pedido " + pedido.getNumeroPedido() + " na data: " + pedido.getDataEntrega();
+            String assunto = "Entrega referente ao pedido " + pedido.getNumeroPedido();
+            notificar(entregaRetornada, entregaRetornada.getEntregador().getEmail(), mensagem, assunto);
+            return entregaRetornada;
+        }catch (AmqpRejectAndDontRequeueException e) {
+            pedido.marcarCancelado();
+            this.pedidoDAO.editar(pedido);
+            throw e;
         }
-        String contexto = pedido.getCarrinho()
-                .getListaProdutoQuantidade()
-                .get(0)
-                .getProdutoFeira()
-                .getFeira()
-                .getContext();
-        Entregador entregador = selecionarEntregador(contexto);
-        Entrega entrega = this.entregaFactory.criarEntrega(pedido, entregador);
-        Entrega entregaRetornada = this.entregaDAO.salvar(entrega);
-        String mensagem = "Entrega referente ao pedido " + pedido.getNumeroPedido() + " na data: " + pedido.getDataEntrega();
-        String assunto = "Entrega referente ao pedido " + pedido.getNumeroPedido();
-        notificar(entregaRetornada, entregaRetornada.getEntregador().getEmail(), mensagem, assunto);
-        return entregaRetornada;
+
     }
 
     public void notificar(Entrega entrega, String email, String mensagem, String assunto) {
@@ -154,8 +162,8 @@ public class EntregaController {
         List<Entrega> entregasAtrasadas = parsedEntregaDAO.buscarEntregasAtrasadas();
         entregasAtrasadas.forEach(entrega -> {
             Pedido pedido = this.pedidoDAO.buscar(entrega.getPedido().getNumeroPedido());
-            entrega.setStatusEntrega(StatusEntrega.CANCELADA);
-            pedido.setStatusPedido(StatusPedido.CANCELADO);
+            entrega.marcarCancelada();
+            pedido.marcarCancelado();
             this.entregaDAO.editar(entrega);
             this.pedidoDAO.editar(pedido);
             String mensagem = "Pedido " + pedido.getNumeroPedido() + " CANCELADO na data: " + new Date() + " devido ao ATRASO na entrega.";

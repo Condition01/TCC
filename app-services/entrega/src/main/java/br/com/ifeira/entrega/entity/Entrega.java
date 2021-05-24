@@ -25,6 +25,10 @@ public class Entrega {
     public Entrega() {
     }
 
+    public void marcarCancelada() {
+        this.statusEntrega = StatusEntrega.CANCELADA;
+    }
+
     public void marcarRealizada() {
         this.statusEntrega = StatusEntrega.REALIZADA;
     }

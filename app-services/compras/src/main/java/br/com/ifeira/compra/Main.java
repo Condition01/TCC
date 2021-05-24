@@ -20,7 +20,6 @@ public class Main {
         System.out.println(truncatedDate);
     }
 
-
     private static void genKey() throws NoSuchAlgorithmException, IOException {
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
         keyGen.initialize(1024);
