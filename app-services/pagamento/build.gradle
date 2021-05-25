@@ -22,11 +22,6 @@ dependencies {
 	compile(project(':app-services:pagamento:pagamento-shared'))
 }
 
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
 
 task runPagamento(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath

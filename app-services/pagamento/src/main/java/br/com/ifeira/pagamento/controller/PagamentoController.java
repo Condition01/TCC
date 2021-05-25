@@ -67,6 +67,7 @@ public class PagamentoController {
                 this.logger.error(e.getMessage());
             } else {
                 this.pagamentoDAO.persistirPagamentosComErro(pagamento);
+                pagamento.setStatus("CANCELADO");
                 String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: " + pagamento.getStatus();
                 this.notificar(pagamento, pagamento.getEmail(), mensagem);
                 throw new AmqpRejectAndDontRequeueException("DONT");
@@ -92,8 +93,8 @@ public class PagamentoController {
     @Transactional
     public void persistirPagamentosRealizados(PagamentoDTO pagamento) throws Exception {
         if (pagamento.getStatus().equals("CONFIRMADO")) {
-            pagamentoProdutor.enfileirarPagamentosConcluidos(pagamento);
             pagamentoDAO.persistirPagamentosComSucesso(pagamento);
+            pagamentoProdutor.enfileirarPagamentosConcluidos(pagamento);
         } else {
             pagamentoDAO.persistirPagamentosComErro(pagamento);
         }

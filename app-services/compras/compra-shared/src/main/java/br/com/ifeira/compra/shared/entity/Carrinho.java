@@ -34,4 +34,8 @@ public class Carrinho {
         this.pedidoRef = pedidoRef;
     }
 
+    public boolean vazio() {
+        return this.getListaProdutoQuantidade().size() == 0;
+    }
+
 }

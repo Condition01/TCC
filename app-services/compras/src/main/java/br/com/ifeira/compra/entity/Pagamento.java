@@ -33,6 +33,18 @@ public class Pagamento {
         this.salvaDadosPag = salvaDadosPag;
     }
 
+    public void marcarPendente() {
+        this.statusPagamento = StatusPagamento.PENDENTE;
+    }
+
+    public void marcarCancelado() {
+        this.statusPagamento = StatusPagamento.CANCELADO;
+    }
+
+    public void marcarConfirmado() {
+        this.statusPagamento = StatusPagamento.CONFIRMADO;
+    }
+
     public Pagamento() {
         this.salvaDadosPag = false;
     }

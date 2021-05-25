@@ -55,7 +55,7 @@ public class PedidoController {
     }
 
     public Pedido fecharPedido(Carrinho carrinho, String cupom, Principal principal) throws Exception {
-        if(carrinho == null) throw new Exception("Carrinho Vazio");
+        if(carrinho.vazio()) throw new Exception("Carrinho Vazio");
         Pessoa pessoa = this.pessoaDAO.buscar(principal.getName());
         Cupom cupomObj = this.cupomDAO.buscar(cupom);
         Pedido pedido = pedidoFactory.criarPedido(carrinho, cupomObj, pessoa);

@@ -18,14 +18,39 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
 
     private PersistivelContextual<ProdutoFeira, String> produtoFeiraDAO;
     private Persistivel<Cupom, String> cupomDAO;
+    private JdbcTemplate jdbcTemplate;
 
     public HandlerValidacao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
         this.produtoFeiraDAO = new ProdutoFeiraDAO(jdbcTemplate);
         this.cupomDAO = new CupomDAO(jdbcTemplate);
     }
 
+    public Boolean validarCobranca(String cobranca) {
+        return this.jdbcTemplate.query("select\n" +
+                "\tcase\n" +
+                "\t\twhen NUMERO is not null then false\n" +
+                "\t\telse true\n" +
+                "\tend item\n" +
+                "from\n" +
+                "\tPEDIDO p\n" +
+                "where\n" +
+                "\tCOBRANCA = ?", ps -> {
+            ps.setString(1, cobranca);
+        }, rs -> {
+            Boolean valido = true;
+            while (rs.next()) {
+                valido = rs.getBoolean("item");
+            }
+            return valido;
+        });
+    }
+
     @Override
     public PagamentoDTO handle(Pagamento pagamento) throws Exception {
+        Boolean validoCobranca = validarCobranca(pagamento.getPedido().getCobranca());
+        if(!validoCobranca) throw new Exception("Esse pedido já foi feito!");
+
         List<ProdutoQuantidade> prodQtdList = new ArrayList<>();
         for(ProdutoQuantidade pagQtd: pagamento.getPedido().getCarrinho().getListaProdutoQuantidade()) {
             ProdutoFeira produtoFeira = this.produtoFeiraDAO

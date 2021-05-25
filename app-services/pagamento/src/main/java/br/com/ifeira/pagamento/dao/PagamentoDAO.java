@@ -2,6 +2,7 @@ package br.com.ifeira.pagamento.dao;
 
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 
@@ -34,6 +35,7 @@ public class PagamentoDAO {
         });
     }
 
+    @Transactional
     public void persistirPagamentosComErro(PagamentoDTO pagamento) {
         String statusPagamento = "CANCELADO";
         String statusPedido = "CANCELADO";
@@ -46,6 +48,7 @@ public class PagamentoDAO {
         }
     }
 
+    @Transactional
     public void persistirPagamentosComSucesso(PagamentoDTO pagamento) {
         String statusPagamento = "CONFIRMADO";
 
