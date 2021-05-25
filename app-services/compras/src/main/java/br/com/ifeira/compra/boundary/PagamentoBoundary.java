@@ -23,6 +23,7 @@ public class PagamentoBoundary {
     @PostMapping("/enviar")
     public ResponseEntity<?> enviarPagamento(@RequestBody Pagamento pagamento) {
         try {
+            logger.info("Recebendo pagamento referente ao pedido: " + pagamento.getPedido().getNumeroPedido());
             return ResponseEntity.ok(this.pagamentoController.enfileirarPagamento(pagamento));
         }catch (Exception e) {
             logger.error(e.getMessage());
@@ -34,6 +35,7 @@ public class PagamentoBoundary {
     @GetMapping("/listar")
     public ResponseEntity<?> listarPagamentos(Principal principal) {
         try {
+            logger.info("Listando pagamentos de: " + principal.getName());
             return ResponseEntity.ok(this.pagamentoController.listarPagamentos(principal));
         }catch (Exception e) {
             logger.error(e.getMessage());

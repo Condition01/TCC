@@ -63,9 +63,11 @@ public class PagamentoController {
             atualizarSaldoADM(pagamento);
         } catch (Exception e) {
             if(!(e instanceof PagamentoInvalidoException)) {
+                logger.info("Pagamento: " + pagamento.getIdPagamento() + " processado com falha - RE-INSERINDO");
                 this.pagamentoProdutor.enfileirarPagamentosComErro(pagamento);
                 this.logger.error(e.getMessage());
             } else {
+                logger.info("Pagamento: " + pagamento.getIdPagamento() + " CANCELADO");
                 this.pagamentoDAO.persistirPagamentosComErro(pagamento);
                 pagamento.setStatus("CANCELADO");
                 String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: " + pagamento.getStatus();
@@ -93,9 +95,11 @@ public class PagamentoController {
     @Transactional
     public void persistirPagamentosRealizados(PagamentoDTO pagamento) throws Exception {
         if (pagamento.getStatus().equals("CONFIRMADO")) {
+            logger.info("Pagamento: " + pagamento.getIdPagamento() + " processado com sucesso");
             pagamentoDAO.persistirPagamentosComSucesso(pagamento);
             pagamentoProdutor.enfileirarPagamentosConcluidos(pagamento);
         } else {
+            logger.info("Pagamento: " + pagamento.getIdPagamento() + " CANCELADO");
             pagamentoDAO.persistirPagamentosComErro(pagamento);
         }
     }

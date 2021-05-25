@@ -20,6 +20,7 @@ public class CarrinhoBoundary {
     @PostMapping("/{contexto}/recuperar")
     public ResponseEntity<?> recuperarCarrinho(@RequestBody Map<String, Integer> prodQtdMap, @PathVariable("contexto") String contexto) {
         try {
+            logger.info("Recuperando carrinho na feira " + contexto);
             return ResponseEntity.ok(this.carrinhoController.recuperarCarrinho(prodQtdMap, contexto));
         }catch (Exception e) {
             logger.error(e.getMessage());

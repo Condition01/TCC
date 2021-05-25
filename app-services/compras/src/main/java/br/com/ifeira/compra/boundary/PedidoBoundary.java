@@ -26,6 +26,7 @@ public class PedidoBoundary {
     public ResponseEntity<?> fecharPedido(
             @RequestBody Carrinho carrinho, @RequestParam("cupom") String cupom, Principal principal) {
         try {
+            logger.info("Recebendo pedido de usuário: " + principal.getName());
             return ResponseEntity.ok(this.pedidoController.fecharPedido(carrinho, cupom, principal));
         }catch (Exception e) {
             logger.error(e.getMessage());
@@ -38,6 +39,7 @@ public class PedidoBoundary {
     @GetMapping("/listar")
     public ResponseEntity<?> listarPedidos(Principal principal) {
         try {
+            logger.info("Listando pedidos de: " + principal.getName());
             return ResponseEntity.ok(this.pedidoController.listarPedidos(principal));
         }catch (Exception e) {
             logger.error(e.getMessage());
@@ -48,11 +50,15 @@ public class PedidoBoundary {
 
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
     @PutMapping("/cancelar")
-    public ResponseEntity<?> cancelarPedido(String pedCancReq) {
+    public ResponseEntity<?> cancelarPedido(String pedCancReq, Principal principal) {
         try {
+
             JsonNode jsonObjResp = new ObjectMapper().readTree(pedCancReq);
 
             Long numeroPedido = jsonObjResp.get("idEntrega").asLong();
+
+            logger.info("Recebendo requisição de CANCELAMENTO DE PEDIDO do usuário: " + principal.getName() +
+                    " com numero de pedido" + numeroPedido);
 
             return ResponseEntity.ok(this.pedidoController.cancelarPedido(numeroPedido));
         }catch (Exception e) {

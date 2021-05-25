@@ -21,6 +21,7 @@ public class FeiraBoundary {
     @GetMapping("/listar")
     public ResponseEntity<?> listarFeiras() {
         try {
+            logger.info("Listando feiras...");
             return ResponseEntity.ok(this.feiraController.listarFeiras());
         }catch (Exception e) {
             logger.error(e.getMessage());
@@ -31,6 +32,7 @@ public class FeiraBoundary {
     @GetMapping("/buscar")
     public ResponseEntity<?> selecionarFeira(@RequestParam("feira") String feira) {
         try {
+            logger.info("Buscando feiras com prefixo: " + feira);
             return ResponseEntity.ok(this.feiraController.selecionarFeira(feira));
         }catch (Exception e) {
             logger.error(e.getMessage());

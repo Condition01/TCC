@@ -18,6 +18,7 @@ public class ProdutoBoundary {
     @GetMapping("/{contexto}/listar")
     public ResponseEntity<?> listarFLV(@PathVariable("contexto") String contexto) {
         try {
+            logger.info("Listando produtos de feira: " + contexto);
             return ResponseEntity.ok(this.produtoController.listarFLV(contexto));
         }catch (Exception e) {
             logger.error(e.getMessage());
@@ -28,6 +29,7 @@ public class ProdutoBoundary {
     @GetMapping("/{contexto}/buscarFLVS")
     public ResponseEntity<?> buscarFLVS(@RequestParam("nome") String nome, @PathVariable("contexto") String contexto) {
         try {
+            logger.info("Buscando FLVs com prefixo: " + nome + " de feira: " + contexto);
             return ResponseEntity.ok(this.produtoController.buscarFLVS(nome, contexto));
         }catch (Exception e) {
             logger.error(e.getMessage());
