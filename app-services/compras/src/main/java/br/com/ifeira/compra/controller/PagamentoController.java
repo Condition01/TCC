@@ -8,8 +8,9 @@ import br.com.ifeira.compra.entity.PagamentoProdutor;
 import br.com.ifeira.compra.factories.PagamentoInConcretHandlerFactory;
 import br.com.ifeira.compra.factories.PagamentoInHandlerFactory;
 import br.com.ifeira.compra.handlers.PagamentoInHandler;
-import br.com.ifeira.compra.shared.dao.Persistivel;
-import br.com.ifeira.compra.shared.dao.PessoaDAO;
+import br.com.ifeira.compra.shared.dao.*;
+import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
 import br.com.ifeira.compra.shared.enums.StatusPedido;
 import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
@@ -24,6 +25,7 @@ import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -44,6 +46,8 @@ public class PagamentoController {
     @Autowired
     private PagamentoProdutor pagamentoProdutor;
     private Persistivel<Pagamento, Long> pagamentoDAO;
+    private Persistivel<Pedido, Long> pedidoDAO;
+    private PersistivelContextual<Carrinho, Long> carrinhoDAO;
     private Persistivel<Pessoa, String> pessoaDAO;
     private JdbcTemplate jdbcTemplate;
     private Notificavel notificador;
@@ -53,7 +57,9 @@ public class PagamentoController {
     public PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
+        this.pedidoDAO = new PedidoDAO(jdbcTemplate);
         this.pessoaDAO = new PessoaDAO(jdbcTemplate);
+        this.carrinhoDAO = new CarrinhoDAO(jdbcTemplate);
         this.pagFactory = new PagamentoInConcretHandlerFactory();
         this.restTemplate = new RestTemplate();
         this.restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
@@ -61,7 +67,7 @@ public class PagamentoController {
 
     public PagamentoDTO enfileirarPagamento(Pagamento pagamento) throws Exception {
         if(pagamento.getPedido() != null && !pagamento.getPedido().getStatusPedido().equals(StatusPedido.PENDENTE)) throw new Exception("Não é possivel inserir PEDIDO que não esta PENDENTE");
-        PagamentoInHandler pagChain = this.pagFactory.criarPagamentoInChain(jdbcTemplate, pagamentoProdutor);
+        PagamentoInHandler pagChain = this.pagFactory.criarPagamentoInChain(jdbcTemplate);
         pagamento.setData(new Date());
         pagamento.marcarPendente();
         setarDiaEntrega(pagamento);
@@ -69,9 +75,35 @@ public class PagamentoController {
             String token = pegarTokenAutorizacaoAPIExterna();
             pagamento.setCreditCardId(tokenizarCartao(pagamento.getCreditCardHash(), token));
         }
-        PagamentoDTO pagDTO = pagChain.handle(pagamento);
+        Pagamento returnedPag = pagChain.handle(pagamento);
+        PagamentoDTO pagDTO = persistirEnfileirar(returnedPag);
         notificar(pagDTO);
         return pagDTO;
+    }
+
+
+    @Transactional
+    public PagamentoDTO persistirEnfileirar(Pagamento pagamento) {
+        String contextoFeira = pagamento.getPedido()
+                .getCarrinho()
+                .getListaProdutoQuantidade()
+                .get(0)
+                .getProdutoFeira()
+                .getFeira()
+                .getContext();
+
+        Carrinho carrinho = pagamento.getPedido().getCarrinho();
+
+        Pedido pedidoRetornado = this.pedidoDAO.salvar(pagamento.getPedido());
+
+        pagamento.setPedido(pedidoRetornado);
+        pagamento = this.pagamentoDAO.salvar(pagamento);
+
+        carrinho.setPedidoRef(pedidoRetornado.getNumeroPedido());
+
+        this.carrinhoDAO.salvar(carrinho, contextoFeira);
+
+        return this.pagamentoProdutor.enfileiraPagamento(pagamento);
     }
 
     private String tokenizarCartao(String creditCardHash, String token) throws IOException {

@@ -1,7 +1,6 @@
 package br.com.ifeira.compra.handlers;
 
 import br.com.ifeira.compra.entity.Pagamento;
-import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -22,7 +21,7 @@ import java.security.spec.InvalidKeySpecException;
 public class HandlerCriptografia extends PagamentoInBaseHandler {
 
     @Override
-    public PagamentoDTO handle(Pagamento pagamento) throws Exception {
+    public Pagamento handle(Pagamento pagamento) throws Exception {
         PublicKey publicKey = readPublicKey("./keys/public.key");
 
         pagamento.setNumeroCartao(new String(encrypt(publicKey,pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
@@ -32,7 +31,7 @@ public class HandlerCriptografia extends PagamentoInBaseHandler {
         if(this.getNext() != null) {
             return this.getNext().handle(pagamento);
         }
-        return null;
+        return pagamento;
     }
 
     public byte[] readFileBytes(String filename) throws IOException {

@@ -1,13 +1,14 @@
 package br.com.ifeira.compra.shared.dao;
 
-import br.com.ifeira.compra.shared.entity.*;
-import javafx.util.Pair;
+import br.com.ifeira.compra.shared.entity.Carrinho;
+import br.com.ifeira.compra.shared.entity.Produto;
+import br.com.ifeira.compra.shared.entity.ProdutoQuantidade;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.PreparedStatement;
 import java.util.List;
 
-public class CarrinhoDAO implements PersistivelContextual<Carrinho, Pair<Long, String>> {
+public class CarrinhoDAO implements PersistivelContextual<Carrinho, Long> {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -47,12 +48,12 @@ public class CarrinhoDAO implements PersistivelContextual<Carrinho, Pair<Long, S
     }
 
     @Override
-    public Carrinho buscar(Pair<Long, String> key, String contexto) {
+    public Carrinho buscar(Long key, String contexto) {
         return null;
     }
 
     @Override
-    public List<Carrinho> buscarMultiplos(Pair<Long, String> key, String contexto) {
+    public List<Carrinho> buscarMultiplos(Long key, String contexto) {
         return null;
     }
 

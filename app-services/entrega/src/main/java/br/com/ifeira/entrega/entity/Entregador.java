@@ -32,6 +32,7 @@ public class Entregador extends Pessoa {
 
     public static Entregador pessoaToEntregador(Pessoa pessoa) {
         Entregador entregador = new Entregador();
+        entregador.setEmail(pessoa.getEmail());
         entregador.setCpf(pessoa.getCpf());
         entregador.setDataNascimento(pessoa.getDataNascimento());
         entregador.setEndereco(pessoa.getEndereco());

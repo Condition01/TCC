@@ -1,16 +1,1180 @@
-2021-05-24 23:29:25,688 INFO org.springframework.boot.StartupInfoLogger [main] Starting PagamentoApplication on DESKTOP-OBNNNHI with PID 18800 (C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento\build\classes\java\main started by bruno in C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento)
-2021-05-24 23:29:25,691 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2021-05-24 23:29:26,494 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$da37f23f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-05-24 23:29:26,822 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8095 (http)
-2021-05-24 23:29:26,834 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8095"]
-2021-05-24 23:29:26,844 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2021-05-24 23:29:26,844 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.27]
-2021-05-24 23:29:26,931 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2021-05-24 23:29:26,931 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1206 ms
-2021-05-24 23:29:27,553 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
-2021-05-24 23:29:27,828 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 2 endpoint(s) beneath base path '/actuator'
-2021-05-24 23:29:27,907 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Attempting to connect to: [localhost:5672]
-2021-05-24 23:29:27,956 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Created new connection: rabbitConnectionFactory#6a48a7f3:0/SimpleConnection@73809e7 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 55579]
-2021-05-24 23:29:28,001 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8095"]
-2021-05-24 23:29:28,019 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8095 (http) with context path ''
-2021-05-24 23:29:28,021 INFO org.springframework.boot.StartupInfoLogger [main] Started PagamentoApplication in 2.721 seconds (JVM running for 2.992)
+2021-05-27 00:48:33,703 INFO org.springframework.boot.StartupInfoLogger [main] Starting PagamentoApplication on DESKTOP-OBNNNHI with PID 20396 (C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento\build\classes\java\main started by bruno in C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento)
+2021-05-27 00:48:33,708 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-05-27 00:48:34,643 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$83cef53a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-27 00:48:34,995 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8095 (http)
+2021-05-27 00:48:35,008 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8095"]
+2021-05-27 00:48:35,018 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-05-27 00:48:35,018 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-05-27 00:48:35,162 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-05-27 00:48:35,163 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1412 ms
+2021-05-27 00:48:35,837 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-27 00:48:36,131 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-05-27 00:48:36,223 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Attempting to connect to: [localhost:5672]
+2021-05-27 00:48:36,348 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Created new connection: rabbitConnectionFactory#2c748a15:0/SimpleConnection@45287377 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 52867]
+2021-05-27 00:48:36,446 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8095"]
+2021-05-27 00:48:36,468 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8095 (http) with context path ''
+2021-05-27 00:48:36,471 INFO org.springframework.boot.StartupInfoLogger [main] Started PagamentoApplication in 3.276 seconds (JVM running for 3.649)
+2021-05-27 00:48:41,197 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:41,197 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:41,198 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:41,198 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:41,198 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:42,124 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Starting...
+2021-05-27 00:48:42,594 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Start completed.
+2021-05-27 00:48:53,704 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:53,725 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:54,593 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:54,594 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:54,594 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:54,594 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:54,594 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:55,035 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:55,036 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:55,406 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:55,407 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:55,407 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:55,407 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:55,407 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:55,753 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:55,754 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:56,108 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:56,109 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:56,109 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:56,109 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:56,109 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:56,439 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:56,441 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:57,010 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:57,011 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:57,011 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:57,011 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:57,012 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:57,113 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:57,114 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:57,239 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:57,239 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:57,239 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:57,239 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:57,239 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:57,370 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:57,372 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:57,491 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:57,492 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:57,492 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:57,492 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:57,492 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:57,637 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:57,638 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:57,748 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:57,748 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:57,748 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:57,749 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:57,749 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:57,868 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:57,870 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:57,975 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:57,976 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:57,976 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:57,976 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:57,976 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:58,128 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:58,129 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:58,260 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:58,260 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:58,261 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:58,261 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:58,261 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:58,373 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:58,374 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:58,488 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:58,489 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:58,489 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:58,489 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:58,489 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:58,622 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:58,624 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:58,767 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:58,768 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:58,768 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:58,768 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:58,769 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:58,905 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:58,906 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:59,030 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:59,030 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:59,031 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:59,031 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:59,031 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:59,132 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:59,134 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:59,302 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:59,303 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:59,303 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:59,303 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:59,303 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:59,426 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:59,427 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:59,562 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:59,562 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:59,562 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:59,562 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:59,562 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:59,690 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:59,692 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:48:59,818 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:48:59,819 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:48:59,819 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:48:59,819 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:48:59,819 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:48:59,928 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:48:59,930 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:00,098 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:00,098 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:00,098 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:00,098 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:00,098 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:00,224 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:00,225 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:00,321 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:00,321 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:00,321 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:00,321 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:00,321 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:00,485 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:00,486 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:00,589 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:00,590 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:00,590 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:00,590 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:00,590 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:00,772 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:00,774 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:00,900 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:00,900 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:00,900 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:00,900 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:00,900 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:01,037 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:01,038 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:01,167 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:01,167 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:01,167 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:01,167 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:01,167 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:01,290 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:01,291 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:01,413 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:01,413 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:01,413 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:01,413 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:01,414 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:01,553 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:01,554 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:01,677 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:01,677 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:01,677 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:01,677 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:01,677 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:01,776 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:01,778 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:02,245 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:02,245 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:02,246 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:02,246 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:02,246 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:49:04,562 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:49:04,564 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$3f7e8e07.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.GeneratedMethodAccessor56.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:49:12,897 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:49:13,210 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:49:13,418 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:49:13,618 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:49:13,805 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:50:35,573 INFO org.springframework.boot.StartupInfoLogger [main] Starting PagamentoApplication on DESKTOP-OBNNNHI with PID 13928 (C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento\build\classes\java\main started by bruno in C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento)
+2021-05-27 00:50:35,577 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-05-27 00:50:36,525 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fc801981] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-27 00:50:36,871 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8095 (http)
+2021-05-27 00:50:36,885 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8095"]
+2021-05-27 00:50:36,893 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-05-27 00:50:36,894 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-05-27 00:50:37,032 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-05-27 00:50:37,033 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1417 ms
+2021-05-27 00:50:37,715 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-27 00:50:38,022 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-05-27 00:50:38,132 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Attempting to connect to: [localhost:5672]
+2021-05-27 00:50:38,260 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Created new connection: rabbitConnectionFactory#3bc69ce9:0/SimpleConnection@2eb1c615 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 50949]
+2021-05-27 00:50:38,414 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8095"]
+2021-05-27 00:50:38,437 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8095 (http) with context path ''
+2021-05-27 00:50:38,440 INFO org.springframework.boot.StartupInfoLogger [main] Started PagamentoApplication in 3.31 seconds (JVM running for 3.66)
+2021-05-27 00:50:40,392 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:50:40,392 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:50:40,392 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:50:40,393 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:50:40,393 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:50:41,511 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Starting...
+2021-05-27 00:50:41,985 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Start completed.
+2021-05-27 00:50:45,293 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: null processado com falha - RE-INSERINDO
+2021-05-27 00:50:47,088 WARN org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Execution of Rabbit message listener failed.
+org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException: Listener method 'public void br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(br.com.ifeira.pagamento.shared.dto.PagamentoDTO) throws java.lang.Exception' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:204)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:129)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1542)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1468)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1456)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1451)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1400)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:875)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:859)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:78)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1142)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1048)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.crypto.IllegalBlockSizeException: Data must not be longer than 86 bytes
+	at com.sun.crypto.provider.RSACipher.doFinal(RSACipher.java:346)
+	at com.sun.crypto.provider.RSACipher.engineDoFinal(RSACipher.java:391)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2168)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encrypt(PagamentosProdutor.java:91)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.encryptarPagamentos(PagamentosProdutor.java:72)
+	at br.com.ifeira.pagamento.entity.PagamentosProdutor.enfileirarPagamentosComErro(PagamentosProdutor.java:47)
+	at br.com.ifeira.pagamento.controller.PagamentoController.processarRequisicao(PagamentoController.java:67)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$FastClassBySpringCGLIB$$54439c6b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at br.com.ifeira.pagamento.controller.PagamentoController$$EnhancerBySpringCGLIB$$74b195dd.processarRequisicao(<generated>)
+	at br.com.ifeira.pagamento.boundary.PagamentoConsumer.consumir(PagamentoConsumer.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:50)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:196)
+	... 12 common frames omitted
+2021-05-27 00:50:48,359 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:50:48,359 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: null
+2021-05-27 00:50:48,359 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: null
+2021-05-27 00:50:48,359 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: null
+2021-05-27 00:50:48,360 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='null', email='null', idCobranca='null', numeroPedido=null, numeroCartao='}ù ?Çj@î2úù?¢ ¯Cc°(kÜCL??.?ÛÕúw¦?üÁy~A?4?42?\ %?öÈs??V÷L?«?pÈôpÊªÑVK¿pÄÑ?+>_7?NR?,Ü???rE\b®àJ?0X?¹8kD)Î3àÐ?:k¬ÂiÐ?', validadeCartao='s9#ÄUï?i9?!?D?¼?¸V¾c8ûh<FÉbL??,h<'(íµÖgöåokG¦+O?èI¸:?ñ?»³<ã??Ó?¦?î?æq?Lô?æßÜ??&??:io?øÝAÅ»&¥¸*á0?X­Ô]ïiéëO*éqÜä·¨', credHash='null', status='null', data=Thu May 27 00:47:06 BRT 2021, cvv='x{Mh?w.?°Yà>Çù?.nT[ÈÉK??ÒY¨ð2+?|F!Í2¨¾?éÇ?ÎÊ'-Y??¶Ä?o?s5?ÇQA¸&ÿ3áëHé9¡Ä?nÙéÖW?Ïò?ºd?Ç®D?> §Atu¶¢é*ô| é?ëúøy¾¦®', nomeCartao='Bruno Cardoso', valorTotalPedido=null, rua='null', numeroCasa='null', complemento='null', bairro='null', cidade='null', UF='null', codigoPostal='null'}
+2021-05-27 00:54:57,796 INFO org.springframework.boot.StartupInfoLogger [main] Starting PagamentoApplication on DESKTOP-OBNNNHI with PID 17108 (C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento\build\classes\java\main started by bruno in C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento)
+2021-05-27 00:54:57,799 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-05-27 00:54:58,683 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6767e4ac] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-27 00:54:59,014 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8095 (http)
+2021-05-27 00:54:59,027 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8095"]
+2021-05-27 00:54:59,037 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-05-27 00:54:59,038 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-05-27 00:54:59,172 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-05-27 00:54:59,172 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1331 ms
+2021-05-27 00:54:59,807 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-27 00:55:00,120 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-05-27 00:55:00,218 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Attempting to connect to: [localhost:5672]
+2021-05-27 00:55:00,546 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Created new connection: rabbitConnectionFactory#32091c14:0/SimpleConnection@a21c74 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 58075]
+2021-05-27 00:55:00,593 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8095"]
+2021-05-27 00:55:00,617 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8095 (http) with context path ''
+2021-05-27 00:55:00,620 INFO org.springframework.boot.StartupInfoLogger [main] Started PagamentoApplication in 3.266 seconds (JVM running for 3.616)
+2021-05-27 00:55:04,095 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 00:55:04,095 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: brunofc11@gmail.com
+2021-05-27 00:55:04,095 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: 3
+2021-05-27 00:55:04,095 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: 6
+2021-05-27 00:55:04,096 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='41846827825', email='brunofc11@gmail.com', idCobranca='chr_D5934ADB48EC1B859079179BB6272D6B', numeroPedido=6, numeroCartao='H:|?Çfó­?oéK<þâä-µ/ÃmÐ;n×??e|ò½G?åaªbèuµþäÊ?æk@|¦¿ÈlìéÉ'»^ä?LøyÕ²O³Q©*pþ?ÇÖ¹·?ü¹E-Î)? q?àTõ?Ps¡Sk?Ù-k?@^é?v¡j_', validadeCartao='tu©ñ5%ýTFg®m?oÄ¯ÙÑ¿?[Æ5¾3 u¿^?hcUÃ]¦=?2?K??6ÎrÁdý)q®øÙã²Uô<áVV"s´þ»¹Mµ·©Ú}áÂAH?º|öXÓ?í½ ?<^>Æ§È?«¶?|Ï?·CÎØ?/`æÖ´{K?]?¥', credHash='d3acee56-f6df-470f-b62d-b9a0e1662ae2', status='PENDENTE', data=Thu May 27 00:54:26 BRT 2021, cvv='BÞ¡i0¡ÏÕ§eæè¦ûá­i?¿ô@N?Zè}é#?¼}8÷\q
+ø\?ÔÓ?V?W?©×¿7~¾73²Ñ³?5è¬
+ú?Í¼Çë|3üDl&²úà>#=>?H¼~?6éw¤?Ì°k[#2¼?ÙêkÎ¡`âÚ¦¨?=', nomeCartao='Bruno Cardoso', valorTotalPedido=24.62, rua='Rua das Ostras', numeroCasa='46', complemento='casa', bairro='Jardim São Lucas', cidade='Cerqueira Cesar', UF='SP', codigoPostal='18767030'}
+2021-05-27 00:55:05,142 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Starting...
+2021-05-27 00:55:05,605 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Start completed.
+2021-05-27 00:55:21,821 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: 3 processado com sucesso
+2021-05-27 01:03:19,177 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 01:03:19,177 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: brunofc11@gmail.com
+2021-05-27 01:03:19,177 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: 4
+2021-05-27 01:03:19,177 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: 7
+2021-05-27 01:03:19,178 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='41846827825', email='brunofc11@gmail.com', idCobranca='chr_D9CA9CEAEE1440B2BA2AEE72983107D1', numeroPedido=7, numeroCartao='ÅLëÝ´ês4´^¦?IÀWÊn$ì??¥@pv«¤6f?]?¸?DKk"i?ìÇ} h?Q/ÇÚ¤¶_ý°tkø6)ó?$	»·õ¨¸DÕÈ·?±dÒ?§G?¬YÔxë´<f?ëQY?æúÀsÎ?PëX­&ºÆîJGîÖÈC]ÔÅ', validadeCartao='8¸,kñoÆæ,?7þ?ÆòÊ?? óNÉ·~¯¹®O}?¢|> #ÜÝì ?{û?Úw¬ÀÓfë	Í úÇ)¨QÎÈEj?R9?óÖHÝv®âÛ?Ë?¹;ýM|Ø?¸??âe?¬ò}?'?tê¸KàÜ?Il`', credHash='d3acee56-f6df-470f-b62d-b9a0e1662ae2', status='PENDENTE', data=Thu May 27 01:03:00 BRT 2021, cvv='?Ñ=???]½Äµäbx(®E\ÍE·ï ??Ðé«]{oª÷â!Í³Â?ÀY?ì.`(7F=Tä¿T/Rþ?ð¤÷Tqh!o?",.:èÝý^T.¯ &*k{+!?ñìA·Oå¨¦A(¥gE~Ú?â?^?Â¿???Gå~?ªbôº', nomeCartao='Bruno Cardoso', valorTotalPedido=24.62, rua='Rua das Ostras', numeroCasa='46', complemento='casa', bairro='Jardim São Lucas', cidade='Cerqueira Cesar', UF='SP', codigoPostal='18767030'}
+2021-05-27 01:03:23,538 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: 4 processado com sucesso
+2021-05-27 01:16:44,303 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 01:16:44,304 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: brunofc11@gmail.com
+2021-05-27 01:16:44,304 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: 5
+2021-05-27 01:16:44,304 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: 8
+2021-05-27 01:16:44,304 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='41846827825', email='brunofc11@gmail.com', idCobranca='chr_F28F97A248B4DE6C6BF5BB07B8293C34', numeroPedido=8, numeroCartao='3??ì/²Wô®´(!´SÐ?6ÂæÓgp¨¯73c¶OUhÓ*®©)£ëä?ÆLJ©µ-ÀôæÇ¹ ü6dÜÒÿ
+?¥K??8=ùÔ?ç,öí?ît?Üñã üÉ+>QÃK?/Æ¤??¸="?Âõ¾þ?'Ë??O?Ù?ÏEú', validadeCartao=']Ú¥??òÊ?»¤3§;?a?éåßÞ®S$?ªyn^?$ñ???G¬ÀX~?ÿ{9?Ñ?q.ÜaÉü¨ÉÜî2¨;Se@ñ¬©ä4??OóË?­æ¤?	µ?è»~bú?§ä?"IïáêÄéHÁE?d¢]éáþ»?c_ià', credHash='d3acee56-f6df-470f-b62d-b9a0e1662ae2', status='PENDENTE', data=Thu May 27 01:16:40 BRT 2021, cvv='`èoQ?M$²(?¹VÊÅB Ñ/?Wf¹¯+é=ëzQL[,ç>J)þ?ª%n4Iãxö?_0§A?³?îÞ1q?Õ2;?ÛB§ËR?Ð°?(ª{E¿?åÈ1MGý|©ä°ÈßADO=ul?QÒ íA?|øå@éâ
+fq¬?', nomeCartao='Bruno Cardoso', valorTotalPedido=24.62, rua='Rua das Ostras', numeroCasa='46', complemento='casa', bairro='Jardim São Lucas', cidade='Cerqueira Cesar', UF='SP', codigoPostal='18767030'}
+2021-05-27 01:16:52,387 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: 5 processado com sucesso
+2021-05-27 01:24:13,950 INFO org.springframework.boot.StartupInfoLogger [main] Starting PagamentoApplication on DESKTOP-OBNNNHI with PID 3760 (C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento\build\classes\java\main started by bruno in C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento)
+2021-05-27 01:24:13,954 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-05-27 01:24:14,993 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2bc3ef9c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-27 01:24:15,391 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8095 (http)
+2021-05-27 01:24:15,410 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8095"]
+2021-05-27 01:24:15,420 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-05-27 01:24:15,421 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-05-27 01:24:15,531 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-05-27 01:24:15,531 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1537 ms
+2021-05-27 01:24:16,284 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-27 01:24:16,583 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-05-27 01:24:16,676 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Attempting to connect to: [localhost:5672]
+2021-05-27 01:24:16,798 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Created new connection: rabbitConnectionFactory#5833f5cd:0/SimpleConnection@3003827c [delegate=amqp://guest@127.0.0.1:5672/, localPort= 56115]
+2021-05-27 01:24:17,010 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8095"]
+2021-05-27 01:24:17,033 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8095 (http) with context path ''
+2021-05-27 01:24:17,035 INFO org.springframework.boot.StartupInfoLogger [main] Started PagamentoApplication in 3.513 seconds (JVM running for 3.833)
+2021-05-27 01:25:37,190 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Recebendo requisição de pagamento para ser processado...
+2021-05-27 01:25:37,191 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Pessoa vinculada: brunofc11@gmail.com
+2021-05-27 01:25:37,191 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Id pagamento: 6
+2021-05-27 01:25:37,191 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Numero pedido vinculado: 9
+2021-05-27 01:25:37,192 INFO br.com.ifeira.pagamento.handlers.HandlerLogs [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HANDLER-LOGS -> Objeto: PagamentoDTO{cpfCliente='41846827825', email='brunofc11@gmail.com', idCobranca='chr_87A0AD9150DD88AA7D7B64997C9FB428', numeroPedido=9, numeroCartao='7¹|ié¤+ç)???¥¦d¥ñ?B??s»úF?jo´e"®öÅ??U¯Ü@?pÚe¸%?ç?°Ô7é
+??imñ´³|ÐX:ú?¼±p?%!ÊÎ,éÊ?éò0A?s?£á?é¥á~?Ì°í÷syg¼8ºó6?ÿÅ?Ôd??', validadeCartao='-:£i]ëÁ4_?ã·KèÂïW?å	!îK*Û? þ`íà0YEÕ?Éj¸|<l$ñl?ªØâ|?¡Þ½NF
+D&?qÉ¡É Ycf$IÀ?0?r??QlwäÙè¯?±Ú??0®x(?!ÏäOÔ?s¨g?T??qµ', credHash='d3acee56-f6df-470f-b62d-b9a0e1662ae2', status='PENDENTE', data=Thu May 27 01:25:36 BRT 2021, cvv=' #WùT?-ð·¹¶ã¢?¼ó?ï?gm%Ì©eÆÉ?CP·²Xd^wj½:åØÝµ¢?D×
+"æ¬È??0H?ßÅ©JþÎÍ8#Z{¯ÊÞR8<Ë?AB(´?¢?L¹w?`$ ?ÝrQ?³\T4"pl£Q	ø_¨?uR?¸cy>b', nomeCartao='Bruno Cardoso', valorTotalPedido=24.62, rua='Rua das Ostras', numeroCasa='46', complemento='casa', bairro='Jardim São Lucas', cidade='Cerqueira Cesar', UF='SP', codigoPostal='18767030'}
+2021-05-27 01:25:37,195 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Starting...
+2021-05-27 01:25:37,683 INFO com.zaxxer.hikari.HikariDataSource [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] HikariPool-1 - Start completed.
+2021-05-27 01:25:38,718 INFO br.com.ifeira.pagamento.controller.PagamentoController [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] Pagamento: 6 processado com sucesso

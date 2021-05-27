@@ -1,0 +1,16 @@
+2021-05-26 19:15:43,685 INFO org.springframework.boot.StartupInfoLogger [main] Starting PagamentoApplication on DESKTOP-OBNNNHI with PID 8056 (C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento\build\classes\java\main started by bruno in C:\Users\bruno\Desktop\Projetos\TCC\app-services\pagamento)
+2021-05-26 19:15:43,688 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-05-26 19:15:44,553 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$daf41f4c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-26 19:15:44,887 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8095 (http)
+2021-05-26 19:15:44,900 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8095"]
+2021-05-26 19:15:44,910 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-05-26 19:15:44,910 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-05-26 19:15:45,005 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-05-26 19:15:45,005 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1280 ms
+2021-05-26 19:15:45,648 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-26 19:15:45,949 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-05-26 19:15:46,047 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Attempting to connect to: [localhost:5672]
+2021-05-26 19:15:46,164 INFO org.springframework.amqp.rabbit.connection.AbstractConnectionFactory [main] Created new connection: rabbitConnectionFactory#3d278b4d:0/SimpleConnection@6e3ecf5c [delegate=amqp://guest@127.0.0.1:5672/, localPort= 51298]
+2021-05-26 19:15:46,242 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8095"]
+2021-05-26 19:15:46,258 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8095 (http) with context path ''
+2021-05-26 19:15:46,261 INFO org.springframework.boot.StartupInfoLogger [main] Started PagamentoApplication in 2.961 seconds (JVM running for 3.265)

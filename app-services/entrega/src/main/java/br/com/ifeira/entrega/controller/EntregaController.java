@@ -66,7 +66,7 @@ public class EntregaController {
 
         this.pedidoDAO.editar(pedido);
 
-        String mensagem = "Pedido numero: " + entregaSalva.getPedido().getNumeroPedido() + "Status: " + pedido.getStatusPedido().name();
+        String mensagem = "Pedido numero: " + entregaSalva.getPedido().getNumeroPedido() + " STATUS: " + pedido.getStatusPedido().name();
         String assunto = "Status Pedido " + entrega.getPedido().getNumeroPedido();
         atualizarSaldo(entregaSalva);
         notificar(entregaSalva, pedido.getCliente().getEmail(), mensagem, assunto);

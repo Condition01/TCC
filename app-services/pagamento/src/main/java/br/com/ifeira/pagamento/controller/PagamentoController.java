@@ -54,7 +54,6 @@ public class PagamentoController {
         PagamentoOutHandler pagChain = this.pagFactory.criarPagamentoOutChain(this.apiConfig, this.rTemplate, this.jdbcTemplate);
         try {
             checarTentativas(pagamento);
-            pagamento.setTentativasMQ(pagamento.getTentativasMQ() + 1);
             PagamentoResponse pagamentoResponse = pagChain.handle(pagamento);
             mapearEstadoPagamento(pagamento, pagamentoResponse.getStatus());
             persistirPagamentosRealizados(pagamento);
@@ -63,6 +62,7 @@ public class PagamentoController {
             atualizarSaldoADM(pagamento);
         } catch (Exception e) {
             if(!(e instanceof PagamentoInvalidoException)) {
+                pagamento.setTentativasMQ(pagamento.getTentativasMQ()+1);
                 logger.info("Pagamento: " + pagamento.getIdPagamento() + " processado com falha - RE-INSERINDO");
                 this.pagamentoProdutor.enfileirarPagamentosComErro(pagamento);
                 this.logger.error(e.getMessage());

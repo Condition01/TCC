@@ -8,7 +8,6 @@ import br.com.ifeira.compra.shared.dao.ProdutoFeiraDAO;
 import br.com.ifeira.compra.shared.entity.Cupom;
 import br.com.ifeira.compra.shared.entity.ProdutoFeira;
 import br.com.ifeira.compra.shared.entity.ProdutoQuantidade;
-import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
     }
 
     @Override
-    public PagamentoDTO handle(Pagamento pagamento) throws Exception {
+    public Pagamento handle(Pagamento pagamento) throws Exception {
         Boolean validoCobranca = validarCobranca(pagamento.getPedido().getCobranca());
         if(!validoCobranca) throw new Exception("Esse pedido já foi feito!");
 
@@ -62,13 +61,15 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
 
             prodQtdList.add(prodQtd);
         }
-        Cupom cupom = this.cupomDAO.buscar(pagamento.getPedido().getCupom().getNome());
+        Cupom cupom = pagamento.getPedido().getCupom();
+
+        cupom = cupom != null? this.cupomDAO.buscar(pagamento.getPedido().getCupom().getNome()) : null;
 
         Double valorTotal = calcularValorTotal(prodQtdList, cupom);
 
         if(!valorTotal.equals(pagamento.getPedido().getValorTotal())) {
             throw new Exception("Valor total do pedido\n" +
-                    "inválido com o calculado");
+                    "inválido com o calculado ou cupom invalido");
         }
 
         return getNext().handle(pagamento);
