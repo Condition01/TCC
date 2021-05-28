@@ -1,0 +1,3 @@
+docker run -d --name RABBITMQ -v /home/bruno/Projetos/TCC/rabbit-persistence:/var/lib/rabbitmq -p 15777:15672 -p 5777:5672 heidiks/rabbitmq-delayed-message-exchange:3.8.9-management
+
+docker run -d --name mysqltcc -p 3306:3306 -v /home/bruno/Projetos/TCC/mysqltcc:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_ROOT_HOST="%" -e MYSQL_DATABASE="IFEIRA" mysql:8.0

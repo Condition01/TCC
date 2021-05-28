@@ -7,9 +7,15 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  rabbitmq:
+    port: 5777
+    host: RABBITMQ
+    username: guest
+    password: guest
 
 server:
   port: 8085
+  address: localhost
   instance: PRIMEIRO
 
 eureka:
@@ -17,7 +23,7 @@ eureka:
     leaseRenewalIntervalInSeconds: 2
     leaseExpirationDurationInSeconds: 30
     preferIpAddress: true
-    hostname: localhost
+    hostname: discovery
     port: 8081
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
@@ -72,7 +78,7 @@ mq:
     routing-key: pagamentos_pendentes_key
 
 bd:
-  url: jdbc:mysql://localhost:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
+  url: jdbc:mysql://mysqltcc:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
   username: root
   password: 1234
   driverClassName: com.mysql.cj.jdbc.Driver

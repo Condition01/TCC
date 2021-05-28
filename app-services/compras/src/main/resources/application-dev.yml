@@ -7,13 +7,15 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  rabbitmq:
+    port: 5777
+    host: localhost
+    username: guest
+    password: guest
 
 server:
   port: 8085
   instance: PRIMEIRO
-
-#COMO EUREKA TA DISABILITADO, PRECISA ORIENTAR O RIBBON A PEGA A INSTANCIA CERTA
-
 
 eureka:
   instance:
@@ -25,9 +27,9 @@ eureka:
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
-    enabled: false
-    registerWithEureka: false
-    fetchRegistry: false
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:
@@ -51,18 +53,8 @@ security:
     resource:
       userInfoUri: http://${security.oauth2.service-id}/user/userinfo
 
-ribbon:
-  eureka:
-    enabled: false
-
-auth-service:
-  ribbon:
-    listOfServers: http://localhost:9092
-
 api-pagamento:
-  ribbon:
-    listOfServers: https://sandbox.boletobancario.com
-  pag-id: api-pagamento
+  pag-id: sandbox.boletobancario.com
   oauth:
     id: "XMkSp17rT9J8bbN5"
     secret: ">V}EsQg+48Xn}i[<0pJqBw9gwOy;XbCH"
@@ -73,6 +65,10 @@ api-pagamento:
   private_token: CA3499B3127E237FB9905E458EDC9401E1D299CF0813FDC5525B363E5E96D262
   public_token: B2D0B12E73A21E783D130F46AD79A05EFA4E3460D6D8ECCFB805C61CB02D1741
   api_version: 2
+
+#
+#ribbon:
+#  IsSecure: true
 
 mq:
   -

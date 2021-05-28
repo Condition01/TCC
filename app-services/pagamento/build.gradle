@@ -2,6 +2,7 @@ plugins {
 	id "org.springframework.boot" version "$springBootVersion"
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'com.palantir.docker' version '0.26.0'
 }
 
 group = 'br.com.ifeira'
@@ -22,8 +23,22 @@ dependencies {
 	compile(project(':app-services:pagamento:pagamento-shared'))
 }
 
+docker {
+	name "${project.name}"
+	dockerfile file('./docker/Dockerfile')
+	copySpec.from(jar).rename('.*', 'app.jar')
+	buildArgs(['JAR_FILE': 'app.jar'])
+}
+
+docker.dependsOn(bootJar)
 
 task runPagamento(type: JavaExec, dependsOn: assemble) {
 	classpath = sourceSets.main.runtimeClasspath
 	main = 'br.com.ifeira.pagamento.PagamentoApplication'
+}
+
+task runPagamentoDev(type: JavaExec, dependsOn: assemble) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'br.com.ifeira.pagamento.PagamentoApplication'
+	args '--spring.profiles.active=dev'
 }

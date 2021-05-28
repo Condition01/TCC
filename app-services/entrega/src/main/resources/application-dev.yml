@@ -4,9 +4,14 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+  rabbitmq:
+    port: 5777
+    host: localhost
+    username: guest
+    password: guest
 
 server:
-  port: 8105
+  port: 8106
   instance: PRIMEIRO
 
 eureka:
@@ -19,21 +24,13 @@ eureka:
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
-    enabled: false
+    enabled: true
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 3000
-
-ribbon:
-  eureka:
-    enabled: false
-
-auth-service:
-  ribbon:
-    listOfServers: http://localhost:9092
 
 security:
   oauth2:

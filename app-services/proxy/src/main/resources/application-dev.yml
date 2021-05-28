@@ -14,7 +14,7 @@ zuul:
   prefix: /api
   sensitive-headers: Cookie,Set-Cookie
 
-#  ignored-services: *
+  #  ignored-services: *
   routes:
     compras:
       path: /compras/**
@@ -47,11 +47,11 @@ hystrix:
 eureka:
   instance:
     preferIpAddress: true
-    hostname: discovery
+    hostname: localhost
     port: 8081
     leaseRenewalIntervalInSeconds: 2
-#    leaseRenewalIntervalInSeconds: 1
-#    lease-expiration-duration-in-seconds: 1
+    #    leaseRenewalIntervalInSeconds: 1
+    #    lease-expiration-duration-in-seconds: 1
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
