@@ -8,7 +8,7 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 2
     preferIpAddress: true
-    hostname: localhost
+    hostname: discovery
     statusPageUrl: https://${eureka.hostname}/info
     healthCheckUrl: https://${eureka.hostname}/health
     homePageUrl: https://${eureka.hostname}/
@@ -19,9 +19,9 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 1000
-    #    renewalPercentThreshold: 0
-    #    renewalPercentThreshold: 0.85
-    #    renewal-percent-threshold: 1
+#    renewalPercentThreshold: 0
+#    renewalPercentThreshold: 0.85
+#    renewal-percent-threshold: 1
     #    responseCacheUpdateInvervalMs: 200
 #    enableSelfPreservation: true
 #    enable-self-preservation: false
