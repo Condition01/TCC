@@ -1,6 +1,5 @@
 package br.com.ifeira.pagamento.handlers;
 
-import br.com.ifeira.pagamento.entity.PagamentoResponse;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 
 import javax.crypto.BadPaddingException;
@@ -21,7 +20,7 @@ import java.security.spec.InvalidKeySpecException;
 
 public class HandlerDecriptacao extends PagamentoOutBaseHandler {
     @Override
-    public PagamentoResponse handle(PagamentoDTO pagamento) throws Exception {
+    public PagamentoDTO handle(PagamentoDTO pagamento) throws Exception {
         try {
             PrivateKey privateKey = readPrivateKey("./keys/private.key");
             pagamento.setNumeroCartao(new String(decrypt(privateKey, pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
@@ -30,8 +29,7 @@ public class HandlerDecriptacao extends PagamentoOutBaseHandler {
             if (this.getNext() != null) {
                 return this.getNext().handle(pagamento);
             }
-            return null;
-
+            return pagamento;
         } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException | IllegalBlockSizeException | BadPaddingException e) {
             throw new Exception("Erro na decriptação");
         }

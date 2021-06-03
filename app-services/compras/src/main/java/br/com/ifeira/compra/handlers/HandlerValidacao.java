@@ -26,20 +26,15 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
     }
 
     public Boolean validarCobranca(String cobranca) {
-        return this.jdbcTemplate.query("select\n" +
-                "\tcase\n" +
-                "\t\twhen NUMERO is not null then false\n" +
-                "\t\telse true\n" +
-                "\tend item\n" +
-                "from\n" +
-                "\tPEDIDO p\n" +
-                "where\n" +
-                "\tCOBRANCA = ?", ps -> {
-            ps.setString(1, cobranca);
+        cobranca += "%";
+        String finalCobranca = cobranca;
+        return this.jdbcTemplate.query("SELECT NUMERO FROM PEDIDO p WHERE COBRANCA LIKE ?", ps -> {
+            ps.setString(1, finalCobranca);
         }, rs -> {
             Boolean valido = true;
             while (rs.next()) {
-                valido = rs.getBoolean("item");
+                Long numero = rs.getLong("NUMERO");
+                valido = numero == null ? true : false;
             }
             return valido;
         });

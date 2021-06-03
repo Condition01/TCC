@@ -53,8 +53,9 @@ public class EntregaController {
     }
 
     @Transactional
-    public Entrega realizarEntrega(Long idEntrega) {
+    public Entrega realizarEntrega(Long idEntrega) throws Exception {
         Entrega entrega = this.entregaDAO.buscar(idEntrega);
+        if(entrega.getStatusEntrega() == StatusEntrega.REALIZADA) throw new Exception("Entrega já realizada");
         entrega.marcarRealizada();
         entrega.setDataRealizacao(new Date());
 
@@ -68,7 +69,7 @@ public class EntregaController {
 
         String mensagem = "Pedido numero: " + entregaSalva.getPedido().getNumeroPedido() + " STATUS: " + pedido.getStatusPedido().name();
         String assunto = "Status Pedido " + entrega.getPedido().getNumeroPedido();
-        atualizarSaldo(entregaSalva);
+        atualizarSaldos(entregaSalva);
         notificar(entregaSalva, pedido.getCliente().getEmail(), mensagem, assunto);
         return entregaSalva;
     }
@@ -136,7 +137,7 @@ public class EntregaController {
         this.notificador.enviarNotificacao(mensagem, email, assunto);
     }
 
-    public void atualizarSaldo(Entrega entrega) {
+    public void atualizarSaldos(Entrega entrega) {
         Pedido pedido = entrega.getPedido();
 
         String contextoFeira = pedido.getCarrinho().getListaProdutoQuantidade().get(0).getProdutoFeira().getFeira().getContext();

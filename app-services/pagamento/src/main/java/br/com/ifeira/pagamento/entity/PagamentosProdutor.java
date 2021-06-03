@@ -44,7 +44,7 @@ public class PagamentosProdutor {
     }
 
     public void enfileirarPagamentosComErro(PagamentoDTO pagamento) throws Exception {
-        encryptarPagamentos(pagamento);
+        encriptarPagamentos(pagamento);
 
         this.rabbitTemplate.convertAndSend(
                 this.config.PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME,
@@ -66,7 +66,7 @@ public class PagamentosProdutor {
         pagamento.setCredId("");
     }
 
-    public void encryptarPagamentos(PagamentoDTO pagamento) throws NoSuchAlgorithmException, IOException, InvalidKeySpecException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchPaddingException, ClassNotFoundException {
+    public void encriptarPagamentos(PagamentoDTO pagamento) throws NoSuchAlgorithmException, IOException, InvalidKeySpecException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchPaddingException, ClassNotFoundException {
         PublicKey publicKey = readPublicKey("./keys/public.key");
 
         pagamento.setNumeroCartao(new String(encrypt(publicKey,pagamento.getNumeroCartao().getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));

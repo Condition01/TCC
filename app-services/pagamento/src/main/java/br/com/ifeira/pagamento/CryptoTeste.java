@@ -2,20 +2,12 @@ package br.com.ifeira.pagamento;
 
 import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
 import br.com.ifeira.compra.shared.utils.Notificavel;
-import br.com.ifeira.pagamento.config.APIConfig;
-import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
-import br.com.ifeira.pagamento.factories.PagamentoOutHandlerFactory;
-import br.com.ifeira.pagamento.handlers.PagamentoOutHandler;
-import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -55,15 +47,15 @@ public class CryptoTeste {
 //            System.out.println(new String(recovered_message, "ISO-8859-1"));
 
 
-            PagamentoOutHandlerFactory pagFacotory = new PagamentoOutConcretHandlerFactory();
-            PagamentoOutHandler pagChain = pagFacotory.criarPagamentoOutChain(new APIConfig("", "", "", "", "", "", "", ""), new RestTemplate(), new JdbcTemplate());
-
-            PagamentoDTO pagamentoDTO = new PagamentoDTO();
-            pagamentoDTO.setNumeroCartao(new String(encrypt(publicKey, "12312313".getBytes()), StandardCharsets.ISO_8859_1));
-            pagamentoDTO.setCvv(new String(encrypt(publicKey, "123".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-            pagamentoDTO.setValidadeCartao(new String(encrypt(publicKey, "20/03".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-
-            pagChain.handle(pagamentoDTO);
+//            PagamentoOutHandlerFactory pagFacotory = new PagamentoOutConcretHandlerFactory();
+//            PagamentoOutHandler pagChain = pagFacotory.criarPagamentoOutChain(new APIConfig("", "", "", "", "", "", "", ""), new RestTemplate(), new JdbcTemplate());
+//
+//            PagamentoDTO pagamentoDTO = new PagamentoDTO();
+//            pagamentoDTO.setNumeroCartao(new String(encrypt(publicKey, "12312313".getBytes()), StandardCharsets.ISO_8859_1));
+//            pagamentoDTO.setCvv(new String(encrypt(publicKey, "123".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+//            pagamentoDTO.setValidadeCartao(new String(encrypt(publicKey, "20/03".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+//
+//            pagChain.handle(pagamentoDTO);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }

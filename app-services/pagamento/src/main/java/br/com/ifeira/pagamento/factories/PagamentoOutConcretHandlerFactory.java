@@ -7,15 +7,13 @@ import org.springframework.web.client.RestTemplate;
 
 public class PagamentoOutConcretHandlerFactory implements PagamentoOutHandlerFactory {
     @Override
-    public PagamentoOutHandler criarPagamentoOutChain(APIConfig apiConfig, RestTemplate restTemplate, JdbcTemplate jdbcTemplate) {
+    public PagamentoOutHandler criarPagamentoOutChain(JdbcTemplate jdbcTemplate) {
         PagamentoOutHandler handlerLogs = new HandlerLogs();
         PagamentoOutHandler handlerDecriptacao = new HandlerDecriptacao();
         PagamentoOutHandler handlerValidacao = new HandlerValidacao(jdbcTemplate);
-        PagamentoOutHandler handlerPagamento = new HandlerPagamento(apiConfig, restTemplate);
 
         handlerLogs.setarProximo(handlerValidacao);
         handlerValidacao.setarProximo(handlerDecriptacao);
-        handlerDecriptacao.setarProximo(handlerPagamento);
 
         return handlerLogs;
     }

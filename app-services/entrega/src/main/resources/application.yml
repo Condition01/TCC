@@ -11,7 +11,7 @@ spring:
     password: guest
 
 server:
-  port: 8106
+  port: 8105
   instance: PRIMEIRO
 
 eureka:

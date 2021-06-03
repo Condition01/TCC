@@ -2,19 +2,11 @@ package br.com.ifeira.pagamento;
 
 import br.com.ifeira.pagamento.config.APIConfig;
 import br.com.ifeira.pagamento.config.QueueConfig;
-import br.com.ifeira.pagamento.factories.PagamentoOutConcretHandlerFactory;
-import br.com.ifeira.pagamento.factories.PagamentoOutHandlerFactory;
-import br.com.ifeira.pagamento.handlers.PagamentoOutHandler;
-import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
-import org.springframework.amqp.AmqpException;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +17,6 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -60,53 +51,53 @@ public class PagamentoApplication {
 
 	@GetMapping("/teste")
 	ResponseEntity<?> teste() throws Exception {
-		System.out.println(System.getProperty("user.dir"));
-		PublicKey publicKey = readPublicKey(RESOURCES_DIR + "public.der");
-
-		PagamentoOutHandlerFactory pagFactory = new PagamentoOutConcretHandlerFactory();
-
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-
-		PagamentoOutHandler pagHandlers = pagFactory.criarPagamentoOutChain(this.apiConfig, this.restTemplate, jdbcTemplate);
-
-		//cryptos
-		PagamentoDTO pagamentoDTO = new PagamentoDTO();
-		pagamentoDTO.setIdPagamento(10L);
-		pagamentoDTO.setNumeroCartao(new String(encrypt(publicKey,"12312313".getBytes()), StandardCharsets.ISO_8859_1));
-		pagamentoDTO.setCvv(new String(encrypt(publicKey,"123".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-		pagamentoDTO.setValidadeCartao(new String(encrypt(publicKey,"20/03".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
-
-		//endereco
-		pagamentoDTO.setRua("Rua das bermudas");
-		pagamentoDTO.setNumeroCasa("46");
-		pagamentoDTO.setCidade("Cerqueira César");
-		pagamentoDTO.setComplemento("Atrás do campo");
-		pagamentoDTO.setBairro("São Lucas");
-		pagamentoDTO.setUF("SP");
-		pagamentoDTO.setCodigoPostal("18767030");
-		pagamentoDTO.setNumeroPedido(25L);
-
-		//email
-		pagamentoDTO.setEmail("brunofc11@gmail.com");
-
-		//billings
-		pagamentoDTO.setIdCobranca("chr_F8266EB16136F84B130DF2DDC7C9451E");
-		pagamentoDTO.setCredId("2e16c846-5bfb-4f69-842a-399fc31c099c");
-
-//		this.rabbitTemplate.convertAndSend(this.config.TOPIC_EXCHANGE_NAME, this.config.KEY_NAME, a);
-//		return ResponseEntity.ok(pagHandlers.handle(pagamentoDTO));
-
-		this.rabbitTemplate.convertAndSend(
-				this.config.PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME,
-				this.config.PAGAMENTOS_PENDENTES_KEY_NAME,
-				pagamentoDTO, new MessagePostProcessor() {
-					@Override
-					public Message postProcessMessage(Message message) throws AmqpException {
-						message.getMessageProperties().setHeader("x-delay", "0");
-						return message;
-					}
-				});
-
+//		System.out.println(System.getProperty("user.dir"));
+//		PublicKey publicKey = readPublicKey(RESOURCES_DIR + "public.der");
+//
+//		PagamentoOutHandlerFactory pagFactory = new PagamentoOutConcretHandlerFactory();
+//
+//		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+//
+//		PagamentoOutHandler pagHandlers = pagFactory.criarPagamentoOutChain(this.apiConfig, this.restTemplate, jdbcTemplate);
+//
+//		//cryptos
+//		PagamentoDTO pagamentoDTO = new PagamentoDTO();
+//		pagamentoDTO.setIdPagamento(10L);
+//		pagamentoDTO.setNumeroCartao(new String(encrypt(publicKey,"12312313".getBytes()), StandardCharsets.ISO_8859_1));
+//		pagamentoDTO.setCvv(new String(encrypt(publicKey,"123".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+//		pagamentoDTO.setValidadeCartao(new String(encrypt(publicKey,"20/03".getBytes(StandardCharsets.ISO_8859_1)), StandardCharsets.ISO_8859_1));
+//
+//		//endereco
+//		pagamentoDTO.setRua("Rua das bermudas");
+//		pagamentoDTO.setNumeroCasa("46");
+//		pagamentoDTO.setCidade("Cerqueira César");
+//		pagamentoDTO.setComplemento("Atrás do campo");
+//		pagamentoDTO.setBairro("São Lucas");
+//		pagamentoDTO.setUF("SP");
+//		pagamentoDTO.setCodigoPostal("18767030");
+//		pagamentoDTO.setNumeroPedido(25L);
+//
+//		//email
+//		pagamentoDTO.setEmail("brunofc11@gmail.com");
+//
+//		//billings
+//		pagamentoDTO.setIdCobranca("chr_F8266EB16136F84B130DF2DDC7C9451E");
+//		pagamentoDTO.setCredId("2e16c846-5bfb-4f69-842a-399fc31c099c");
+//
+////		this.rabbitTemplate.convertAndSend(this.config.TOPIC_EXCHANGE_NAME, this.config.KEY_NAME, a);
+////		return ResponseEntity.ok(pagHandlers.handle(pagamentoDTO));
+//
+//		this.rabbitTemplate.convertAndSend(
+//				this.config.PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME,
+//				this.config.PAGAMENTOS_PENDENTES_KEY_NAME,
+//				pagamentoDTO, new MessagePostProcessor() {
+//					@Override
+//					public Message postProcessMessage(Message message) throws AmqpException {
+//						message.getMessageProperties().setHeader("x-delay", "0");
+//						return message;
+//					}
+//				});
+//
 		return ResponseEntity.ok("ok");
 	}
 

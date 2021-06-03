@@ -1,6 +1,5 @@
 package br.com.ifeira.pagamento.handlers;
 
-import br.com.ifeira.pagamento.entity.PagamentoResponse;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
 
 public abstract class PagamentoOutBaseHandler implements PagamentoOutHandler {
@@ -8,7 +7,7 @@ public abstract class PagamentoOutBaseHandler implements PagamentoOutHandler {
     private PagamentoOutHandler next;
 
     @Override
-    public abstract PagamentoResponse handle(PagamentoDTO pagamento) throws Exception;
+    public abstract PagamentoDTO handle(PagamentoDTO pagamento) throws Exception;
 
     @Override
     public void setarProximo(PagamentoOutHandler handler) {
