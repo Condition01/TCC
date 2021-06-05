@@ -51,7 +51,7 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
         Boolean validoCobranca = validarCobranca(pagamento.getPedido().getCobranca());
         Boolean validaDadosPag = validarDadosPag(pagamento);
 
-        if(!validaDadosPag) throw new Exception("Pedido sem dados de pagamento!");
+        if(!validaDadosPag) throw new Exception("Dados de pagamento inválidos!");
         if(!validoCobranca) throw new Exception("Esse pedido já foi feito!");
 
         List<ProdutoQuantidade> prodQtdList = new ArrayList<>();

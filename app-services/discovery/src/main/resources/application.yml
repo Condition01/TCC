@@ -4,6 +4,13 @@ spring:
 server:
   port: 8081
 
+logging:
+  level:
+    com:
+      netflix:
+        discovery: INFO
+        eureka: INFO
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 2
@@ -26,3 +33,4 @@ eureka:
 #    enableSelfPreservation: true
 #    enable-self-preservation: false
 #    evictionIntervalTimerInMs: 100
+

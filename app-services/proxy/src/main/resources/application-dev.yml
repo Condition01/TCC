@@ -6,6 +6,13 @@ server:
   port: 8080
   instance: PRIMEIRO
 
+logging:
+  level:
+    com:
+      netflix:
+        discovery: INFO
+        eureka: INFO
+
 zuul:
   host:
     connect-timeout-millis: 30000
