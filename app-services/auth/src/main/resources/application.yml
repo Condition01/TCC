@@ -5,7 +5,7 @@ spring:
   application:
     name: auth-service
   datasource:
-    url: jdbc:mysql://localhost:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://10.2.0.8:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
     username: root
     password: 1234
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -23,7 +23,7 @@ eureka:
     leaseRenewalIntervalInSeconds: 2
     leaseExpirationDurationInSeconds: 30
     preferIpAddress: true
-    hostname: localhost
+    hostname: 10.2.0.7
     port: 8081
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}

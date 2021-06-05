@@ -52,7 +52,7 @@ public class PagamentosProdutor {
                 pagamento, new MessagePostProcessor() {
                     @Override
                     public Message postProcessMessage(Message message) throws AmqpException {
-                        message.getMessageProperties().setHeader("x-delay", "1");
+                        message.getMessageProperties().setHeader("x-delay", "3600000");
                         return message;
                     }
                 });

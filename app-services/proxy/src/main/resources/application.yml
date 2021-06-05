@@ -47,7 +47,7 @@ hystrix:
 eureka:
   instance:
     preferIpAddress: true
-    hostname: localhost
+    hostname: 10.2.0.7
     port: 8081
     leaseRenewalIntervalInSeconds: 2
     #    leaseRenewalIntervalInSeconds: 1

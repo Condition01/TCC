@@ -1,13 +1,18 @@
 package br.com.ifeira.compra.entity;
 
+import br.com.ifeira.compra.boundary.CarrinhoBoundary;
 import br.com.ifeira.compra.config.QueueConfig;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PagamentoProdutor {
+
+    private Logger logger = LoggerFactory.getLogger(CarrinhoBoundary.class);
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -43,6 +48,9 @@ public class PagamentoProdutor {
         pagamentoDTO.setStatus(pagamento.getStatusPagamento().name());
         pagamentoDTO.setNumeroPedido(pagamento.getPedido().getNumeroPedido());
         pagamentoDTO.setValorTotalPedido(pagamento.getPedido().getValorTotal());
+
+        logger.info("Inserindo pagamento na fila:");
+        logger.info(pagamentoDTO.toString());
 
         this.rabbitTemplate.convertAndSend(
                 this.config.PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME,

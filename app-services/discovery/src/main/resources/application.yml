@@ -8,7 +8,7 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 2
     preferIpAddress: true
-    hostname: localhost
+    hostname: 10.2.0.7
     statusPageUrl: https://${eureka.hostname}/info
     healthCheckUrl: https://${eureka.hostname}/health
     homePageUrl: https://${eureka.hostname}/

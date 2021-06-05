@@ -40,9 +40,18 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
         });
     }
 
+    public Boolean validarDadosPag(Pagamento pagamento) {
+        return (pagamento.getCvv() != null && !pagamento.getCvv().equals("")
+            && (pagamento.getNumeroCartao() != null && !pagamento.getNumeroCartao().equals(""))
+            && pagamento.getValidadeCartao() != null && !pagamento.getValidadeCartao().equals(""));
+    }
+
     @Override
     public Pagamento handle(Pagamento pagamento) throws Exception {
         Boolean validoCobranca = validarCobranca(pagamento.getPedido().getCobranca());
+        Boolean validaDadosPag = validarDadosPag(pagamento);
+
+        if(!validaDadosPag) throw new Exception("Pedido sem dados de pagamento!");
         if(!validoCobranca) throw new Exception("Esse pedido já foi feito!");
 
         List<ProdutoQuantidade> prodQtdList = new ArrayList<>();
@@ -63,8 +72,7 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
         Double valorTotal = calcularValorTotal(prodQtdList, cupom);
 
         if(!valorTotal.equals(pagamento.getPedido().getValorTotal())) {
-            throw new Exception("Valor total do pedido\n" +
-                    "inválido com o calculado ou cupom invalido");
+            throw new Exception("Valor total do pedido invalido");
         }
 
         return getNext().handle(pagamento);
