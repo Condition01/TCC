@@ -8,7 +8,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost:8080"
+host: "arch-services.eastus2.cloudapp.azure.com:8080"
 basePath: "/api"
 tags:
   - name: "compras"
@@ -385,7 +385,7 @@ paths:
 securityDefinitions:
   oauth2:
     type: "oauth2"
-    tokenUrl: "http://localhost:8080/api/auth/oauth/token"
+    tokenUrl: "http://arch-services.eastus2.cloudapp.azure.com:8080/api/auth/oauth/token"
     flow: "password"
     scopes:
       write: "Permite escritas enviando um corpo de requisição."

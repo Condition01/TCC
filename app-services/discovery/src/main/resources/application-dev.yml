@@ -6,7 +6,7 @@ server:
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 2
+    leaseRenewalIntervalInSeconds: 30
     preferIpAddress: true
     hostname: localhost
     statusPageUrl: https://${eureka.hostname}/info

@@ -56,7 +56,7 @@ eureka:
     preferIpAddress: true
     hostname: localhost
     port: 8081
-    leaseRenewalIntervalInSeconds: 2
+    leaseRenewalIntervalInSeconds: 30
     #    leaseRenewalIntervalInSeconds: 1
     #    lease-expiration-duration-in-seconds: 1
     metadataMap:
