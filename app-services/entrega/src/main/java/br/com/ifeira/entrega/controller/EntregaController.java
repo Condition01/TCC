@@ -6,6 +6,7 @@ import br.com.ifeira.compra.shared.dao.PessoaDAO;
 import br.com.ifeira.compra.shared.entity.Pedido;
 import br.com.ifeira.compra.shared.entity.Pessoa;
 import br.com.ifeira.compra.shared.enums.StatusPedido;
+import br.com.ifeira.compra.shared.exceptions.BusinessViolationException;
 import br.com.ifeira.compra.shared.utils.NotificacaoEmail;
 import br.com.ifeira.compra.shared.utils.Notificavel;
 import br.com.ifeira.entrega.config.MailingConfig;
@@ -17,6 +18,8 @@ import br.com.ifeira.entrega.enums.StatusEntrega;
 import br.com.ifeira.entrega.factories.EntregaConcretFactory;
 import br.com.ifeira.entrega.factories.EntregaFactory;
 import br.com.ifeira.pagamento.shared.dto.PagamentoDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -41,6 +44,7 @@ public class EntregaController {
     private EntregaFactory entregaFactory;
     private Map<String, Queue<Entregador>> entregadorFeira;
     private JdbcTemplate jdbcTemplate;
+    private Logger logger = LoggerFactory.getLogger(EntregaController.class);
 
     public EntregaController(@Autowired JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -55,11 +59,13 @@ public class EntregaController {
     @Transactional
     public Entrega realizarEntrega(Long idEntrega) throws Exception {
         Entrega entrega = this.entregaDAO.buscar(idEntrega);
-        if(entrega.getStatusEntrega() == StatusEntrega.REALIZADA) throw new Exception("Entrega já realizada");
+        if(entrega.getStatusEntrega() == StatusEntrega.REALIZADA) throw new BusinessViolationException("Entrega já realizada");
         entrega.marcarRealizada();
         entrega.setDataRealizacao(new Date());
 
         Entrega entregaSalva = this.entregaDAO.editar(entrega);
+
+        logger.info("Entrega realizada: " + entregaSalva.toString());
 
         Pedido pedido = entregaSalva.getPedido();
         pedido.marcarEntregue();

@@ -14,12 +14,12 @@ spring:
     password: guest
 
 server:
-  port: 8086
+  port: 8085
   instance: PRIMEIRO
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 30
+    leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 30
     preferIpAddress: true
     hostname: localhost

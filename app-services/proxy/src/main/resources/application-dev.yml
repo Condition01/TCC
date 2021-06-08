@@ -10,8 +10,8 @@ logging:
   level:
     com:
       netflix:
-        discovery: INFO
-        eureka: INFO
+        discovery: DEBUG
+        eureka: DEBUG
 
 zuul:
   host:
@@ -42,6 +42,7 @@ zuul:
 ribbon:
   ConnectTimeout: 30000
   ReadTimeout: 30000
+  ServerListRefreshInterval: 5
 
 hystrix:
   command:
@@ -56,7 +57,7 @@ eureka:
     preferIpAddress: true
     hostname: localhost
     port: 8081
-    leaseRenewalIntervalInSeconds: 30
+    leaseRenewalIntervalInSeconds: 5
     #    leaseRenewalIntervalInSeconds: 1
     #    lease-expiration-duration-in-seconds: 1
     metadataMap:
@@ -64,6 +65,7 @@ eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
+    registryFetchIntervalSeconds: 5
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
 

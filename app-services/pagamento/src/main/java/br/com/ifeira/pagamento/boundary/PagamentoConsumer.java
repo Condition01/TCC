@@ -18,6 +18,7 @@ public class PagamentoConsumer {
 
     @RabbitListener(queues = "${mq[0].queue-name}")
     public void consumir(PagamentoDTO pagamento) throws Exception {
+        logger.info("Recebendo pagamento pendente: " + pagamento.toString());
         this.pagamentoController.processarRequisicao(pagamento);
     }
 

@@ -2,6 +2,7 @@ package br.com.ifeira.compra.boundary;
 
 import br.com.ifeira.compra.controller.PagamentoController;
 import br.com.ifeira.compra.entity.Pagamento;
+import br.com.ifeira.compra.shared.exceptions.BusinessViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,10 @@ public class PagamentoBoundary {
             return ResponseEntity.ok(this.pagamentoController.enfileirarPagamento(pagamento));
         }catch (Exception e) {
             logger.error(e.getMessage());
+            if(e instanceof BusinessViolationException) {
+                BusinessViolationException parsedException = (BusinessViolationException) e;
+                return ResponseEntity.status(400).body(parsedException.getBusinessError());
+            }
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }

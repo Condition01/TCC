@@ -77,4 +77,15 @@ public class Entrega {
         this.pedido = pedido;
     }
 
+    @Override
+    public String toString() {
+        return "Entrega{" +
+                "id=" + id +
+                ", entregador=" + entregador +
+                ", dataRealizacao=" + dataRealizacao +
+                ", statusEntrega=" + statusEntrega +
+                ", pedido=" + pedido +
+                '}';
+    }
+
 }

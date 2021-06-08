@@ -8,6 +8,7 @@ import br.com.ifeira.compra.shared.dao.ProdutoFeiraDAO;
 import br.com.ifeira.compra.shared.entity.Cupom;
 import br.com.ifeira.compra.shared.entity.ProdutoFeira;
 import br.com.ifeira.compra.shared.entity.ProdutoQuantidade;
+import br.com.ifeira.compra.shared.exceptions.BusinessViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
@@ -51,8 +52,8 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
         Boolean validoCobranca = validarCobranca(pagamento.getPedido().getCobranca());
         Boolean validaDadosPag = validarDadosPag(pagamento);
 
-        if(!validaDadosPag) throw new Exception("Dados de pagamento inválidos!");
-        if(!validoCobranca) throw new Exception("Esse pedido já foi feito!");
+        if(!validaDadosPag) throw new BusinessViolationException("Dados de pagamento inválidos!");
+        if(!validoCobranca) throw new BusinessViolationException("Esse pedido já foi feito!");
 
         List<ProdutoQuantidade> prodQtdList = new ArrayList<>();
         for(ProdutoQuantidade pagQtd: pagamento.getPedido().getCarrinho().getListaProdutoQuantidade()) {
@@ -72,7 +73,7 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
         Double valorTotal = calcularValorTotal(prodQtdList, cupom);
 
         if(!valorTotal.equals(pagamento.getPedido().getValorTotal())) {
-            throw new Exception("Valor total do pedido invalido");
+            throw new BusinessViolationException("Valores inválidos");
         }
 
         return getNext().handle(pagamento);

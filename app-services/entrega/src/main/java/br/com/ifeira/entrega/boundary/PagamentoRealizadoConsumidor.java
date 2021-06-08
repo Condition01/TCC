@@ -18,6 +18,8 @@ public class PagamentoRealizadoConsumidor {
 
     @RabbitListener(queues = "${mq[0].queue-name}")
     public void consumir(PagamentoDTO pagamento) throws Exception {
+        logger.info("Consumindo pagamento concluído: " + pagamento.toString());
+        logger.info("Pagamento ID: " + pagamento.getIdPagamento());
         this.entregaController.gerarEntrega(pagamento);
     }
 

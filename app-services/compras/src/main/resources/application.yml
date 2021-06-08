@@ -19,7 +19,7 @@ server:
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 30
+    leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 30
     preferIpAddress: true
     hostname: 10.2.0.7

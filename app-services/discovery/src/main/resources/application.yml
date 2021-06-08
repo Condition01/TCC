@@ -13,7 +13,7 @@ logging:
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 30
+    leaseRenewalIntervalInSeconds: 5
     preferIpAddress: true
     hostname: 10.2.0.7
     statusPageUrl: https://${eureka.hostname}/info
@@ -26,6 +26,7 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 1000
+    responseCacheUpdateInvervalMs: 5
     #    renewalPercentThreshold: 0
     #    renewalPercentThreshold: 0.85
     #    renewal-percent-threshold: 1

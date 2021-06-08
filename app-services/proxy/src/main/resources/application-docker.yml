@@ -49,7 +49,7 @@ eureka:
     preferIpAddress: true
     hostname: discovery
     port: 8081
-    leaseRenewalIntervalInSeconds: 30
+    leaseRenewalIntervalInSeconds: 5
 #    leaseRenewalIntervalInSeconds: 1
 #    lease-expiration-duration-in-seconds: 1
     metadataMap:
