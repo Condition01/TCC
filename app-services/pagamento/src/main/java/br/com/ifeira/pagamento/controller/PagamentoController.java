@@ -23,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -35,7 +34,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
@@ -45,6 +43,7 @@ public class PagamentoController {
 
     @Autowired
     private APIConfig apiConfig;
+    @Autowired
     private RestTemplate restTemplate;
     @Autowired
     private MailingConfig mailingConfig;
@@ -58,15 +57,10 @@ public class PagamentoController {
 
     private PagamentoOutHandlerFactory pagFactory;
 
-    public PagamentoController(@Autowired JdbcTemplate jdbcTemplate, @Autowired RestTemplateBuilder restTemplateBuilder) {
+    public PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.pagFactory = new PagamentoOutConcretHandlerFactory();
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
-
-        this.restTemplate = restTemplateBuilder
-                .setConnectTimeout(Duration.ofMillis(5000))
-                .setReadTimeout(Duration.ofMillis(5000))
-                .build();
     }
 
     public void processarRequisicao(PagamentoDTO pagamento) throws Exception {

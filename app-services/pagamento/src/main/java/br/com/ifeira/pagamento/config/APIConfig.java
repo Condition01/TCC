@@ -1,13 +1,12 @@
 package br.com.ifeira.pagamento.config;
 
-import br.com.ifeira.pagamento.handlers.ReqErrorHandler;
-import br.com.ifeira.pagamento.handlers.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
+import java.time.Duration;
 
 @Configuration
 public class APIConfig {
@@ -40,11 +39,14 @@ public class APIConfig {
     }
 
     @Bean
-    public RestTemplate getRestTemplate() {
-        RestTemplate rTemplate = new RestTemplate();
-        rTemplate.setErrorHandler(new ReqErrorHandler());
-        rTemplate.setInterceptors(Collections.singletonList(new RequestInterceptor()));
-        return rTemplate;
+    public RestTemplate restTemplate(
+            RestTemplateBuilder
+                    restTemplateBuilder) {
+
+        return restTemplateBuilder
+                .setConnectTimeout(Duration.ofSeconds(2))
+                .setReadTimeout(Duration.ofSeconds(2))
+                .build();
     }
 
 }
