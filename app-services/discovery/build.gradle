@@ -5,6 +5,12 @@ plugins {
 	id 'com.palantir.docker' version '0.26.0'
 }
 
+test.onlyIf { !project.hasProperty('testProperty') }
+
+test {
+	exclude '**/**'
+}
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'

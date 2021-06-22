@@ -19,10 +19,12 @@ mq:
     queue-name: pagamentos_pendentes
     exchange-name: pagamentos_pendentes_exchange
     routing-key: pagamentos_pendentes_key
+    timeout: 2
   -
     queue-name: pagamentos_concluidos
     exchange-name: pagamentos_concluidos_exchange
     routing-key: pagamentos_concluidos
+    timeout: 2
 
 api-pagamento:
   oauth:

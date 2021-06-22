@@ -3,6 +3,10 @@ plugins {
     id 'java'
 }
 
+test {
+    exclude '**/**'
+}
+
 allprojects {
     repositories {
         jcenter()
@@ -19,12 +23,21 @@ allprojects {
         mavenCentral()
     }
 
+    if (project.name.startsWith("other/")) {
+        task build << { task -> println "$task.project.name" }
+    }
+
 }
 
 dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
 }
 
-subprojects {
-    version = '1.0'
+task buildAll {
+    dependsOn ':app-services:auth:build'
+    dependsOn ':app-services:compras:build'
+    dependsOn ':app-services:discovery:build'
+    dependsOn ':app-services:entrega:build'
+    dependsOn ':app-services:pagamento:build'
+    dependsOn ':app-services:proxy:build'
 }

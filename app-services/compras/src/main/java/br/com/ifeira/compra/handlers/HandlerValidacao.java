@@ -25,8 +25,7 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
         this.produtoFeiraDAO = new ProdutoFeiraDAO(jdbcTemplate);
         this.cupomDAO = new CupomDAO(jdbcTemplate);
     }
-
-    public Boolean validarCobranca(String cobranca) {
+    public Boolean validarPedidoFeito(String cobranca) {
         cobranca += "%";
         String finalCobranca = cobranca;
         return this.jdbcTemplate.query("SELECT NUMERO FROM PEDIDO p WHERE COBRANCA LIKE ?", ps -> {
@@ -40,6 +39,22 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
             return valido;
         });
     }
+    public Double calcularValorTotal(List<ProdutoQuantidade> prodQtdList, Cupom cupom) {
+        Double valor = 0.0;
+        for(ProdutoQuantidade prodQtd: prodQtdList) {
+            valor += (prodQtd.getProdutoFeira().getPreco() * prodQtd.getQuantidade());
+        }
+        if(cupom != null && cupom.getAtivo()) {
+            valor = valor - (valor*cupom.getPorcentagem()/100);
+        }
+        return round(valor, 2);
+    }
+    public double round(double value, int places) {
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 
     public Boolean validarDadosPag(Pagamento pagamento) {
         return (pagamento.getCvv() != null && !pagamento.getCvv().equals("")
@@ -49,12 +64,10 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
 
     @Override
     public Pagamento handle(Pagamento pagamento) throws Exception {
-        Boolean validoCobranca = validarCobranca(pagamento.getPedido().getCobranca());
+        Boolean validaPedidoFeito = validarPedidoFeito(pagamento.getPedido().getCobranca());
         Boolean validaDadosPag = validarDadosPag(pagamento);
-
         if(!validaDadosPag) throw new BusinessViolationException("Dados de pagamento inválidos!");
-        if(!validoCobranca) throw new BusinessViolationException("Esse pedido já foi feito!");
-
+        if(!validaPedidoFeito) throw new BusinessViolationException("Esse pedido já foi feito!");
         List<ProdutoQuantidade> prodQtdList = new ArrayList<>();
         for(ProdutoQuantidade pagQtd: pagamento.getPedido().getCarrinho().getListaProdutoQuantidade()) {
             ProdutoFeira produtoFeira = this.produtoFeiraDAO
@@ -67,34 +80,11 @@ public class HandlerValidacao extends PagamentoInBaseHandler {
             prodQtdList.add(prodQtd);
         }
         Cupom cupom = pagamento.getPedido().getCupom();
-
         cupom = cupom != null? this.cupomDAO.buscar(pagamento.getPedido().getCupom().getNome()) : null;
-
         Double valorTotal = calcularValorTotal(prodQtdList, cupom);
-
         if(!valorTotal.equals(pagamento.getPedido().getValorTotal())) {
             throw new BusinessViolationException("Valores inválidos");
         }
-
-        return getNext().handle(pagamento);
+        return getNext() != null ? getNext().handle(pagamento) : pagamento;
     }
-
-    public Double calcularValorTotal(List<ProdutoQuantidade> prodQtdList, Cupom cupom) {
-        Double valor = 0.0;
-        for(ProdutoQuantidade prodQtd: prodQtdList) {
-            valor += (prodQtd.getProdutoFeira().getPreco() * prodQtd.getQuantidade());
-        }
-        if(cupom != null && cupom.getAtivo()) {
-            valor = valor - (valor*cupom.getPorcentagem()/100);
-        }
-        return round(valor, 2);
-    }
-
-    public double round(double value, int places) {
-        long factor = (long) Math.pow(10, places);
-        value = value * factor;
-        long tmp = Math.round(value);
-        return (double) tmp / factor;
-    }
-
 }

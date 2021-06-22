@@ -19,6 +19,10 @@ public class Pagamento {
     private String creditCardId;
     private Boolean salvaDadosPag;
 
+    //construtores e métodos
+
+
+
     public Pagamento(Long id, StatusPagamento statusPagamento, String numeroCartao, String validadeCartao, String cvv, Date data, Pedido pedido, String creditCardHash, String creditCardId, String nomeCartao, Boolean salvaDadosPag) {
         this.id = id;
         this.statusPagamento = statusPagamento;

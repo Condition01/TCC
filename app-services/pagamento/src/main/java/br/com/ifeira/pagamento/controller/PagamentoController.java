@@ -5,8 +5,8 @@ import br.com.ifeira.compra.shared.utils.Notificavel;
 import br.com.ifeira.pagamento.config.APIConfig;
 import br.com.ifeira.pagamento.config.MailingConfig;
 import br.com.ifeira.pagamento.dao.PagamentoDAO;
+import br.com.ifeira.pagamento.entity.PagamentoProdutor;
 import br.com.ifeira.pagamento.entity.PagamentoResponse;
-import br.com.ifeira.pagamento.entity.PagamentosProdutor;
 import br.com.ifeira.pagamento.entity.juno.JunoAddress;
 import br.com.ifeira.pagamento.entity.juno.JunoBilling;
 import br.com.ifeira.pagamento.entity.juno.JunoCreditCardDetails;
@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
@@ -43,12 +45,11 @@ public class PagamentoController {
 
     @Autowired
     private APIConfig apiConfig;
-    @Autowired
     private RestTemplate restTemplate;
     @Autowired
     private MailingConfig mailingConfig;
     @Autowired
-    private PagamentosProdutor pagamentoProdutor;
+    private PagamentoProdutor pagamentoProdutor;
     private JdbcTemplate jdbcTemplate;
     private PagamentoDAO pagamentoDAO;
     private Notificavel notificador;
@@ -57,10 +58,15 @@ public class PagamentoController {
 
     private PagamentoOutHandlerFactory pagFactory;
 
-    public PagamentoController(@Autowired JdbcTemplate jdbcTemplate) {
+    public PagamentoController(@Autowired JdbcTemplate jdbcTemplate, @Autowired RestTemplateBuilder restTemplateBuilder) {
         this.jdbcTemplate = jdbcTemplate;
         this.pagFactory = new PagamentoOutConcretHandlerFactory();
         this.pagamentoDAO = new PagamentoDAO(jdbcTemplate);
+
+        this.restTemplate = restTemplateBuilder
+                .setConnectTimeout(Duration.ofMillis(5000))
+                .setReadTimeout(Duration.ofMillis(5000))
+                .build();
     }
 
     public void processarRequisicao(PagamentoDTO pagamento) throws Exception {
@@ -71,20 +77,23 @@ public class PagamentoController {
             PagamentoResponse pagamentoResponse = pagar(pagamentoTratado);
             mapearEstadoPagamento(pagamento, pagamentoResponse.getStatus());
             persistirPagamentosRealizados(pagamento);
-            String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: " + pagamento.getStatus();
+            String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() +
+                    " STATUS: " + pagamento.getStatus();
             notificar(pagamento, pagamento.getEmail(), mensagem);
             atualizarSaldoADM(pagamento);
         } catch (Exception e) {
             if (!(e instanceof PagamentoInvalidoException)) {
                 pagamento.setTentativasMQ(pagamento.getTentativasMQ() + 1);
-                logger.info("Pagamento: " + pagamento.getIdPagamento() + " processado com falha - RE-INSERINDO");
+                logger.info("Pagamento: " + pagamento.getIdPagamento() +
+                        " processado com falha - RE-INSERINDO");
                 this.pagamentoProdutor.enfileirarPagamentosComErro(pagamento);
-                this.logger.error(e.getMessage());
+//                throw new AmqpRejectAndDontRequeueException("DONT");
             } else {
                 logger.info("Pagamento: " + pagamento.getIdPagamento() + " CANCELADO");
                 this.pagamentoDAO.persistirPagamentosComErro(pagamento);
                 pagamento.setStatus("CANCELADO");
-                String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: " + pagamento.getStatus();
+                String mensagem = "Pagamento referente ao PEDIDO " + pagamento.getNumeroPedido() + " STATUS: "
+                        + pagamento.getStatus();
                 this.notificar(pagamento, pagamento.getEmail(), mensagem);
                 throw new AmqpRejectAndDontRequeueException("DONT");
             }

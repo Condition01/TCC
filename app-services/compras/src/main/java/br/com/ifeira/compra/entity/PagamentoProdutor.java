@@ -20,7 +20,21 @@ public class PagamentoProdutor {
     @Autowired
     private QueueConfig config;
 
-    public PagamentoDTO enfileiraPagamento(Pagamento pagamento){
+    public PagamentoDTO enfileiraPagamento(Pagamento pagamento) {
+        PagamentoDTO pagamentoDTO = criarDTO(pagamento);
+
+        logger.info("Inserindo pagamento na fila:");
+        logger.info(pagamentoDTO.toString());
+
+        this.rabbitTemplate.convertAndSend(
+                this.config.PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME,
+                this.config.PAGAMENTOS_PENDENTES_KEY_NAME,
+                pagamentoDTO);
+
+        return pagamentoDTO;
+    }
+
+    public PagamentoDTO criarDTO(Pagamento pagamento) {
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
 
         //Pagamento
@@ -48,14 +62,6 @@ public class PagamentoProdutor {
         pagamentoDTO.setStatus(pagamento.getStatusPagamento().name());
         pagamentoDTO.setNumeroPedido(pagamento.getPedido().getNumeroPedido());
         pagamentoDTO.setValorTotalPedido(pagamento.getPedido().getValorTotal());
-
-        logger.info("Inserindo pagamento na fila:");
-        logger.info(pagamentoDTO.toString());
-
-        this.rabbitTemplate.convertAndSend(
-                this.config.PAGAMENTOS_PENDENTES_TOPIC_EXCHANGE_NAME,
-                this.config.PAGAMENTOS_PENDENTES_KEY_NAME,
-                pagamentoDTO);
 
         return pagamentoDTO;
     }

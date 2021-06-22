@@ -9,6 +9,12 @@ group = 'br.com.ifeira'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+test.onlyIf { !project.hasProperty('testProperty') }
+
+test {
+	exclude '**/**'
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
@@ -19,8 +25,8 @@ dependencies {
 
 	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
 
-	compile(project(':app-services:compras:compra-shared'))
-	compile(project(':app-services:pagamento:pagamento-shared'))
+	implementation(project(':app-services:compras:compra-shared'))
+	implementation(project(':app-services:pagamento:pagamento-shared'))
 }
 
 docker {

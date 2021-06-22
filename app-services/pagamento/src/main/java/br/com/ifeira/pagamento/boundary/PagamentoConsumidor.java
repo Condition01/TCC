@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PagamentoConsumer {
+public class PagamentoConsumidor {
 
-    private Logger logger = LoggerFactory.getLogger(PagamentoConsumer.class);
+    private Logger logger = LoggerFactory.getLogger(PagamentoConsumidor.class);
 
     @Autowired
     private PagamentoController pagamentoController;

@@ -2,6 +2,12 @@ plugins {
     id 'java'
 }
 
+test.onlyIf { !project.hasProperty('testProperty') }
+
+test {
+    exclude '**/**'
+}
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 

@@ -13,9 +13,11 @@ spring:
     username: guest
     password: guest
 
-server:
-  port: 8086
-  instance: PRIMEIRO
+bd:
+  url: jdbc:mysql://10.2.0.8:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
+  username: root
+  password: 1234
+  driverClassName: com.mysql.cj.jdbc.Driver
 
 eureka:
   instance:
@@ -44,6 +46,10 @@ mail:
     port: 587
   myAccountEmail: ifeiranotificacao@gmail.com
   password: 123456Aa@
+
+server:
+  port: 8086
+  instance: PRIMEIRO
 
 security:
   oauth2:
@@ -75,9 +81,3 @@ mq:
     queue-name: pagamentos_pendentes
     exchange-name: pagamentos_pendentes_exchange
     routing-key: pagamentos_pendentes_key
-
-bd:
-  url: jdbc:mysql://10.2.0.8:3306/IFEIRA?useTimezone=true&serverTimezone=UTC
-  username: root
-  password: 1234
-  driverClassName: com.mysql.cj.jdbc.Driver
